@@ -1,0 +1,92 @@
+const mongoose = require("mongoose")
+
+const SalesOrderTransferSchema = mongoose.Schema({
+    SalesOrderTransferId:{
+        type:String
+    },
+    SalesOrderTransferDate:{
+        type:String,
+       
+    },
+    SalesEnquiryId:{
+        type:String
+    },
+    CustomerId:{
+        type:String
+    },
+    OrderNo:{
+        type:String
+    },
+    OrderDate:{
+        type:String
+    },
+    ScopeOfSupply:{
+        type:String
+    },
+    TotalOrderValue:{
+        type:String
+    },
+    TearmsOfPayment:{
+        type:String
+    },
+    Delivery:{
+        type:String
+    },
+    PFCharge:{
+        type:String
+    },
+    PackingRequirementIfAny:{
+        type:String
+    },
+    TaxiesAndDuties:{
+        type:String
+    },
+    FreightInsurance:{
+        type:String
+    },
+    Basisofsale:{
+        type:String
+    },
+    Inspection:{
+        type:String
+    },
+    LiquidatedDamages :{
+        type:String
+    },
+    SupplierReferenceQuote:{
+        type:String
+    },
+    DeviationModificationUpgradationrequiement:{
+        type:String
+    },
+    TestRequirmentsCertificates:{
+        type:String
+    },
+    BoilerMakerNo:{
+        type:String
+    },
+    Remarks:{
+        type:String
+    },
+    Attachments:{
+        type:String
+    },
+    ContactPersonName:{
+        type:String
+    },
+    Designation:{
+        type:String
+    },
+    ContactNumber:{
+        type:String
+    },
+    ContactPersonEmailId:{
+        type:String
+    },
+    Comments:{
+        type:String
+    }
+},{
+timestamps:true
+})
+module.exports = mongoose.model("SalesOrderTransfer",SalesOrderTransferSchema)

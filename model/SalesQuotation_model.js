@@ -1,0 +1,62 @@
+const mongoose = require("mongoose")
+
+const SalesQuotionSchema = mongoose.Schema({
+    SalesQuotionId:{
+        type:String
+    },
+    Date:{
+        type:String
+    },
+    QuotionCurrency:{
+        type:String,   
+    },
+    CustomerName:{
+        type:String
+    },
+    CustomerId:{
+        type:String
+    },
+    CustomerAddress:{
+        type:String
+    },
+    Subject:{
+        type:String
+    },
+    ContactNumber:{
+        type:String
+    },
+    ContactEmail:{
+        type:String
+    },
+    ProductService:{
+        type:String
+    },
+    Description:{
+        type:String
+    },
+    Quantity:{
+        type:String
+    },
+    UnitPriceTHB:{
+        type:String
+    },
+    OfferValidity:{
+        type:String
+    },
+    PaymentTerm:{
+        type:String
+    },
+    DeliveryTerm:{
+        type:String
+    },
+    DeliveryBasis:{
+        type:String
+    },
+    Status:{
+        type:String,
+        default:"Pending"
+    }
+},{
+timestamps:true
+})
+module.exports = mongoose.model("SalesQuotion",SalesQuotionSchema)
