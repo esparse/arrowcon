@@ -33,7 +33,7 @@ const EmployeeSchema = mongoose.Schema({
         type:String
     },
     BirthPlace:{
-        type:Number
+        type:String
     },
     Gender:{
         type:String
