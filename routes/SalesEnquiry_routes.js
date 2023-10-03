@@ -240,7 +240,16 @@ const bcrypt = require('bcryptjs')
  */
   router.get('/getSalesEnquiry',async(req,res)=>{
     try {
-      const result = await SalesEnquiry.find()
+      const result = await SalesEnquiry.aggregate([
+        {
+            $lookup:{
+                from:'groups',
+                localField:'GroupId',
+                foreignField:'GroupId',
+                as:"Group"
+            },
+        },
+    ])
       res.json({
         succes: true ,
         Message: "Get All Sales Enquiry Details" ,

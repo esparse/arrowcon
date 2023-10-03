@@ -28,7 +28,16 @@ exports.CreatePurchaseEnquiryDetails = async(req,res)=>{
 }
 exports.viewPurchaseEnquiryDetails = async(req,res)=>{
     try {
-        const result = await PurchaseEnquiry.find()
+        const result = await PurchaseEnquiry.aggregate([
+            {
+                $lookup:{
+                    from:'groups',
+                    localField:'GroupId',
+                    foreignField:'GroupId',
+                    as:"Group"
+                },
+            },
+        ])
         res.json({
             count:result.length,
             success:true,
