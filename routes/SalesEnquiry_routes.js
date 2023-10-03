@@ -63,6 +63,7 @@ const bcrypt = require('bcryptjs')
  *         - TargetDate
  *         - Email
  *         - Password
+ *         - GroupId
  *       properties:
  *         SalesEnquiryId:
  *           type: integer
@@ -127,6 +128,9 @@ const bcrypt = require('bcryptjs')
  *         Password:
  *           type: string
  *           description: Password
+ *         GroupId:
+ *           type: string
+ *           description: GroupId
  *       example:
  *         SalesEnquiryId: EA001
  *         EnquiryDate: 12-05-2023
@@ -149,6 +153,7 @@ const bcrypt = require('bcryptjs')
  *         Remarks: asdfg,
  *         AdditionalComments: jbbfrfr,
  *         TargetDate: 20-03-2023,
+ *         GroupId: GID101,
  *
  */
 
