@@ -3,9 +3,10 @@ brycpt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 exports.PurchaseEnquirylogin = async(req,res) =>{
     try {
-     const {Email,Password} = req.body
-     const result = await PurchaseEnquiry.find({Email,Password}) 
-     
+   const Email = req.body.Email;
+   const Password = req.body.Password;
+     const result = await PurchaseEnquiry.findOne({Email:Email} && {Password:Password}) 
+     console.log(result);
      if(!result){
          return res.json({
              success:false,
@@ -15,7 +16,7 @@ exports.PurchaseEnquirylogin = async(req,res) =>{
          })
         }
     //  email found
-//      const verify = await brycpt.compare(Password,result.Password)  
+//      const verify = await compare(Password,result.Password)  
 //      if(!verify){
 //         return res.json({
 //             success:false,
@@ -39,7 +40,8 @@ exports.PurchaseEnquirylogin = async(req,res) =>{
     $match:{
         Email:result.Email
     }
-}])
+}
+])
  res.json({
     success:true,
     message:"You are logged in",

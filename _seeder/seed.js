@@ -13,7 +13,7 @@ const admin =require("./data/admin")
           db()
           await adminModel.deleteMany()
           const result = await adminModel.create(admin)
-        //  console.log(result);
+         console.log(result);
           console.log("DATA INSERT SUCCESSFULLY".bgGreen.yellow);
         //   console.log(sampleData);
         //   console.log(result);
