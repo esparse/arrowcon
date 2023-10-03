@@ -1,55 +1,50 @@
 const express = require("express")
-const {Adminlogin} = require("../controller/AdminLogin_controller")
+const {SalesEnquirylogin} = require("../controller/salesEnquiryLogin_controller")
 const router = express.Router()
 /**
  * @swagger
  * components:
  *   schemas:
- *     admin:
+ *     SalesEnquiry:
  *       type: object
  *       required:
- *         - Name
  *         - Email
  *         - Password
  *       properties:
  *         Email:
  *           type: string
- *           description: admin@gmail.com
+ *           description: SalesEnquiry@gmail.com
  *         Password:
  *           type: string
  *           description: password
- *         Name:
- *           type: string
- *           description: Name
  *       example:
- *         Name: admin
  *         Email: arrowcon@gmail.com
  *         Password: 1234     
  *
  */
 /**
  * @swagger
- * /api/v1/Adminlogin:
+ * /api/v1/SalesEnquirylogin:
  *   post:
- *     summary: admin login
- *     tags: [admin]
+ *     summary: SalesEnquiry login
+ *     tags: [SalesEnquiry]
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/admin'
+ *             $ref: '#/components/schemas/SalesEnquiry'
  *     responses:
  *       200:
- *         description: admin login successfull
+ *         description: SalesEnquiry login successfull
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/admin'
+ *               $ref: '#/components/schemas/SalesEnquiry'
  *       500:
  *         description: Some server error
  */
- router.route("/Adminlogin").post(Adminlogin)
+ router.route("/SalesEnquirylogin").post(SalesEnquirylogin)
 
 module.exports = router
 

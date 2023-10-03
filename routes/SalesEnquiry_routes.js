@@ -4,36 +4,36 @@ const aws = require('aws-sdk');
 const multer = require('multer');
 const multerS3 = require('multer-s3');
 const SalesEnquiry = require('../model/salesEnquiry_model');
-
-const s3 = new aws.S3({
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  region: process.env.REGION
-});
-const upload = multer({
-    storage: multerS3({
-      s3: s3,
-      bucket: "avinya01",
-      ACL: 'authenticated-read',
-      fileSize: 1000000, 
+const bcrypt = require('bcryptjs')
+// const s3 = new aws.S3({
+//   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+//   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+//   region: process.env.REGION
+// });
+// const upload = multer({
+//     storage: multerS3({
+//       s3: s3,
+//       bucket: "avinya01",
+//       ACL: 'authenticated-read',
+//       fileSize: 1000000, 
      
-      metadata: function (req, file, cb) {
-        cb(null, { fieldName: file.originalname },
-          );
+//       metadata: function (req, file, cb) {
+//         cb(null, { fieldName: file.originalname },
+//           );
         
-        console.log(file.originalname);
-      },
-      key: function (req, file, cb) {
-        cb(null, file.originalname);
-      }
-    })
-  });
-  const uploads = multer({
-    storage: multer.memoryStorage(),
-    limits: {
-      fileSize: 2000000000000000000000000 , // 5 MB limit
-    },
-  });
+//         console.log(file.originalname);
+//       },
+//       key: function (req, file, cb) {
+//         cb(null, file.originalname);
+//       }
+//     })
+//   });
+//   const uploads = multer({
+//     storage: multer.memoryStorage(),
+//     limits: {
+//       fileSize: 2000000000000000000000000 , // 5 MB limit
+//     },
+//   });
 
   /**
  * @swagger
@@ -61,7 +61,8 @@ const upload = multer({
  *         - Remarks
  *         - AdditionalComments
  *         - TargetDate
- *         - file
+ *         - Email
+ *         - Password
  *       properties:
  *         SalesEnquiryId:
  *           type: integer
@@ -120,15 +121,19 @@ const upload = multer({
  *         TargetDate:
  *           type: string
  *           description: TargetDate
- *         file:
+ *         Email:
  *           type: string
- *           description: file
- * 
+ *           description: Email
+ *         Password:
+ *           type: string
+ *           description: Password
  *       example:
  *         SalesEnquiryId: EA001
  *         EnquiryDate: 12-05-2023
+ *         Email: salesEnquiry@example.com
+ *         Password: pass@123
  *         CustomerId: CI0001       
- *         RFQNo: 012035       
+ *         RFQNo: ref012035       
  *         EnquiryOwner:  Registered Employee       
  *         OfferingType: Project ECP       
  *         Equipment: Heater       
@@ -144,7 +149,6 @@ const upload = multer({
  *         Remarks: asdfg,
  *         AdditionalComments: jbbfrfr,
  *         TargetDate: 20-03-2023,
- *         file:  image.png
  *
  */
 
@@ -171,26 +175,28 @@ const upload = multer({
  *       500:
  *         description: Some server error
  */
-  router.post('/CreateSalesEnquiry', uploads.single('file'), async  (req, res) => {
-    const { originalname, buffer } = req.file;
+  router.post('/CreateSalesEnquiry', async  (req, res) => {
+    // const { originalname, buffer } = req.file;
   
-    const params = {
-      Bucket: process.env.AWS_S3_BUCKET,
-      Key: originalname,
-      Body: buffer,
-      ContentType: 'image/png', // adjust accordingly
-      ACL: 'public-read',
-    };
+    // const params = {
+    //   Bucket: process.env.AWS_S3_BUCKET,
+    //   Key: originalname,
+    //   Body: buffer,
+    //   ContentType: 'image/png', // adjust accordingly
+    //   ACL: 'public-read',
+    // };
   
-    s3.upload(params, async(err, data) => {
-      if (err) {
-        console.error(err);
-        return res.status(500).send('Error uploading image');
-      }
+    // s3.upload(params, async(err, data) => {
+    //   if (err) {
+    //     console.error(err);
+    //     return res.status(500).send('Error uploading image');
+    //   }
       let count = (await SalesEnquiry.countDocuments()+1000);
       const result = await SalesEnquiry.create({
         SalesEnquiryId: "EA00-" + count ,
         EnquiryDate: req.body.EnquiryDate,
+        Email: req.body.Email,
+        Password:bcrypt.hashSync(req.body.Password,10),
         CustomerId: req.body.CustomerId,
         RFQNo: req.body.RFQNo,
         EnquiryOwner: req.body.EnquiryOwner,
@@ -208,12 +214,12 @@ const upload = multer({
         Remarks: req.body.Remarks,
         AdditionalComments: req.body.AdditionalComments,
         TargetDate: req.body.TargetDate,
-        file: `https://avinya01.s3.ap-south-1.amazonaws.com/${req.file.originalname}`
+        // file: `https://avinya01.s3.ap-south-1.amazonaws.com/${req.file.originalname}`
       })
     
       res.json({ data: result });
     });
-  });
+  
 
 
 /**

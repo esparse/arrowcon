@@ -1,50 +1,50 @@
 const express = require("express")
-const Admin = require("../model/Admin_model")
+const SalesEnquiry = require("../model/SalesEnquiry_model")
 const router = express.Router()
 /**
  * @swagger
  * components:
  *   schemas:
- *     admin:
+ *     SalesEnquiry:
  *       type: object
  *       required:
  *         - Email
  *       properties:
  *         Email:
  *           type: string
- *           description: Admin@gmail.com
+ *           description: SalesEnquiry@gmail.com
  *       example:
- *         Email: Admin@gmail.com
+ *         Email: SalesEnquiry@gmail.com
  *        
  *
  */
 /**
  * @swagger
- * /api/v1/send-verification-code:
+ * /api/v1/send-otp-SalesEnquiry:
  *   post:
  *     summary: Email Send for forgot Password
- *     tags: [admin]
+ *     tags: [SalesEnquiry]
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Admin'
+ *             $ref: '#/components/schemas/SalesEnquiry'
  *     responses:
  *       200:
  *         description: verificationCode send  successfull
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Admin'
+ *               $ref: '#/components/schemas/SalesEnquiry'
  *       500:
  *         description: Some server error
  */
-router.post('/send-verification-code', async (req, res) => {
+router.post('/send-otp-SalesEnquiry', async (req, res) => {
     const { Email } = req.body;
     const verificationCode = Math.floor(Math.random() * 900000) + 100000; // Generate a 6-digit verification code
   
-    const Admin = await Admin.findOneAndUpdate(
+    const SalesEnquiry = await SalesEnquiry.findOneAndUpdate(
       { Email },
       { verificationCode },
       { new: true, upsert: true }
@@ -53,7 +53,7 @@ router.post('/send-verification-code', async (req, res) => {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-          user:"icaet20@nmiet.edu.in",
+          SalesEnquiry:"icaet20@nmiet.edu.in",
           pass:"Bonybaba125@", // Replace with your own email password
       },
     });
@@ -80,7 +80,7 @@ router.post('/send-verification-code', async (req, res) => {
  * @swagger
  * components:
  *   schemas:
- *     admin:
+ *     SalesEnquiry1:
  *       type: object
  *       required:
  *         - Email
@@ -89,7 +89,7 @@ router.post('/send-verification-code', async (req, res) => {
  *       properties:
  *         Email:
  *           type: string
- *           description: Admin@gmail.com
+ *           description: SalesEnquiry@gmail.com
  *         Password:
  *           type: string
  *           description: password
@@ -97,48 +97,47 @@ router.post('/send-verification-code', async (req, res) => {
  *           type: integer
  *           description: verificationCode
  *       example:
- *         Email: Admin@gmail.com
+ *         Email: SalesEnquiry@gmail.com
  *         Password: 12345
  *         verificationCode: 9874
  *
  */
-
 /**
  * @swagger
- * /api/v1/change-password-admin:
+ * /api/v1/change-password:
  *   post:
- *     summary: change Password for Admin
- *     tags: [admin]
+ *     summary: change Password for SalesEnquiry
+ *     tags: [SalesEnquiry]
  *     properties:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/admin'
+ *             $ref: '#/components/schemas/SalesEnquiry1'
  *     responses:
  *       200:
  *         description: Password Change Successfully
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/admin'
+ *               $ref: '#/components/schemas/SalesEnquiry1'
  *       500:
  *         description: Some server error
  */
-router.post('/change-password-admin', async (req, res) => {
+router.post('/change-password', async (req, res) => {
     const { Email, verificationCode } = req.body;
   
-    const Admin = await Admin.findOne({ Email });
-    if (!Admin) {
-      return res.status(400).send('Admin not found');
+    const salesEnquiry = await SalesEnquiry.findOne({ Email });
+    if (!salesEnquiry) {
+      return res.status(400).send('salesEnquiry Email not found');
     }
   
-    if (Admin.verificationCode !== verificationCode) {
+    if (salesEnquiry.verificationCode !== verificationCode) {
       return res.status(400).send('Invalid verification code');
     }
   
-    Admin.isVerified = true;
-    Admin.verificationCode = null;
-    await Admin.save();
+    salesEnquiry.isVerified = true;
+    salesEnquiry.verificationCode = null;
+    await salesEnquiry.save();
   
-    res.send('Reset Password successfully');
-  });
+    res.send(' Password change successfully');
+  })
   module.exports = router

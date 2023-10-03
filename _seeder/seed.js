@@ -7,7 +7,7 @@ const db = require("../config/db")
 //data files
 const admin =require("./data/admin")
 //model
-   const adminModel = require("../model/admin_model")
+   const adminModel = require("../model/Admin_model")
     const insertData = async()=>{
         try {
           db()

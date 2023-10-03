@@ -4,6 +4,12 @@ const SalesEnquirySchema = mongoose.Schema({
     SalesEnquiryId:{
         type:String
     },
+    Email:{
+type:String
+    },
+    Password:{
+        type:String   
+    },
     EnquiryDate:{
         type:String
     },
@@ -50,9 +56,6 @@ const SalesEnquirySchema = mongoose.Schema({
         type:String
     },
     Remarks:{
-        type:String
-    },
-    file:{
         type:String
     },
     AdditionalComments:{
