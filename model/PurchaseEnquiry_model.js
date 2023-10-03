@@ -10,6 +10,12 @@ const PurchaseEnquirySchema = mongoose.Schema({
     Email:{
         type:String,
     },
+    Password:{
+        type:String
+    },
+    GroupId:{
+        type:String,
+    },
     CompanyName :{
         type:String,
     },
@@ -27,6 +33,9 @@ const PurchaseEnquirySchema = mongoose.Schema({
     },
     CreatedDate:{
         type:String
+    },
+    verificationCode:{
+        type:Number
     },
     
 },{

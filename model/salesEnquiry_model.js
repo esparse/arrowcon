@@ -40,6 +40,9 @@ type:String
     Description:{
         type:String
     } ,
+    GroupId:{
+        type:String,
+    },
     Unit:{
         type:String
     },
@@ -63,8 +66,10 @@ type:String
     },
     TargetDate:{
         type:String
-    }
-
+    },
+    verificationCode:{
+        type:Number
+    },
 },{
 timestamps:true
 })

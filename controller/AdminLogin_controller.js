@@ -26,7 +26,20 @@ exports.Adminlogin = async(req,res) =>{
  }
  const token = await jwt.sign({user:result._id},process.env.JWT_SECRET_KEY)
  // all email and pasword match
- const resAdmin = await admin.findOne({Email:result.Email})
+ const resAdmin = await admin.aggregate([
+    {
+        $lookup:{
+            from:'groups',
+            localField:'GroupId',
+            foreignField:'GroupId',
+            as:"Group"
+        },
+    },
+{
+    $match:{
+        Email:result.Email
+    }
+}])
  res.json({
     success:true,
     message:"You are logged in",

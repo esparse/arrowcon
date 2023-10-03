@@ -1,10 +1,10 @@
-const SalesEnquiry = require("../model/salesEnquiry_model")
+const PurchaseEnquiry = require("../model/PurchaseEnquiry_model")
 brycpt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
-exports.SalesEnquirylogin = async(req,res) =>{
+exports.PurchaseEnquirylogin = async(req,res) =>{
     try {
      const {Email,Password} = req.body
-     const result = await SalesEnquiry.find({Email,Password}) 
+     const result = await PurchaseEnquiry.find({Email,Password}) 
      
      if(!result){
          return res.json({
@@ -26,7 +26,7 @@ exports.SalesEnquirylogin = async(req,res) =>{
 //  }
  const token = await jwt.sign({user:result._id},process.env.JWT_SECRET_KEY)
  // all email and pasword match
- const resSalesEnquiry = await SalesEnquiry.aggregate([
+ const resPurchaseEnquiry = await PurchaseEnquiry.aggregate([
     {
         $lookup:{
             from:'groups',
@@ -43,7 +43,7 @@ exports.SalesEnquirylogin = async(req,res) =>{
  res.json({
     success:true,
     message:"You are logged in",
-    data:resSalesEnquiry,
+    data:resPurchaseEnquiry,
      token
  
  })

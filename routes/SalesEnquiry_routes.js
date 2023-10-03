@@ -196,7 +196,7 @@ const bcrypt = require('bcryptjs')
         SalesEnquiryId: "EA00-" + count ,
         EnquiryDate: req.body.EnquiryDate,
         Email: req.body.Email,
-        Password:bcrypt.hashSync(req.body.Password,10),
+        Password:req.body.Password,
         CustomerId: req.body.CustomerId,
         RFQNo: req.body.RFQNo,
         EnquiryOwner: req.body.EnquiryOwner,

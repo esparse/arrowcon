@@ -24,6 +24,10 @@ const AdminLogin = require('./routes/Admin_routes');
 const AdminForgotPassword = require('./routes/AdminForgotPassword_routes');
 
 const SalesEnquiry = require('./routes/SalesEnquiry_routes');
+const SalesEnquirylogin = require('./routes/salesEnquiryLogin_routes');
+const SalesEnquiryforgotpassword = require('./routes/salesEnquiryforgotPassword');
+const PurchaseEnquiryforgotpassword = require('./routes/PurchaseEnquiryforgotPassword');
+
 const PurchaseEstimationEnquiry = require('./routes/PurchaseEstimationEnquiry_routes');
 const SalesOrderTransfer = require('./routes/SalesOrderTransfer_routes');
 const SalesQuotion = require('./routes/SalesQuotion_routes');
@@ -31,6 +35,7 @@ const SalesQuotion = require('./routes/SalesQuotion_routes');
 const document = require('./routes/Document_routes');
 const group = require('./routes/Group_routes');
 const PurchaseEnquiry = require('./routes/PurchaseEnquiry_routes');
+const PurchaseEnquirylogin = require('./routes/PurchaseEnquirylogin_routes');
 
 const options = {
     definition: {
@@ -76,6 +81,10 @@ const options = {
   app.use("/api/v1",document)
   app.use("/api/v1",group)
   app.use("/api/v1",PurchaseEnquiry)
+  app.use("/api/v1",PurchaseEnquirylogin)
+  app.use("/api/v1",SalesEnquirylogin)
+  app.use("/api/v1",SalesEnquiryforgotpassword)
+  app.use("/api/v1",PurchaseEnquiryforgotpassword)
  
 
 

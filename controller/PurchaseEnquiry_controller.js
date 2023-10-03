@@ -5,6 +5,7 @@ exports.CreatePurchaseEnquiryDetails = async(req,res)=>{
         PurchaseEnquiryId:Math.floor((Math.random()*100000)+1),
         Name:req.body.Name,
         Email:req.body.Email,
+        Password:req.body.Password,
         CompanyName:req.body.CompanyName,
         ContactNo:req.body.ContactNo,
         Country:req.body.Country,

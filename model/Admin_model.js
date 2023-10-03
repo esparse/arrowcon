@@ -4,7 +4,9 @@ const AdminSchema = mongoose.Schema({
     Name:{
         type:String
     },
-
+    GroupId:{
+        type:String,
+    },
     Email:{
         type:String,
        
