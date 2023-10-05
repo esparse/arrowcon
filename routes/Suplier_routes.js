@@ -1,5 +1,5 @@
 const express = require("express")
-const {CreateSuplierDetails,viewSuplierDetails,deleteSuplierDetails,updateSuplierDetails} = require("../controller/SuplierController")
+const {CreateSuplierDetails,viewSuplierDetails,deleteSuplierDetails,updateSuplierDetails,getSingleSuplierDetails} = require("../controller/SuplierController")
 const router = express.Router()
 /**
  * @swagger
@@ -227,5 +227,26 @@ router.route("/deleteSuplierDetails/:SuplierId").delete(deleteSuplierDetails)
 *         description: Some server error
 */
 router.route("/updateSuplierDetails").post(updateSuplierDetails)
+/**
+ * @swagger
+ * /api/v1/getSingleSuplierDetails/{SuplierId}:
+ *   get:
+ *     summary: Get a Suplier by ID
+ *     tags: [Suplier]
+ *     description: Retrieve a Suplier by their unique ID.
+ *     parameters:
+ *       - in: path
+ *         name: SuplierId
+ *         required: true
+ *         description: ID of the Suplier to retrieve
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Successfully retrieved the Suplier
+ *       404:
+ *         description: Suplier not found
+ */
+router.route("/getSingleSuplierDetails/:SuplierId").get(getSingleSuplierDetails)
 module.exports = router
 

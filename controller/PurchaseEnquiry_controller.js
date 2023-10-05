@@ -86,3 +86,19 @@ exports.updatePurchaseEnquiryDetails = async(req,res)=>{
         })  
     }
 }
+exports.getSinglePurchaseEnquiryDetails = async(req,res)=>{
+    try {
+        const result = await PurchaseEnquiry.findOne({PurchaseEnquiryId:req.params.PurchaseEnquiryId})
+        res.json({
+            success:true,
+            message:"get a Single PurchaseEnquiry Details",
+            data:result
+        })
+    } catch (error) {
+        res.json({
+            success:false,
+            message:"Something  went wrong",
+            data:null
+        })  
+    }
+}

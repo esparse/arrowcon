@@ -1,5 +1,5 @@
 const express = require("express")
-const {CreateEmployeeDetails,viewEmployeeDetails,deleteEmployeeDetails,updateEmployeeDetails} = require("../controller/Employee_controller")
+const {CreateEmployeeDetails,viewEmployeeDetails,deleteEmployeeDetails,updateEmployeeDetails,getSingleEmployeeDetails} = require("../controller/Employee_controller")
 const router = express.Router()
 /**
  * @swagger
@@ -206,5 +206,26 @@ router.route("/deleteEmployeeDetails/:EmployeeId").delete(deleteEmployeeDetails)
 *         description: Some server error
 */
 router.route("/updateEmployeeDetails").post(updateEmployeeDetails)
+/**
+ * @swagger
+ * /api/v1/getSingleEmployeeDetails/{EmployeeId}:
+ *   get:
+ *     summary: Get a Employee by ID
+ *     tags: [Employee]
+ *     description: Retrieve a Employee by their unique ID.
+ *     parameters:
+ *       - in: path
+ *         name: EmployeeId
+ *         required: true
+ *         description: ID of the Employee to retrieve
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Successfully retrieved the Employee
+ *       404:
+ *         description: Employee not found
+ */
+router.route("/getSingleEmployeeDetails/:EmployeeId").get(getSingleEmployeeDetails)
 module.exports = router
 

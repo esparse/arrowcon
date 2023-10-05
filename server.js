@@ -36,6 +36,8 @@ const document = require('./routes/Document_routes');
 const group = require('./routes/Group_routes');
 const PurchaseEnquiry = require('./routes/PurchaseEnquiry_routes');
 const PurchaseEnquirylogin = require('./routes/PurchaseEnquirylogin_routes');
+const state = require('./routes/state_routes');
+const City = require('./routes/city_routes');
 
 const options = {
     definition: {
@@ -85,6 +87,8 @@ const options = {
   app.use("/api/v1",SalesEnquirylogin)
   app.use("/api/v1",SalesEnquiryforgotpassword)
   app.use("/api/v1",PurchaseEnquiryforgotpassword)
+  app.use("/api/v1",City)
+  app.use("/api/v1",state)
  
 
 

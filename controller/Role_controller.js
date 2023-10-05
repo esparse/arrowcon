@@ -71,3 +71,19 @@ exports.updateRoleDetails = async(req,res)=>{
         })  
     }
 }
+exports.getSingleRoleDetails = async(req,res)=>{
+    try {
+        const result = await Role.findOne({RoleId:req.params.RoleId})
+        res.json({
+            success:true,
+            message:"get a Single Role Details",
+            data:result
+        })
+    } catch (error) {
+        res.json({
+            success:false,
+            message:"Something  went wrong",
+            data:null
+        })  
+    }
+}

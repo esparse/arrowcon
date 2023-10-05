@@ -1,5 +1,5 @@
 const express = require("express")
-const {CreateRoleDetails,viewRoleDetails,deleteRoleDetails,updateRoleDetails} = require("../controller/Role_controller")
+const {CreateRoleDetails,viewRoleDetails,deleteRoleDetails,updateRoleDetails,getSingleRoleDetails} = require("../controller/Role_controller")
 const router = express.Router()
 /**
  * @swagger
@@ -114,5 +114,26 @@ router.route("/deleteRoleDetails/:RoleId").delete(deleteRoleDetails)
 *         description: Some server error
 */
 router.route("/updateRoleDetails").post(updateRoleDetails)
+/**
+ * @swagger
+ * /api/v1/getSingleRoleDetails/{RoleId}:
+ *   get:
+ *     summary: Get a Role by ID
+ *     tags: [Role]
+ *     description: Retrieve a Role by their unique ID.
+ *     parameters:
+ *       - in: path
+ *         name: RoleId
+ *         required: true
+ *         description: ID of the Role to retrieve
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Successfully retrieved the Role
+ *       404:
+ *         description: Role not found
+ */
+router.route("/getSingleRoleDetails/:RoleId").get(getSingleRoleDetails)
 module.exports = router
 

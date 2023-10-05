@@ -70,10 +70,10 @@ exports.CreateEmployeeDetails = async(req,res)=>{
            </div>
            <div class="paragraph">
                <p><b>Dear ${result.EmployeeName},</b><br>
-               We are thrilled to welcome you to Arrow Energy App! We are excited to have you as a valued customer and we would like to inform you that your account is now active.</p>
+               We are thrilled to welcome you to Arrow Energy App! We are excited to have you as a valued Employee and we would like to inform you that your account is now active.</p>
                <p>Simply enter your login information to start using your account. The Arrow Enegry App's numerous features and advantages for learning various courses are available to you as you log in.
               </p>
-              <p>We want to ensure that your experience with us is seamless and enjoyable. If you have any questions, concerns, or feedback, please do not hesitate to contact our customer support team at <b>support@Arrow Energy.app.</b> </p>
+              <p>We want to ensure that your experience with us is seamless and enjoyable. If you have any questions, concerns, or feedback, please do not hesitate to contact our Employee support team at <b>support@Arrow Energy.app.</b> </p>
               <p>We are here to assist you in any way we can. Thank you for choosing Arrow Energy App. We look forward to serving you and providing you with exceptional service.
               </p>
               <p><b>Best regards,<br> Team Arrow Energy App</b>
@@ -184,6 +184,22 @@ exports.updateEmployeeDetails = async(req,res)=>{
         res.json({
             success:false,
             message:"Something  went wrong"+Error,
+            data:null
+        })  
+    }
+}
+exports.getSingleEmployeeDetails = async(req,res)=>{
+    try {
+        const result = await Employee.findOne({EmployeeId:req.params.EmployeeId})
+        res.json({
+            success:true,
+            message:"get a Single Employee Details",
+            data:result
+        })
+    } catch (error) {
+        res.json({
+            success:false,
+            message:"Something  went wrong",
             data:null
         })  
     }

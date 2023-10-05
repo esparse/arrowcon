@@ -107,3 +107,19 @@ exports.updateCustomerDetails = async(req,res)=>{
         })  
     }
 }
+exports.getSingleCustomerDetails = async(req,res)=>{
+    try {
+        const result = await Customer.findOne({CustomerId:req.params.CustomerId})
+        res.json({
+            success:true,
+            message:"get a Single Customer Details",
+            data:result
+        })
+    } catch (error) {
+        res.json({
+            success:false,
+            message:"Something  went wrong",
+            data:null
+        })  
+    }
+}

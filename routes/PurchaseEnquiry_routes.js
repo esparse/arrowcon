@@ -1,5 +1,5 @@
 const express = require("express")
-const {CreatePurchaseEnquiryDetails,viewPurchaseEnquiryDetails,deletePurchaseEnquiryDetails,updatePurchaseEnquiryDetails} = require("../controller/PurchaseEnquiry_controller")
+const {CreatePurchaseEnquiryDetails,viewPurchaseEnquiryDetails,deletePurchaseEnquiryDetails,updatePurchaseEnquiryDetails,getSinglePurchaseEnquiryDetails} = require("../controller/PurchaseEnquiry_controller")
 const router = express.Router()
 /**
  * @swagger
@@ -156,5 +156,26 @@ router.route("/deletePurchaseEnquiryDetails/:PurchaseEnquiryId").delete(deletePu
 *         description: Some server error
 */
 router.route("/updatePurchaseEnquiryDetails").post(updatePurchaseEnquiryDetails)
+/**
+ * @swagger
+ * /api/v1/getSinglePurchaseEnquiryDetails/{PurchaseEnquiryId}:
+ *   get:
+ *     summary: Get a PurchaseEnquiry by ID
+ *     tags: [PurchaseEnquiry]
+ *     description: Retrieve a PurchaseEnquiry by their unique ID.
+ *     parameters:
+ *       - in: path
+ *         name: PurchaseEnquiryId
+ *         required: true
+ *         description: ID of the PurchaseEnquiry to retrieve
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Successfully retrieved the PurchaseEnquiry
+ *       404:
+ *         description: PurchaseEnquiry not found
+ */
+router.route("/getSinglePurchaseEnquiryDetails/:PurchaseEnquiryId").get(getSinglePurchaseEnquiryDetails)
 module.exports = router
 

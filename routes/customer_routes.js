@@ -1,5 +1,5 @@
 const express = require("express")
-const {CreateCustomerDetails,viewCustomerDetails,deleteCustomerDetails,updateCustomerDetails} = require("../controller/Customer_controller")
+const {CreateCustomerDetails,viewCustomerDetails,deleteCustomerDetails,updateCustomerDetails,getSingleCustomerDetails} = require("../controller/Customer_controller")
 const router = express.Router()
 /**
  * @swagger
@@ -266,5 +266,29 @@ router.route("/deleteCustomerDetails/:CustomerId").delete(deleteCustomerDetails)
 *         description: Some server error
 */
 router.route("/updateCustomerDetails").post(updateCustomerDetails)
+
+/**
+ * @swagger
+ * /api/v1/getSingleCustomerDetails/{customerId}:
+ *   get:
+ *     summary: Get a customer by ID
+ *     tags: [Customer]
+ *     description: Retrieve a customer by their unique ID.
+ *     parameters:
+ *       - in: path
+ *         name: customerId
+ *         required: true
+ *         description: ID of the customer to retrieve
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Successfully retrieved the customer
+ *       404:
+ *         description: Customer not found
+ */
+router.route("/getSingleCustomerDetails/:CustomerId").get(getSingleCustomerDetails)
 module.exports = router
 
+
+  

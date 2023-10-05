@@ -99,3 +99,19 @@ exports.updateSuplierDetails = async(req,res)=>{
         })  
     }
 }
+exports.getSingleSuplierDetails = async(req,res)=>{
+    try {
+        const result = await Suplier.findOne({SuplierId:req.params.SuplierId})
+        res.json({
+            success:true,
+            message:"get a Single Suplier Details",
+            data:result
+        })
+    } catch (error) {
+        res.json({
+            success:false,
+            message:"Something  went wrong",
+            data:null
+        })  
+    }
+}
