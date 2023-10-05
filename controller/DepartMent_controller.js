@@ -71,3 +71,19 @@ exports.updateDepartMentDetails = async(req,res)=>{
         })  
     }
 }
+exports.getSingleDepartMentDetails = async(req,res)=>{
+    try {
+        const result = await DepartMent.findOne({DepartMentId:req.params.DepartMentId})
+        res.json({
+            success:true,
+            message:"get a Single DepartMent Details",
+            data:result
+        })
+    } catch (error) {
+        res.json({
+            success:false,
+            message:"Something  went wrong",
+            data:null
+        })  
+    }
+}

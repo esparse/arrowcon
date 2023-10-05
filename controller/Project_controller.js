@@ -98,3 +98,19 @@ exports.updateProjectDetails = async(req,res)=>{
         })  
     }
 }
+exports.getSingleProjectDetails = async(req,res)=>{
+    try {
+        const result = await Project.findOne({ProjectId:req.params.ProjectId})
+        res.json({
+            success:true,
+            message:"get a Single Project Details",
+            data:result
+        })
+    } catch (error) {
+        res.json({
+            success:false,
+            message:"Something  went wrong",
+            data:null
+        })  
+    }
+}

@@ -327,7 +327,7 @@ router.delete("/deleteSalesEnquiryDetails/:SalesEnquiryId",async(req,res)=>{
 */
 router.post("/updateSalesEnquiryDetails",async(req,res)=>{
   try {
-    const result = await SalesEnquiry.findOneAndUpPassword({SalesEnquiryId:req.body.SalesEnquiryId} , req.body , {
+    const result = await SalesEnquiry.findOneAndUpdate({SalesEnquiryId:req.body.SalesEnquiryId} , req.body , {
         new: true,
         runValidators: true,})
     res.json({
@@ -343,4 +343,43 @@ router.post("/updateSalesEnquiryDetails",async(req,res)=>{
     })  
 }
 })
+
+/**
+ * @swagger
+ * /api/v1/getSingleSalesEnquiryDetails/{SalesEnquiryId}:
+ *   get:
+ *     summary: Get a SalesEnquiry by ID
+ *     tags: [SalesEnquiry]
+ *     description: Retrieve a SalesEnquiry by their unique ID.
+ *     parameters:
+ *       - in: path
+ *         name: SalesEnquiryId
+ *         required: true
+ *         description: ID of the SalesEnquiry to retrieve
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Successfully retrieved the SalesEnquiry
+ *       404:
+ *         description: SalesEnquiry not found
+ */
+router.get("/getSingleSalesEnquiryDetails/:SalesEnquiryId",async(req,res)=>{
+  try {
+    const result = await SalesEnquiry.findOne({SalesEnquiryId:req.params.SalesEnquiryId})
+    res.json({
+        success:true,
+        message:"get a Single SalesEnquiry Details",
+        data:result
+    })
+  } catch (error) {
+    res.json({
+        success:false,
+        message:"Something  went wrong",
+        data:null
+    })  
+  }
+  
+})
+
   module.exports = router;

@@ -169,7 +169,7 @@ router.route("/updatePurchaseEnquiryDetails").post(updatePurchaseEnquiryDetails)
  *         required: true
  *         description: ID of the PurchaseEnquiry to retrieve
  *         schema:
- *           type: integer
+ *           type: string
  *     responses:
  *       200:
  *         description: Successfully retrieved the PurchaseEnquiry

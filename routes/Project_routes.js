@@ -1,5 +1,5 @@
 const express = require("express")
-const {CreateProjectDetails,viewProjectDetails,deleteProjectDetails,updateProjectDetails} = require("../controller/Project_controller")
+const {CreateProjectDetails,viewProjectDetails,deleteProjectDetails,updateProjectDetails,getSingleProjectDetails} = require("../controller/Project_controller")
 const router = express.Router()
 /**
  * @swagger
@@ -171,5 +171,26 @@ router.route("/deleteProjectDetails/:ProjectId").delete(deleteProjectDetails)
 *         description: Some server error
 */
 router.route("/updateProjectDetails").post(updateProjectDetails)
+/**
+ * @swagger
+ * /api/v1/getSingleProjectDetails/{ProjectId}:
+ *   get:
+ *     summary: Get a Project by ID
+ *     tags: [Project]
+ *     description: Retrieve a Project by their unique ID.
+ *     parameters:
+ *       - in: path
+ *         name: ProjectId
+ *         required: true
+ *         description: ID of the Project to retrieve
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Successfully retrieved the Project
+ *       404:
+ *         description: Project not found
+ */
+router.route("/getSingleProjectDetails/:ProjectId").get(getSingleProjectDetails)
 module.exports = router
 

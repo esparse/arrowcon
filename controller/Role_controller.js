@@ -82,7 +82,7 @@ exports.getSingleRoleDetails = async(req,res)=>{
     } catch (error) {
         res.json({
             success:false,
-            message:"Something  went wrong",
+            message:"Something  went wrong"+error,
             data:null
         })  
     }

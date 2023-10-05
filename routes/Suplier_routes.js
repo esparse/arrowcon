@@ -240,7 +240,7 @@ router.route("/updateSuplierDetails").post(updateSuplierDetails)
  *         required: true
  *         description: ID of the Suplier to retrieve
  *         schema:
- *           type: integer
+ *           type: string
  *     responses:
  *       200:
  *         description: Successfully retrieved the Suplier

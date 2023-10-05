@@ -1,5 +1,5 @@
 const express = require("express")
-const {CreateDepartMentDetails,viewDepartMentDetails,deleteDepartMentDetails,updateDepartMentDetails} = require("../controller/DepartMent_controller")
+const {CreateDepartMentDetails,viewDepartMentDetails,deleteDepartMentDetails,updateDepartMentDetails,getSingleDepartMentDetails} = require("../controller/DepartMent_controller")
 const router = express.Router()
 /**
  * @swagger
@@ -114,5 +114,26 @@ router.route("/deleteDepartMentDetails/:DepartMentId").delete(deleteDepartMentDe
 *         description: Some server error
 */
 router.route("/updateDepartMentDetails").post(updateDepartMentDetails)
+/**
+ * @swagger
+ * /api/v1/getSingleDepartMentDetails/{DepartMentId}:
+ *   get:
+ *     summary: Get a DepartMent by ID
+ *     tags: [DepartMent]
+ *     description: Retrieve a DepartMent by their unique ID.
+ *     parameters:
+ *       - in: path
+ *         name: DepartMentId
+ *         required: true
+ *         description: ID of the DepartMent to retrieve
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Successfully retrieved the DepartMent
+ *       404:
+ *         description: DepartMent not found
+ */
+router.route("/getSingleDepartMentDetails/:DepartMentId").get(getSingleDepartMentDetails)
 module.exports = router
 

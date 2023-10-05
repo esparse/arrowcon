@@ -127,7 +127,7 @@ router.route("/updateRoleDetails").post(updateRoleDetails)
  *         required: true
  *         description: ID of the Role to retrieve
  *         schema:
- *           type: integer
+ *           type: string
  *     responses:
  *       200:
  *         description: Successfully retrieved the Role

@@ -219,7 +219,7 @@ router.route("/updateEmployeeDetails").post(updateEmployeeDetails)
  *         required: true
  *         description: ID of the Employee to retrieve
  *         schema:
- *           type: integer
+ *           type: string
  *     responses:
  *       200:
  *         description: Successfully retrieved the Employee
