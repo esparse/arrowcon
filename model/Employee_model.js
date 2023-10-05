@@ -29,6 +29,12 @@ const EmployeeSchema = mongoose.Schema({
     Status:{
         type:String,  
     }, 
+    RoleId:{
+        type:String
+    },
+    DepartMentId:{
+        type:String
+    },
 },{
 timestamps:true
 })

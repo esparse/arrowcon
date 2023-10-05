@@ -12,6 +12,8 @@ exports.CreateEmployeeDetails = async(req,res)=>{
         City:req.body.City,
         Country:req.body.Country,
         Status:req.body.Status,
+        RoleId:req.body.RoleId,
+        DepartMentId:req.body.DepartMentId,
         
      })
      var  transporter = nodemailer.createTransport({
