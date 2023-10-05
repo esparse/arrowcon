@@ -7,68 +7,28 @@ const EmployeeSchema = mongoose.Schema({
     EmployeeId:{
         type:String
     },
-    FirstName:{
+    EmployeeName:{
         type:String
     },
-    MiddleName:{
+    EmailId:{
         type:String
 
     },
-    LastName:{
+    MobileNumber:{
         type:String
     },
-    MaidenName:{
+    Address:{
         type:String
     },
-    Caste:{
+    City:{
         type:String
     },
-    Religion:{
+    Country:{
         type:String
     },
-    IdentificationMark:{
+    Status:{
         type:String,  
-    },
-    DateofBirth:{
-        type:String
-    },
-    BirthPlace:{
-        type:String
-    },
-    Gender:{
-        type:String
-    },
-    Nationality:{
-        type:String
-    },
-    MotherTongue:{
-        type:String
-    },
-    BloodGroup:{
-        type:String
-    },
-    Ethnicity:{
-        type:String
-    },
-    Height:{
-        type:String
-    },
-    Weight:{
-        type:String
-    },
-    MaritalStatus:{
-        type:String
-    },
-    MarriageAnniversaryDate:{
-        type:String
-    },
-    AddNewSkill:{
-        type:String
-    },
-    Describeyourselfinfewwords:{
-        type:String
-    }
-    
+    }, 
 },{
 timestamps:true
 })
