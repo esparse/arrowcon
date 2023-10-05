@@ -7,13 +7,13 @@ const db = require("../config/db")
 //data files
 const admin =require("./data/admin")
 //model
-   const adminModel = require("../model/Admin_model")
+   const adminModel = require("../model/admin_model")
     const insertData = async()=>{
         try {
           db()
-          await adminModel.deleteMany()
+        //   await adminModel.deleteMany()
           const result = await adminModel.create(admin)
-         console.log(result);
+        //  console.log(result);
           console.log("DATA INSERT SUCCESSFULLY".bgGreen.yellow);
         //   console.log(sampleData);
         //   console.log(result);

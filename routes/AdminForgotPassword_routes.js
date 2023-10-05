@@ -1,20 +1,20 @@
 const express = require("express")
-const Admin = require("../model/Admin_model")
+const Admin = require("../model/admin_model")
 const router = express.Router()
 /**
  * @swagger
  * components:
  *   schemas:
- *     admin:
+ *     admin1:
  *       type: object
  *       required:
  *         - Email
  *       properties:
  *         Email:
  *           type: string
- *           description: Admin@gmail.com
+ *           description: email
  *       example:
- *         Email: Admin@gmail.com
+ *         Email: arrowcon@gmail.com
  *        
  *
  */
@@ -29,14 +29,14 @@ const router = express.Router()
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Admin'
+ *             $ref: '#/components/schemas/admin1'
  *     responses:
  *       200:
  *         description: verificationCode send  successfull
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Admin'
+ *               $ref: '#/components/schemas/admin1'
  *       500:
  *         description: Some server error
  */
@@ -80,7 +80,7 @@ router.post('/send-verification-code', async (req, res) => {
  * @swagger
  * components:
  *   schemas:
- *     admin:
+ *     admin2:
  *       type: object
  *       required:
  *         - Email
@@ -112,32 +112,32 @@ router.post('/send-verification-code', async (req, res) => {
  *     properties:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/admin'
+ *             $ref: '#/components/schemas/admin2'
  *     responses:
  *       200:
  *         description: Password Change Successfully
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/admin'
+ *               $ref: '#/components/schemas/admin2'
  *       500:
  *         description: Some server error
  */
 router.post('/change-password-admin', async (req, res) => {
     const { Email, verificationCode } = req.body;
   
-    const Admin = await Admin.findOne({ Email });
-    if (!Admin) {
+    const admin = await Admin.findOne({ Email });
+    if (!admin) {
       return res.status(400).send('Admin not found');
     }
   
-    if (Admin.verificationCode !== verificationCode) {
+    if (admin.verificationCode !== verificationCode) {
       return res.status(400).send('Invalid verification code');
     }
   
-    Admin.isVerified = true;
-    Admin.verificationCode = null;
-    await Admin.save();
+    admin.isVerified = true;
+    admin.verificationCode = null;
+    await admin.save();
   
     res.send('Reset Password successfully');
   });

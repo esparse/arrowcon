@@ -1,38 +1,50 @@
-const admin = require("../model/Admin_model")
-// const Group = require("../model/Group_model")
+const admin = require("../model/admin_model")
 brycpt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 exports.Adminlogin = async(req,res) =>{
     try {
-   
-     const result = await admin.find({Email:req.body.Email,Password:req.body.Password}) 
+     const {Email,Password} = req.body
+     const result = await admin.findOne({Email}) 
+     
      if(!result){
          return res.json({
              success:false,
-             message:"Plese enter your correct Email or Password",
+             message:"Plese enter your correct Email",
              data:null
  
          })
         }
     //  email found
-     
-    console.log(result);
+     const verify = await brycpt.compare(Password,result.Password)  
+     if(!verify){
+        return res.json({
+            success:false,
+            message:"Plese enter your correct Password",
+            data:null
+ 
+        }) 
+ }
+ const token = await jwt.sign({user:result._id},process.env.JWT_SECRET_KEY)
  // all email and pasword match
- const resAdmin = await admin.aggregate([
+ const resAdmin = await admin.aggregate([ 
     {
-        $lookup:{
-            from:'groups',
-            localField:'GroupId',
-            foreignField:'GroupId',
-            as:"Group"
-        }
-    },
-    // {$match: {Email:result.Email }}
+   $lookup:{
+       from:'groups',
+       localField:'GroupId',
+       foreignField:'GroupId',
+       as:"Group"
+   },
+},
+{
+    $match:{Email:result.Email}
+}
 ])
  res.json({
     success:true,
     message:"You are logged in",
     data:resAdmin,
+     token
+ 
  })
  console.log(result);
     } catch (error) {
@@ -46,3 +58,4 @@ exports.Adminlogin = async(req,res) =>{
       console.log(error);
     }
  }
+ 

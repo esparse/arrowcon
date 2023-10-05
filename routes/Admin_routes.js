@@ -8,7 +8,6 @@ const router = express.Router()
  *     admin:
  *       type: object
  *       required:
- *         - Name
  *         - Email
  *         - Password
  *       properties:
@@ -18,11 +17,7 @@ const router = express.Router()
  *         Password:
  *           type: string
  *           description: password
- *         Name:
- *           type: string
- *           description: Name
  *       example:
- *         Name: admin
  *         Email: arrowcon@gmail.com
  *         Password: 1234     
  *
