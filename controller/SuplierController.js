@@ -50,7 +50,16 @@ exports.CreateSuplierDetails = async(req,res)=>{
 }
 exports.viewSuplierDetails = async(req,res)=>{
     try {
-        const result = await Suplier.find()
+        const result = await Suplier.aggregate([
+            {
+                $lookup:{
+                    from:'documents',
+                    localField:'SuplierId',
+                    foreignField:'DocumentId',
+                    as:"Document"
+                },
+            },
+        ])
         res.json({
             count:result.length,
             success:true,

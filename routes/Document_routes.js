@@ -18,13 +18,13 @@ const upload = multer({
       fileSize: 1000000, 
      
       metadata: function (req, file, cb) {
-        cb(null, { fieldfile: file.originalfile },
+        cb(null, { fieldfile: file.originalname },
           );
         
-        console.log(file.originalfile);
+        console.log(file.originalname);
       },
       key: function (req, file, cb) {
-        cb(null, file.originalfile);
+        cb(null, file.originalname);
       }
     })
   });
@@ -94,10 +94,10 @@ const upload = multer({
 // ])
   router.post('/createDocument',uploadfile.single("file"), async  (req, res) => {
   
-  
+    const { originalname, buffer } = req.file;
     const params = {
-      Bucket: process.env.AWS_S3_BUCKET,
-      Key: originalfile,    
+      Bucket: "arrowenergy",
+      Key: originalname,    
       Body: buffer,
       ContentType: 'image/png', // adjust accordingly
       ACL: 'public-read',
@@ -111,9 +111,10 @@ const upload = multer({
       const result = await Document.create({
         autoDocumentId:Math.floor((Math.random()*100000)+1),
         DocumentId: req.body.DocumentId,
-        file: `https://avinya01.s3.ap-south-1.amazonaws.com/${req.file.originalfile}`,
+        file: `https://arrowenergy.s3.ap-south-1.amazonaws.com/${req.file.originalname}`,
     
       })
+      console.log(result);
     
       res.json({ data: result });
     });
@@ -151,7 +152,7 @@ const upload = multer({
     })
    }
   })
-  /**
+  /**  /**
  * @swagger
  * /api/v1/DeleteDocument/{autoDocumentId}:
  *   delete:
@@ -185,4 +186,39 @@ const upload = multer({
       })
     }
   })
+   /**  /**
+ * @swagger
+ * /api/v1/getDocumentbyDocumentID/{autoDocumentId}:
+ *   get:
+ *     summary: getDocumentbyDocumentID
+ *     tags: [Document]
+ *     parameters:
+ *         - in: path
+ *           DocumentIdCreated: DocumentId
+ *           required: true
+ *           description: DocumentId is required
+ *           schema:
+ *              type: string
+ *     responses:
+ *       200:
+ *         description: Document delete successfully
+ *   
+ */
+  router.get('/getDocumentbyDocumentID/:DocumentId',async(req,res)=>{
+    try {
+      const result = await Document.find({DocumentId:req.params.DocumentId})
+      res.json({
+        success:true,
+        message:"get Document by DocumentID Successfully",
+        data:result
+      })
+    } catch (error) {
+      res.json({
+        success:false,
+        message:"Something went worng" + error.message,
+        data:null
+      })
+    }
+  })
+
   module.exports = router;
