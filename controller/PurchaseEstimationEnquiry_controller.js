@@ -99,3 +99,40 @@ exports.updatePurchaseEstimationEnquiryDetails = async(req,res)=>{
         })  
     }
 }
+exports.getSinglePurchaseEstimationEnquiryDetails = async(req,res)=>{
+    try {
+        const result = await PurchaseEstimationEnquiry.aggregate([
+            {
+                $lookup:{
+                    from:'customers',
+                    localField:'CustomerId',
+                    foreignField:'CustomerId',
+                    as:"Customer"
+                },
+            },
+            {
+                $lookup:{
+                    from:'salesenquiries',
+                    localField:'SalesEnquiryId',
+                    foreignField:'SalesEnquiryId',
+                    as:"SalesEnquiry"
+                },
+            },
+          {
+            $match:{PurchaseEstimationEnquiryId:req.body.PurchaseEstimationEnquiryId}
+          }
+        ])
+        res.json({
+            count:result.length,
+            success:true,
+            message:"get PurchaseEstimationEnquiry Details",
+            data:result
+        })
+    } catch (error) {
+        res.json({
+            success:false,
+            message: `Something went worng `+ {error},
+            data:null
+         })
+    }
+}

@@ -1,5 +1,5 @@
 const express = require("express")
-const {CreatePurchaseEstimationEnquiryDetails,viewPurchaseEstimationEnquiryDetails,deletePurchaseEstimationEnquiryDetails,updatePurchaseEstimationEnquiryDetails} = require("../controller/PurchaseEstimationEnquiry_controller")
+const {CreatePurchaseEstimationEnquiryDetails,viewPurchaseEstimationEnquiryDetails,deletePurchaseEstimationEnquiryDetails,updatePurchaseEstimationEnquiryDetails,getSinglePurchaseEstimationEnquiryDetails} = require("../controller/PurchaseEstimationEnquiry_controller")
 const router = express.Router()
 /**
  * @swagger
@@ -171,5 +171,49 @@ router.route("/deletePurchaseEstimationEnquiryDetails/:PurchaseEstimationEnquiry
 *         description: Some server error
 */
 router.route("/updatePurchaseEstimationEnquiryDetails").post(updatePurchaseEstimationEnquiryDetails)
+
+// swagger.js
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     PurchaseEnquiry:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: integer
+ *     PurchaseEnquiryResponse:
+ *       type: object
+ *       properties:
+ *         result:
+ *           type: string
+ *         details:
+ *           type: string
+ */
+
+/**
+ * @swagger
+ * /api/v1/getSinglePurchaseEstimationEnquiryDetails:
+ *   post:
+ *     summary: Get purchase enquiry estimation by ID
+ *     description: Retrieve purchase enquiry estimation based on an ID passed in the request body.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/PurchaseEnquiry'
+ *     responses:
+ *       200:
+ *         description: Purchase enquiry estimation
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/PurchaseEnquiryResponse'
+ *       404:
+ *         description: Purchase enquiry not found
+ */
+router.route("/getSinglePurchaseEstimationEnquiryDetails").post(getSinglePurchaseEstimationEnquiryDetails)
+
 module.exports = router
 
