@@ -1,0 +1,29 @@
+[
+    {
+        "OfferingTypeId":"1",
+        "OfferingType":" New Project EPC"
+    },
+    {
+        "OfferingTypeId":"2",
+       "OfferingType":" Retrofit project EPC"
+    },
+
+{
+        "OfferingTypeId":"3",
+       "OfferingType":"Engineering"
+    },
+    {
+        "OfferingTypeId":"4",
+       "OfferingType":"Site Services "
+    },
+    {
+        "OfferingTypeId":"5",
+       "OfferingType":"Spare Supply"
+    },
+    {
+        "OfferingTypeId":"6",
+       "OfferingType":"Chemical"
+    }
+  
+
+]

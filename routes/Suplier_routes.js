@@ -30,7 +30,7 @@ const router = express.Router()
  *         - Address
  *         - LegalStructureId
  *         - DateOfCompanyEstablish
- *         - TypeOfBussiness
+ *         - BussinessCommodityServiceId
  *         - GeograpicServiceArea
  *         - BankName
  *         - BankBranch
@@ -101,9 +101,9 @@ const router = express.Router()
  *         DateOfCompanyEstablish:
  *           type: string
  *           description: DateOfCompanyEstablish
- *         TypeOfBussiness:
+ *         BussinessCommodityServiceId:
  *           type: string
- *           description: TypeOfBussiness
+ *           description: BussinessCommodityServiceId
  *         GeograpicServiceArea:
  *           type: string
  *           description: GeograpicServiceArea
@@ -148,7 +148,7 @@ const router = express.Router()
  *         Email : Suplier@example.com
  *         LegalStructureId : 1
  *         DateOfCompanyEstablish : 08-03-2023
- *         TypeOfBussiness : SuplierVehical
+ *         BussinessCommodityServiceId : 1
  *         GeograpicServiceArea : 8*14 
  *         BankName : AxisNo1
  *         BankBranchCode : AU10245

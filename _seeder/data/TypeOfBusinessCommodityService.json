@@ -1,0 +1,57 @@
+[
+    {
+        "BussinessCommodityServiceId":"1",
+        "BussinessCommodityService":"Retailer"
+    },
+    {
+        "BussinessCommodityServiceId":"2",
+       "BussinessCommodityService":" Construction Contractor"
+    },
+
+{
+        "BussinessCommodityServiceId":"3",
+       "BussinessCommodityService":"Distribution"
+    },
+    {
+        "BussinessCommodityServiceId":"4",
+       "BussinessCommodityService":"Dealer"
+    },
+    {
+        "BussinessCommodityServiceId":"5",
+       "BussinessCommodityService":"Publication"
+    },
+    {
+        "BussinessCommodityServiceId":"6",
+       "BussinessCommodityService":"Broadcaster"
+    },
+    {
+        "BussinessCommodityServiceId":"7",
+       "BussinessCommodityService":"Professional Service"
+    },
+    {
+        "BussinessCommodityServiceId":"8",
+       "BussinessCommodityService":"Provider"
+    },
+    {
+        "BussinessCommodityServiceId":"9",
+       "BussinessCommodityService":"Manufacturer"
+    },
+    {
+        "BussinessCommodityServiceId":"10",
+       "BussinessCommodityService":"Freight"
+    },
+    {
+        "BussinessCommodityServiceId":"11",
+       "BussinessCommodityService":"Transportation"
+    },
+    {
+        "BussinessCommodityServiceId":"12",
+       "BussinessCommodityService":"Wholesaler"
+    },
+    {
+        "BussinessCommodityServiceId":"13",
+       "BussinessCommodityService":"Other"
+    }
+
+
+]

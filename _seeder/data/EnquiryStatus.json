@@ -1,0 +1,31 @@
+[
+    {
+        "EnquiryStatusId":"1",
+        "EnquiryStatus":"Open"
+    },
+    {
+        "EnquiryStatusId":"2",
+       "EnquiryStatus":"Active"
+    },
+
+{
+        "EnquiryStatusId":"3",
+       "EnquiryStatus":"Order Received"
+    },
+    {
+        "EnquiryStatusId":"4",
+       "EnquiryStatus":"Inactive"
+    },
+    {
+        "EnquiryStatusId":"5",
+       "EnquiryStatus":"Deffered"
+    },
+    {
+        "EnquiryStatusId":"6",
+       "EnquiryStatus":"Lost"
+    },
+    {
+        "EnquiryStatusId":"7",
+       "EnquiryStatus":"No Bid"
+    }
+]

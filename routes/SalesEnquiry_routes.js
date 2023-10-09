@@ -47,17 +47,17 @@ const bcrypt = require('bcryptjs')
  *         - CustomerId
  *         - RFQNo
  *         - EnquiryOwner
- *         - OfferingType
- *         - Equipment
- *         - TypeofEquipment
- *         - EnquiryType
+ *         - OfferingTypeId
+ *         - EquipmentId
+ *         - TypeOfEquipmentId
+ *         - EnquiryTypeId
  *         - ItemDetails
  *         - Description
  *         - Unit
  *         - Quantity
- *         - WeightedSalesinMn
+ *         - WeightedsalesId
  *         - RequiredDate
- *         - EnquiryStatus
+ *         - EnquiryStatusId
  *         - Remarks
  *         - AdditionalComments
  *         - TargetDate
@@ -80,18 +80,18 @@ const bcrypt = require('bcryptjs')
  *         EnquiryOwner:
  *           type: string
  *           description: EnquiryOwner
- *         OfferingType:
+ *         OfferingTypeId:
  *           type: string
- *           description: OfferingType
- *         Equipment:
+ *           description: OfferingTypeId
+ *         EquipmentId:
  *           type: string
- *           description: Equipment
- *         TypeofEquipment:
+ *           description: EquipmentId
+ *         TypeOfEquipmentId:
  *           type: string
- *           description: TypeofEquipment
- *         EnquiryType:
+ *           description: TypeOfEquipmentId
+ *         EnquiryTypeId:
  *           type: string
- *           description: EnquiryType
+ *           description: EnquiryTypeId
  *         ItemDetails:
  *           type: string
  *           description: ItemDetails
@@ -104,15 +104,15 @@ const bcrypt = require('bcryptjs')
  *         Quantity:
  *           type: string
  *           description: Quantity
- *         WeightedSalesinMn:
+ *         WeightedsalesId:
  *           type: string
- *           description: WeightedSalesinMn
+ *           description: WeightedsalesId
  *         RequiredDate:
  *           type: string
  *           description: RequiredDate
- *         EnquiryStatus:
+ *         EnquiryStatusId:
  *           type: string
- *           description: EnquiryStatus
+ *           description: EnquiryStatusId
  *         Remarks:
  *           type: string
  *           description: Remarks
@@ -139,17 +139,17 @@ const bcrypt = require('bcryptjs')
  *         CustomerId: CD1010001       
  *         RFQNo: ref012035       
  *         EnquiryOwner:  Registered Employee       
- *         OfferingType: Project ECP       
- *         Equipment: Heater       
- *         TypeofEquipment:  CFBC,       
- *         EnquiryType:  Budgetary,    
+ *         OfferingTypeId: 1      
+ *         EquipmentId: 1       
+ *         TypeOfEquipmentId: 1,       
+ *         EnquiryTypeId:  2,    
  *         ItemDetails: item1 ,
  *         Description: njfbfbu ,
  *         Unit: 20 ,
  *         Quantity : 10 ,
- *         WeightedSalesinMn :  THB,
+ *         WeightedsalesId : 1,
  *         RequiredDate: 15-03-2023,
- *         EnquiryStatus: Active,
+ *         EnquiryStatusId: 3,
  *         Remarks: asdfg,
  *         AdditionalComments: jbbfrfr,
  *         TargetDate: 20-03-2023,
@@ -205,17 +205,17 @@ const bcrypt = require('bcryptjs')
         CustomerId: req.body.CustomerId,
         RFQNo: req.body.RFQNo,
         EnquiryOwner: req.body.EnquiryOwner,
-        OfferingType: req.body.OfferingType,
-        Equipment: req.body.Equipment,
-        TypeofEquipment: req.body.TypeofEquipment,
-        EnquiryType: req.body.EnquiryType,
+        OfferingTypeId: req.body.OfferingTypeId,
+        EquipmentId: req.body.EquipmentId,
+        TypeOfEquipmentId: req.body.TypeOfEquipmentId,
+        EnquiryTypeId: req.body.EnquiryTypeId,
         ItemDetails: req.body.ItemDetails,
         Description: req.body.Description,
         Unit: req.body.Unit,
         Quantity: req.body.Quantity,
-        WeightedSalesinMn: req.body.WeightedSalesinMn,
+        WeightedsalesId: req.body.WeightedsalesId,
         RequiredDate: req.body.RequiredDate,
-        EnquiryStatus: req.body.EnquiryStatus,
+        EnquiryStatusId: req.body.EnquiryStatusId,
         Remarks: req.body.Remarks,
         AdditionalComments: req.body.AdditionalComments,
         TargetDate: req.body.TargetDate,
@@ -254,7 +254,59 @@ const bcrypt = require('bcryptjs')
                 as:"Customer"
             },
         },
+        {
+          $lookup:{
+              from:'offeringtypes',
+              localField:'OfferingTypeId',
+              foreignField:'OfferingTypeId',
+              as:"OfferingType"
+          },
+      },
+      {
+        $lookup:{
+            from:"equipment",
+            localField:"EquipmentId",
+            foreignField:"EquipmentId",
+            as:"Equipment"
+        },
+     
+    },
+    {
+        $lookup:{
+            from:"typeofequipments",
+            localField:"TypeOfEquipmentId",
+            foreignField:"TypeOfEquipmentId",
+            as:"TypeOfEquipment"
+        },
+     
+    },
+    {
+      $lookup:{
+          from:"weightedsales",
+          localField:"WeightedsalesId",
+          foreignField:"WeightedsalesId",
+          as:"Weightedsales"
+      },
+   
+  },
+  {
+    $lookup:{
+        from:"enquirytypes",
+        localField:"EnquiryTypeId",
+        foreignField:"EnquiryTypeId",
+        as:"EnquiryType"
+    },
+ 
+},
+{
+  $lookup:{
+      from:"enquirystatuses",
+      localField:"EnquiryStatusId",
+      foreignField:"EnquiryStatusId",
+      as:"EnquiryStatus"
+  },
 
+},
     ])
       res.json({
         succes: true ,

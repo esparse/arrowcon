@@ -1,0 +1,19 @@
+[
+    {
+        "EnquiryTypeId":"1",
+        "EnquiryType":" Budgetary"
+    },
+    {
+        "EnquiryTypeId":"2",
+       "EnquiryType":"Firm"
+    },
+
+{
+        "EnquiryTypeId":"3",
+       "EnquiryType":"Serious"
+    },
+    {
+        "EnquiryTypeId":"4",
+       "EnquiryType":"Urgent"
+    }
+]

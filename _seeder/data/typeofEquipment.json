@@ -68,6 +68,22 @@
     {
         "TypeOfEquipmentId":"17",
        "TypeOfEquipment":" Heat exchanger"
+    },
+    {
+        "TypeOfEquipmentId":"18",
+       "TypeOfEquipment":"ESP"
+    },
+    {
+        "TypeOfEquipmentId":"19",
+       "TypeOfEquipment":"Scrubber"
+    },
+    {
+        "TypeOfEquipmentId":"20",
+       "TypeOfEquipment":"Bagfilter"
+    },
+    {
+        "TypeOfEquipmentId":"21",
+       "TypeOfEquipment":"MDC"
     }
-
 ]
+ 

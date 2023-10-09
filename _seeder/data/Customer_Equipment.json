@@ -11,5 +11,15 @@
 {
         "EquipmentId":"3",
        "Equipment":"Heat exchanger "
+    },
+    {
+        "EquipmentId":"4",
+       "Equipment":"Pollution Control Equipment "
+    },
+    {
+        "EquipmentId":"5",
+       "Equipment":"Other "
     }
+      
+
 ]

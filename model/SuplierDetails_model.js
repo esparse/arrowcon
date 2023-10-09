@@ -73,7 +73,7 @@ const SuplierSchema = mongoose.Schema({
     DateOfCompanyEstablish:{
         type:String
     },
-    TypeOfBussiness:{
+    BussinessCommodityServiceId:{
         type:String
     },
     GeograpicServiceArea:{

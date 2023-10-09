@@ -51,6 +51,11 @@ const PurchaseEnquiry = require('./routes/PurchaseEnquiry_routes');
 const PurchaseEnquirylogin = require('./routes/PurchaseEnquirylogin_routes');
 const state = require('./routes/state_routes');
 const City = require('./routes/city_routes');
+const BussinessCommodityService = require('./routes/BussinessCommodityService_routes');
+const OfferingType = require('./routes/OfferingType_routes');
+const Weightedsales = require('./routes/Weightedsales_routes');
+const EnquiryType = require('./routes/EnquiryType_routes');
+const EnquiryStatus = require('./routes/EnquiryStatus_routes');
 
 const options = {
     definition: {
@@ -64,7 +69,7 @@ const options = {
   
       servers: [
         {
-          url: "http://localhost:1000/",
+          url: "https://arrowcon1.azurewebsites.net/",
           description: "Espare Documentation",
         },
       ],
@@ -115,6 +120,11 @@ const options = {
   app.use("/api/v1",PurchaseEnquiryforgotpassword)
   app.use("/api/v1",City)
   app.use("/api/v1",state)
+  app.use("/api/v1",BussinessCommodityService)
+  app.use("/api/v1",OfferingType)
+  app.use("/api/v1",Weightedsales)
+  app.use("/api/v1",EnquiryType)
+  app.use("/api/v1",EnquiryStatus)
  
 
 

@@ -22,16 +22,16 @@ type:String
     EnquiryOwner:{
         type:String
     },
-    OfferingType:{
+    OfferingTypeId:{
         type:String
     },
-    Equipment:{
+    EquipmentId:{
         type:String
     },
-    TypeofEquipment:{
+    TypeOfEquipmentId:{
         type:String
     },
-    EnquiryType:{
+    EnquiryTypeId:{
         type:String
     },
     ItemDetails:{
@@ -49,13 +49,13 @@ type:String
     Quantity:{
         type:String
     },
-    WeightedSalesinMn:{
+    WeightedsalesId:{
         type:String
     },
     RequiredDate:{
         type:String
     },
-    EnquiryStatus:{
+    EnquiryStatusId:{
         type:String
     },
     Remarks:{
