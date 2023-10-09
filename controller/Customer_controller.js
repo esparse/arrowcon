@@ -10,11 +10,15 @@ exports.CreateCustomerDetails = async(req,res)=>{
         HeadOfficeDistrict:req.body.HeadOfficeDistrict,
         HeadOfficeProvince:req.body.HeadOfficeProvince,
         HeadOfficeCountry:req.body.HeadOfficeCountry,
+        HeadOfficeStateId:req.body.HeadOfficeStateId,
+        HeadOfficeCityId:req.body.HeadOfficeCityId,
         HeadOfficePin:req.body.HeadOfficePin,
         SiteAddress:req.body.SiteAddress,
         SiteDistrict:req.body.SiteDistrict,
         SiteAddressProvince:req.body.SiteAddressProvince,
         SiteAddressCountry:req.body.SiteAddressCountry,
+        SiteAddressStateId:req.body.SiteAddressStateId,
+        SiteAddressCityId:req.body.SiteAddressCityId,
         SiteAddressPin:req.body.SiteAddressPin,
         ContactPersonName:req.body.ContactPersonName,
         Designation:req.body.Designation,
@@ -58,7 +62,44 @@ exports.CreateCustomerDetails = async(req,res)=>{
 }
 exports.viewCustomerDetails = async(req,res)=>{
     try {
-        const result = await Customer.find()
+        const result = await Customer.aggregate([
+            {
+                $lookup:{
+                    from:"states",
+                    localField:"HeadOfficeStateId",
+                    foreignField:"StateId",
+                    as:"HeadOfficeState"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"cities",
+                    localField:"HeadOfficeCityId",
+                    foreignField:"Cityid",
+                    as:"HeadOfficeCity"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"states",
+                    localField:"SiteAddressStateId",
+                    foreignField:"StateId",
+                    as:"SiteAddressState"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"cities",
+                    localField:"SiteAddressCityId",
+                    foreignField:"Cityid",
+                    as:"SiteAddressCity"
+                },
+             
+            },
+        ])
         res.json({
             count:result.length,
             success:true,

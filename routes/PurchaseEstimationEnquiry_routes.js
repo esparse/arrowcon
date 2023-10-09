@@ -181,7 +181,7 @@ router.route("/updatePurchaseEstimationEnquiryDetails").post(updatePurchaseEstim
  *       type: object
  *       properties:
  *         id:
- *           type: integer
+ *           type: string
  *     PurchaseEnquiryResponse:
  *       type: object
  *       properties:
@@ -196,6 +196,7 @@ router.route("/updatePurchaseEstimationEnquiryDetails").post(updatePurchaseEstim
  * /api/v1/getSinglePurchaseEstimationEnquiryDetails:
  *   post:
  *     summary: Get purchase enquiry estimation by ID
+ *     tags: [PurchaseEstimationEnquiry]
  *     description: Retrieve purchase enquiry estimation based on an ID passed in the request body.
  *     requestBody:
  *       required: true
