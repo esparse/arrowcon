@@ -12,10 +12,13 @@ exports.CreateProjectDetails = async(req,res)=>{
         ContactPhone:req.body.ContactPhone,
         ContactEmailId:req.body.ContactEmailId,
         Country:req.body.Country,
+        StateId:req.body.StateId,
+        CityId:req.body.CityId,
         Province:req.body.Province,
         StartDate:req.body.StartDate,
         EndDate:req.body.EndDate,
         ProjectPhase:req.body.ProjectPhase,
+        CustomerId:req.body.CustomerId,
      })
      res.json({
         success:true,
@@ -33,14 +36,7 @@ exports.CreateProjectDetails = async(req,res)=>{
 exports.viewProjectDetails = async(req,res)=>{
     try {
         const result = await Project.aggregate([
-            {
-                $lookup:{
-                    from:'customers',
-                    localField:'ContactPhone',
-                    foreignField:'ContactPhone',
-                    as:"Customer"
-                },
-            },
+           
             {
                 $lookup:{
                     from:'projectstatuses',
@@ -57,7 +53,33 @@ exports.viewProjectDetails = async(req,res)=>{
                     as:"Document"
                 },
             },
-            
+            {
+                $lookup:{
+                    from:'customers',
+                    localField:'CustomerId',
+                    foreignField:'CustomerId',
+                    as:"Customer"
+                },
+            },
+            {
+                $lookup:{
+                    from:"states",
+                    localField:"StateId",
+                    foreignField:"StateId",
+                    as:"State"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"cities",
+                    localField:"CityId",
+                    foreignField:"Cityid",
+                    as:"City"
+                },
+             
+            },
+
         ])
         res.json({
             count:result.length,

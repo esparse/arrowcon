@@ -20,7 +20,7 @@ const EmployeeSchema = mongoose.Schema({
     Address:{
         type:String
     },
-    City:{
+    CityId:{
         type:String
     },
     Country:{

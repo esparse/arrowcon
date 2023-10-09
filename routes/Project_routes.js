@@ -18,6 +18,8 @@ const router = express.Router()
  *         - ContactPhone
  *         - ContactEmailId
  *         - Country
+ *         - CityId
+ *         - StateId
  *         - Province
  *         - StartDate
  *         - EndDate
@@ -53,6 +55,12 @@ const router = express.Router()
  *         Country:
  *           type: string
  *           description: Country
+ *         StateId:
+ *           type: integer
+ *           description: StateId
+ *         CityId:
+ *           type: string
+ *           description: CityId
  *         Province:
  *           type: string
  *           description: Province
@@ -76,6 +84,8 @@ const router = express.Router()
  *         ContactPhone: 9874561230
  *         ContactEmailId: akpd@gmail.com
  *         Country: india
+ *         StateId: 21
+ *         CityId: 1
  *         Province: maharastra
  *         StartDate: 04-07-2023
  *         EndDate: 01-09-2023

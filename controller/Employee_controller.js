@@ -9,7 +9,7 @@ exports.CreateEmployeeDetails = async(req,res)=>{
         EmailId:req.body.EmailId,
         MobileNumber:req.body.MobileNumber,
         Address:req.body.Address,
-        City:req.body.City,
+        CityId:req.body.CityId,
         Country:req.body.Country,
         Status:req.body.Status,
         RoleId:req.body.RoleId,
@@ -128,7 +128,16 @@ exports.viewEmployeeDetails = async(req,res)=>{
                     foreignField:'RoleId',
                     as:"Roles"
                 },
-            }
+            },
+            {
+                $lookup:{
+                    from:"cities",
+                    localField:"CityId",
+                    foreignField:"Cityid",
+                    as:"City"
+                },
+             
+            },
         ])
         res.json({
             count:result.length,

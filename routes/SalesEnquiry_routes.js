@@ -136,7 +136,7 @@ const bcrypt = require('bcryptjs')
  *         EnquiryDate: 12-05-2023
  *         Email: salesEnquiry@example.com
  *         Password: pass@123
- *         CustomerId: CI0001       
+ *         CustomerId: CD1010001       
  *         RFQNo: ref012035       
  *         EnquiryOwner:  Registered Employee       
  *         OfferingType: Project ECP       
@@ -248,12 +248,13 @@ const bcrypt = require('bcryptjs')
       const result = await SalesEnquiry.aggregate([
         {
             $lookup:{
-                from:'groups',
-                localField:'GroupId',
-                foreignField:'GroupId',
-                as:"Group"
+                from:'customers',
+                localField:'CustomerId',
+                foreignField:'CustomerId',
+                as:"Customer"
             },
         },
+
     ])
       res.json({
         succes: true ,

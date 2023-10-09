@@ -31,6 +31,12 @@ type:String
   Country:{
     type:String
   },
+  StateId:{
+type:Number
+  },
+  CityId:{
+    type:String
+  },
   Province:{
     type:String
   },
