@@ -22,6 +22,12 @@ const SuplierSchema = mongoose.Schema({
    RegisteredOfficeCountry:{
         type:String
     },
+    RegisteredOfficeStateId:{
+        type:Number
+    },
+    RegisteredOfficeCityId:{
+        type:String
+    },
    RegisteredOfficePin:{
         type:String
     },
@@ -35,6 +41,12 @@ const SuplierSchema = mongoose.Schema({
       type:String
     },
     BillingAddressCountry:{
+        type:String
+    },
+    BillingAddressStateId:{
+        type:Number
+    },
+    BillingAddressCityId:{
         type:String
     },
     BillingAddressPin:{

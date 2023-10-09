@@ -10,11 +10,15 @@ exports.CreateSuplierDetails = async(req,res)=>{
         RegisteredOfficeDistrict:req.body.RegisteredOfficeDistrict,
         RegisteredOfficeProvince:req.body.RegisteredOfficeProvince,
         RegisteredOfficeCountry:req.body.RegisteredOfficeCountry,
+        RegisteredOfficeStateId:req.body.RegisteredOfficeStateId,
+        RegisteredOfficeCityId:req.body.RegisteredOfficeCityId,
         RegisteredOfficePin:req.body.RegisteredOfficePin,
         BillingAddress:req.body. BillingAddress,
         BillingDistrict:req.body. BillingDistrict,
         BillingAddressProvince:req.body. BillingAddressProvince,
         BillingAddressCountry:req.body. BillingAddressCountry,
+        BillingAddressStateId:req.body. BillingAddressStateId,
+        BillingAddressCityId:req.body. BillingAddressCityId,
         BillingAddressPin:req.body. BillingAddressPin,
         ContactPersonName:req.body.ContactPersonName,
         Designation:req.body.Designation,
@@ -58,6 +62,42 @@ exports.viewSuplierDetails = async(req,res)=>{
                     foreignField:'DocumentId',
                     as:"Document"
                 },
+            },
+            {
+                $lookup:{
+                    from:"states",
+                    localField:"RegisteredOfficeStateId",
+                    foreignField:"StateId",
+                    as:"RegisteredOfficeState"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"cities",
+                    localField:"RegisteredOfficeCityId",
+                    foreignField:"Cityid",
+                    as:"RegisteredOfficeCity"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"states",
+                    localField:"BillingAddressStateId",
+                    foreignField:"StateId",
+                    as:"BillingAddressState"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"cities",
+                    localField:"BillingAddressCityId",
+                    foreignField:"Cityid",
+                    as:"BillingAddressCity"
+                },
+             
             },
         ])
         res.json({

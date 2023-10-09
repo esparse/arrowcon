@@ -15,10 +15,14 @@ const router = express.Router()
  *         - RegisteredOfficeDistrict
  *         - RegisteredOfficeRegisteredOfficeCountry
  *         - RegisteredOfficeCountry
+ *         - RegisteredOfficeStateId
+ *         - RegisteredOfficeCityId
  *         - RegisteredOfficePin
  *         - BillingAddress
  *         - BillingDistrict
  *         - BillingAddressCountry
+ *         - BillingAddressStateId
+ *         - BillingAddressCityId
  *         - BillingAddressPin
  *         - ContactPersonName
  *         - Designation
@@ -55,6 +59,12 @@ const router = express.Router()
  *         RegisteredOfficeCountry:
  *           type: string
  *           description: RegisteredOfficeCountry
+ *         RegisteredOfficeStateId:
+ *           type: integer
+ *           description: RegisteredOfficeStateId
+ *         RegisteredOfficeCityId:
+ *           type: string
+ *           description: RegisteredOfficeCityId
  *         RegisteredOfficePin:
  *           type: string
  *           description: RegisteredOfficePin
@@ -67,6 +77,12 @@ const router = express.Router()
  *         BillingAddressCountry:
  *           type: string
  *           description:  BillingAddressCountry
+ *         BillingAddressStateId:
+ *           type: integer
+ *           description:  BillingAddressStateId
+ *         BillingAddressCityId:
+ *           type: string
+ *           description:  BillingAddressStateId
  *         BillingAddressPin:
  *           type: string
  *           description:  BillingAddressPin
@@ -118,12 +134,15 @@ const router = express.Router()
  *         RegisteredOfficeAddress : Suger
  *         RegisteredOfficeDistrict : 503, KSL Tower 9th Floor, Sriayudhya Rd.,
  *         RegisteredOfficeCountry : Bangkok
+ *         RegisteredOfficeStateId : 21
+ *         RegisteredOfficeCityId : 1
  *         RegisteredOfficePin : West
  *         Country: Domestic
  *         BillingAddress : West
  *         BillingDistrict : Iron
  *         BillingAddressCountry : Mr.Chiewchan
- *         BillingAddressPin : 0817441009
+ *         BillingAddressStateId : 16
+ *         BillingAddressCityId : 45
  *         ContactPersonName : 0817441009
  *         Designation : 0817441009
  *         Email : Suplier@example.com
