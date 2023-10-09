@@ -1,0 +1,73 @@
+
+[
+    {
+        "TypeOfEquipmentId":"1",
+        "TypeOfEquipment":"CFBC"
+    },
+    {
+        "TypeOfEquipmentId":"2",
+       "TypeOfEquipment":"AFBC"
+    },
+
+{
+        "TypeOfEquipmentId":"3",
+       "TypeOfEquipment":"Travagrate"
+    },
+    {
+        "TypeOfEquipmentId":"4",
+       "TypeOfEquipment":" Pusher Grate"
+    },
+    {
+        "TypeOfEquipmentId":"5",
+       "TypeOfEquipment":"Dumping Grate"
+    },
+    {
+        "TypeOfEquipmentId":"6",
+       "TypeOfEquipment":"Step Grate"
+    },
+    {
+        "TypeOfEquipmentId":"7",
+       "TypeOfEquipment":"Vibrating Grate WHRB"
+    },
+    {
+        "TypeOfEquipmentId":"8",
+       "TypeOfEquipment":"FM"
+    },
+    {
+        "TypeOfEquipmentId":"9",
+       "TypeOfEquipment":"HRSG"
+    },
+    {
+        "TypeOfEquipmentId":"10",
+       "TypeOfEquipment":"WHRB"
+    },
+    {
+        "TypeOfEquipmentId":"11",
+       "TypeOfEquipment":"WHRU"
+    },
+    {
+        "TypeOfEquipmentId":"12",
+       "TypeOfEquipment":"Co Fired"
+    },
+    {
+        "TypeOfEquipmentId":"13",
+       "TypeOfEquipment":"BFG Fired"
+    },
+    {
+        "TypeOfEquipmentId":"14",
+       "TypeOfEquipment":"PF"
+    },
+    {
+        "TypeOfEquipmentId":"15",
+       "TypeOfEquipment":"Spent wash"
+    },
+    {
+        "TypeOfEquipmentId":"16",
+       "TypeOfEquipment":"Heater"
+    },
+    {
+        "TypeOfEquipmentId":"17",
+       "TypeOfEquipment":" Heat exchanger"
+    }
+
+]

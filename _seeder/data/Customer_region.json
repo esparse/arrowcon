@@ -1,0 +1,23 @@
+[
+    {
+        "CustomerRegionId":"1",
+        "CustomerRegion":"North"
+    },
+    {
+        "CustomerRegionId":"2",
+       "CustomerRegion":"East"
+    },
+
+{
+        "CustomerRegionId":"3",
+       "CustomerRegion":"West"
+    },
+    {
+        "CustomerRegionId":"4",
+       "CustomerRegion":"South"
+    },
+    {
+        "CustomerRegionId":"5",
+       "CustomerRegion":"Central"
+    }
+]

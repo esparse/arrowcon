@@ -1,0 +1,11 @@
+[
+    {
+        "locationId":"1",
+        "location":"Domestic"
+    },
+    {
+        "locationId":"2",
+       "location":"Exports"
+    }
+
+]

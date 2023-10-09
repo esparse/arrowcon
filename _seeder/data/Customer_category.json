@@ -1,0 +1,23 @@
+[
+    {
+        "CustomerCategoryId":"1",
+        "CustomerCategory":"Iron"
+    },
+    {
+        "CustomerCategoryId":"2",
+       "CustomerCategory":"Copper"
+    },
+
+{
+        "CustomerCategoryId":"3",
+       "CustomerCategory":"Silver"
+    },
+    {
+        "CustomerCategoryId":"4",
+       "CustomerCategory":"Gold"
+    },
+    {
+        "CustomerCategoryId":"5",
+       "CustomerCategory":"Platinum"
+    }
+]

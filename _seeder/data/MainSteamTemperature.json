@@ -1,0 +1,10 @@
+[
+    {
+        "MainSteamTemperatureId":"1",
+        "MainSteamTemperature":" Deg"
+    },
+    {
+        "MainSteamTemperatureId":"2",
+       "MainSteamTemperature":" C"
+    }
+]

@@ -1,0 +1,15 @@
+[
+    {
+        "EquipmentId":"1",
+        "Equipment":"Boiler"
+    },
+    {
+        "EquipmentId":"2",
+       "Equipment":"Heater"
+    },
+
+{
+        "EquipmentId":"3",
+       "Equipment":"Heat exchanger "
+    }
+]

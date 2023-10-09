@@ -1,0 +1,21 @@
+
+[
+    {
+        "PollutionControlEquipmentId":"1",
+        "PollutionControlEquipment":"ESP"
+    },
+    {
+        "PollutionControlEquipmentId":"2",
+       "PollutionControlEquipment":"Scrubber"
+    },
+
+{
+        "PollutionControlEquipmentId":"3",
+       "PollutionControlEquipment":"Bagfilter"
+    },
+    {
+        "PollutionControlEquipmentId":"4",
+       "PollutionControlEquipment":"MDC"
+    }
+   
+]

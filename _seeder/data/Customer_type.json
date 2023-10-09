@@ -1,0 +1,11 @@
+[
+    {
+        "CustomerTypeId":"1",
+        "CustomerType":"Domestic"
+    },
+    {
+        "CustomerTypeId":"2",
+       "CustomerType":"Internationals"
+    }
+
+]

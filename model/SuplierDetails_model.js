@@ -67,7 +67,7 @@ const SuplierSchema = mongoose.Schema({
     CountryCode:{
         type:String
     },
-    LegelStructure:{
+    LegalStructureId:{
         type:String
     },
     DateOfCompanyEstablish:{

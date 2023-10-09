@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 
 const CustomerSchema = mongoose.Schema({
-    CustomerType:{
+    CustomerTypeId:{
         type:String
     },
     CustomerId:{
@@ -76,40 +76,40 @@ const CustomerSchema = mongoose.Schema({
     CompanyVATNo:{
         type:String
     },
-    CustomerCategory:{
+    CustomerCategoryId:{
         type:String
     },
     CustomerStatus:{
         type:String
     },
-    Region:{
+    CustomerRegionId:{
         type:String
     },
-    Location:{
+    locationId:{
         type:String
     },
-    Industry:{
+    CustomerIndustryId:{
         type:String
     },
-    Equipment:{
+    EquipmentId:{
         type:String
     },
-    TypeOfEquipment:{
+    TypeOfEquipmentId:{
         type:String
     },
     MakeOfBoiler:{
         type:String
     },
-    CapacityUnit:{
+    CapacityId:{
         type:String
     },
-    MainSteamPressure:{
+    MainSteamPressureId:{
         type:String
     },
     TypeOfFuelFired:{
         type:String
     },
-    MainSteamTemperature:{
+    MainSteamTemperatureId:{
        type:String
     },
     YearOfInstallation:{
@@ -121,12 +121,16 @@ const CustomerSchema = mongoose.Schema({
     BoilerMakeNo:{
         type:String
     },
-    PollutionControlEquipMent:{
+    PollutionControlEquipmentId:{
         type:String
     },
     MakeOfPollutionControlEquipMent:{
         type:String
+    },
+    Province:{
+        type:String
     }
+
     
 },{
 timestamps:true

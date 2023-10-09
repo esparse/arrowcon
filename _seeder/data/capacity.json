@@ -1,0 +1,15 @@
+[
+    {
+        "CapacityId":"1",
+        "Capacity":"TPH"
+    },
+    {
+        "CapacityId":"2",
+       "Capacity":" MMKcal"
+    },
+
+{
+        "CapacityId":"3",
+       "Capacity":"hr"
+    }
+]

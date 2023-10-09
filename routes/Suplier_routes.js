@@ -28,7 +28,7 @@ const router = express.Router()
  *         - Designation
  *         - Email
  *         - Address
- *         - LegelStructure
+ *         - LegalStructureId
  *         - DateOfCompanyEstablish
  *         - TypeOfBussiness
  *         - GeograpicServiceArea
@@ -95,9 +95,9 @@ const router = express.Router()
  *         Email:
  *           type: string
  *           description: Email
- *         LegelStructure:
+ *         LegalStructureId:
  *           type: string
- *           description: LegelStructure
+ *           description: LegalStructureId
  *         DateOfCompanyEstablish:
  *           type: string
  *           description: DateOfCompanyEstablish
@@ -146,7 +146,7 @@ const router = express.Router()
  *         ContactPersonName : 0817441009
  *         Designation : 0817441009
  *         Email : Suplier@example.com
- *         LegelStructure : one-time-Structure
+ *         LegalStructureId : 1
  *         DateOfCompanyEstablish : 08-03-2023
  *         TypeOfBussiness : SuplierVehical
  *         GeograpicServiceArea : 8*14 

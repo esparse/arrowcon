@@ -25,7 +25,7 @@ exports.CreateSuplierDetails = async(req,res)=>{
         Email:req.body.Email,
         Address:req.body.Address,
         ContactNo:req.body.ContactNo,
-        LegelStructure:req.body.LegelStructure,
+        LegalStructureId:req.body.LegalStructureId,
         DateOfCompanyEstablish:req.body.DateOfCompanyEstablish,
         TypeOfBussiness:req.body.TypeOfBussiness,
         GeograpicServiceArea:req.body.GeograpicServiceArea,
@@ -96,6 +96,15 @@ exports.viewSuplierDetails = async(req,res)=>{
                     localField:"BillingAddressCityId",
                     foreignField:"Cityid",
                     as:"BillingAddressCity"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"legalstructures",
+                    localField:"LegalStructureId",
+                    foreignField:"LegalStructureId",
+                    as:"LegalStructure"
                 },
              
             },

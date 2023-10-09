@@ -1,0 +1,88 @@
+[
+    {
+        "CustomerIndustryId":"1",
+        "CustomerIndustry":"Cement"
+    },
+    {
+        "CustomerIndustryId":"2",
+       "CustomerIndustry":"Suger"
+    },
+
+{
+        "CustomerIndustryId":"3",
+       "CustomerIndustry":"Paper"
+    },
+    {
+        "CustomerIndustryId":"4",
+       "CustomerIndustry":" Distillery"
+    },
+    {
+        "CustomerIndustryId":"5",
+       "CustomerIndustry":"Pharmaceutical"
+    },
+    {
+        "CustomerIndustryId":"6",
+       "CustomerIndustry":"Textile"
+    },
+    {
+        "CustomerIndustryId":"7",
+       "CustomerIndustry":"Petrochemical"
+    },
+    {
+        "CustomerIndustryId":"8",
+       "CustomerIndustry":"Chemical"
+    },
+    {
+        "CustomerIndustryId":"9",
+       "CustomerIndustry":"Steel"
+    },
+    {
+        "CustomerIndustryId":"10",
+       "CustomerIndustry":"Tyre"
+    },
+    {
+        "CustomerIndustryId":"11",
+       "CustomerIndustry":"Power"
+    },
+    {
+        "CustomerIndustryId":"12",
+       "CustomerIndustry":"Carbon Black"
+    },
+    {
+        "CustomerIndustryId":"13",
+       "CustomerIndustry":"Fertilizer"
+    },
+    {
+        "CustomerIndustryId":"14",
+       "CustomerIndustry":"Automotive"
+    },
+    {
+        "CustomerIndustryId":"15",
+       "CustomerIndustry":"Food Processing"
+    },
+    {
+        "CustomerIndustryId":"16",
+       "CustomerIndustry":"Glass"
+    },
+    {
+        "CustomerIndustryId":"17",
+       "CustomerIndustry":"Construction"
+    },
+    {
+        "CustomerIndustryId":"18",
+       "CustomerIndustry":"Electronics/Electricals"
+    },
+    {
+        "CustomerIndustryId":"19",
+       "CustomerIndustry":"Plastic"
+    },
+    {
+        "CustomerIndustryId":"20",
+       "CustomerIndustry":"Biomass Power Plants"
+    },
+    {
+        "CustomerIndustryId":"21",
+       "CustomerIndustry":"Others"
+    }
+
+]

@@ -1,0 +1,27 @@
+[
+    {
+        "LegalStructureId":"1",
+        "LegalStructure":" Corporation"
+    },
+    {
+        "LegalStructureId":"2",
+       "LegalStructure":" Partnership"
+    },
+
+{
+        "LegalStructureId":"3",
+       "LegalStructure":"Sole Proprietorship"
+    },
+    {
+        "LegalStructureId":"4",
+       "LegalStructure":"Joint Venture"
+    }, 
+    {
+        "LegalStructureId":"5",
+       "LegalStructure":"Franchise"
+    },
+    {
+        "LegalStructureId":"6",
+       "LegalStructure":"Non-Profit"
+    }
+]

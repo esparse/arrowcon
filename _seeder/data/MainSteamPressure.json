@@ -1,0 +1,15 @@
+[
+    {
+        "MainSteamPressureId":"1",
+        "Capacity":"kg"
+    },
+    {
+        "MainSteamPressureId":"2",
+       "MainSteamPressure":"cm2"
+    },
+
+{
+        "MainSteamPressureId":"3",
+       "Capacity":"Bar"
+    }
+]

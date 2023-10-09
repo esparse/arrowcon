@@ -12,6 +12,19 @@ app.use(express.static('public'));
 app.use(cors())
 // const User = require('./routes/user_routes')
 const Customer = require('./routes/customer_routes')
+const Customertype = require('./routes/customertype_routes')
+const CustomerCategory = require('./routes/customercategory_routes')
+const CustomerRegion = require('./routes/CustomerRegion_routes')
+const location = require('./routes/location_routes')
+const CustomerIndustry = require('./routes/CustomerIndustry_routes')
+const Equipment = require('./routes/Equipment_routes')
+const TypeOfEquipment = require('./routes/TypeOfEquipment_routes')
+const Capacity = require('./routes/Capacity_routes')
+const MainSteamPressure = require('./routes/MainSteamPressure_routes')
+const MainSteamTemperature = require('./routes/MainSteamTemperature_routes')
+const PollutionControlEquipment = require('./routes/PollutionControlEquipment_routes')
+const LegalStructure = require('./routes/LegalStructure_routes')
+
 const Project = require('./routes/Project_routes')
 const PurchaseOrder = require('./routes/PurchaseOrder_routes')
 const CustomerQuotation = require('./routes/CustomerQuotation_routes')
@@ -51,7 +64,7 @@ const options = {
   
       servers: [
         {
-          url: "https://arrowcon1.azurewebsites.net/",
+          url: "http://localhost:1000/",
           description: "Espare Documentation",
         },
       ],
@@ -63,6 +76,19 @@ const options = {
   app.use("/api-docs-arrowcon", swaggerUI.serve, swaggerUI.setup(specs));
   // app.use("/api/v1",User)
   app.use("/api/v1",Customer)
+  app.use("/api/v1",Customertype)
+  app.use("/api/v1",CustomerCategory)
+  app.use("/api/v1",CustomerRegion)
+  app.use("/api/v1",location)
+  app.use("/api/v1",CustomerIndustry)
+  app.use("/api/v1",Equipment)
+  app.use("/api/v1",TypeOfEquipment)
+  app.use("/api/v1",Capacity)
+  app.use("/api/v1",MainSteamPressure)
+  app.use("/api/v1",MainSteamTemperature)
+  app.use("/api/v1",PollutionControlEquipment) 
+  app.use("/api/v1",LegalStructure) 
+  
   app.use("/api/v1",Project)
   app.use("/api/v1",PurchaseOrder)
   app.use("/api/v1",CustomerQuotation)

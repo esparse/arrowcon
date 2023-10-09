@@ -4,7 +4,7 @@ exports.CreateCustomerDetails = async(req,res)=>{
     let count = (await Customer.countDocuments()+1)+10000;
     const result = await Customer.create({
         CustomerId: "CD10" + count,
-        CustomerType:req.body.CustomerType,
+        CustomerTypeId:req.body.CustomerTypeId,
         CustomerName:req.body.CustomerName,
         HeadOfficeAddress:req.body.HeadOfficeAddress,
         HeadOfficeDistrict:req.body.HeadOfficeDistrict,
@@ -28,23 +28,24 @@ exports.CreateCustomerDetails = async(req,res)=>{
         LandlineNo:req.body.LandlineNo,
         CompanyRegistrationNo:req.body.CompanyRegistrationNo,
         CompanyVATNo:req.body.CompanyVATNo,
-        Locaton:req.body.Locaton,
-        CustomerCategory:req.body.CustomerCategory,
+        locationId:req.body.locationId,
+        CustomerCategoryId:req.body.CustomerCategoryId,
         CustomerStatus:req.body.CustomerStatus,
-        Region:req.body.Region,
-        Industry:req.body.Industry,
-        Equipment:req.body.Equipment,
-        TypeOfEquipment:req.body.TypeOfEquipment,
+        CustomerRegionId:req.body.CustomerRegionId,
+        CustomerIndustryId:req.body.CustomerIndustryId,
+        EquipmentId:req.body.EquipmentId,
+        TypeOfEquipmentId:req.body.TypeOfEquipmentId,
         MakeOfBoiler:req.body.MakeOfBoiler,
-        CapacityUnit:req.body.CapacityUnit,
-        MainSteamPressure:req.body.MainSteamPressure,
+        CapacityId:req.body.CapacityId,
+        MainSteamPressureId:req.body.MainSteamPressureId,
         TypeOfFuelFired:req.body.TypeOfFuelFired,
-        MainSteamTemperature:req.body.MainSteamTemperature,
+        MainSteamTemperatureId:req.body.MainSteamTemperatureId,
         YearOfInstallation:req.body.YearOfInstallation,
         NoOfInstallation:req.body.NoOfInstallation,
         BoilerMakeNo:req.body.BoilerMakeNo,
-        PollutionControlEquipMent:req.body.PollutionControlEquipMent,
+        PollutionControlEquipmentId:req.body.PollutionControlEquipmentId,
         MakeOfPollutionControlEquipMent:req.body.MakeOfPollutionControlEquipMent,
+        Province:req.body.Province,
 
      })
      res.json({
@@ -69,6 +70,15 @@ exports.viewCustomerDetails = async(req,res)=>{
                     localField:"HeadOfficeStateId",
                     foreignField:"StateId",
                     as:"HeadOfficeState"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"customertypes",
+                    localField:"CustomerTypeId",
+                    foreignField:"CustomerTypeId",
+                    as:"CustomerType"
                 },
              
             },
@@ -99,6 +109,96 @@ exports.viewCustomerDetails = async(req,res)=>{
                 },
              
             },
+            {
+                $lookup:{
+                    from:"customercategories",
+                    localField:"CustomerCategoryId",
+                    foreignField:"CustomerCategoryId",
+                    as:"CustomerCategory"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"customerregions",
+                    localField:"CustomerRegionId",
+                    foreignField:"CustomerRegionId",
+                    as:"CustomerRegion"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"locations",
+                    localField:"locationId",
+                    foreignField:"locationId",
+                    as:"location"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"customerindustries",
+                    localField:"CustomerIndustryId",
+                    foreignField:"CustomerIndustryId",
+                    as:"CustomerIndustry"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"equipment",
+                    localField:"EquipmentId",
+                    foreignField:"EquipmentId",
+                    as:"Equipment"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"typeofequipments",
+                    localField:"TypeOfEquipmentId",
+                    foreignField:"TypeOfEquipmentId",
+                    as:"typeOfEquipment"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"capacities",
+                    localField:"CapacityId",
+                    foreignField:"CapacityId",
+                    as:"Capacity"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"mainsteampressures",
+                    localField:"MainSteamPressureId",
+                    foreignField:"MainSteamPressureId",
+                    as:"MainSteamPressure"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"mainsteamtemperatures",
+                    localField:"MainSteamTemperatureId",
+                    foreignField:"MainSteamTemperatureId",
+                    as:"MainSteamTemperature"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"pollutioncontrolequipments",
+                    localField:"PollutionControlEquipmentId",
+                    foreignField:"PollutionControlEquipmentId",
+                    as:"PollutionControlEquipment"
+                },
+             
+            }
         ])
         res.json({
             count:result.length,
