@@ -19,7 +19,7 @@ type:String
     RFQNo:{
         type:String, 
     },
-    EnquiryOwner:{
+    EnquiryOwnerId:{
         type:String
     },
     OfferingTypeId:{

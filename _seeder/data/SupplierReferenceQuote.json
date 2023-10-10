@@ -1,0 +1,15 @@
+[
+    {
+        "SupplierReferenceQuoteId":"1",
+        "SupplierReferenceQuote":"Yes"
+    },
+    {
+        "SupplierReferenceQuoteId":"2",
+       "SupplierReferenceQuote":" No"
+    },
+
+{
+        "SupplierReferenceQuoteId":"3",
+       "SupplierReferenceQuote":"Partial"
+    }
+]

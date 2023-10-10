@@ -8,6 +8,9 @@ const SalesOrderTransferSchema = mongoose.Schema({
         type:String,
        
     },
+    OfferingTypeId:{
+        type:String
+    },
     SalesEnquiryId:{
         type:String
     },
@@ -23,7 +26,7 @@ const SalesOrderTransferSchema = mongoose.Schema({
     ScopeOfSupply:{
         type:String
     },
-    TotalOrderValue:{
+    TotalOrderValueId:{
         type:String
     },
     TearmsOfPayment:{
@@ -41,19 +44,19 @@ const SalesOrderTransferSchema = mongoose.Schema({
     TaxiesAndDuties:{
         type:String
     },
-    FreightInsurance:{
+    FreightInsuranceId:{
         type:String
     },
     Basisofsale:{
         type:String
     },
-    Inspection:{
+    InspectionId:{
         type:String
     },
-    LiquidatedDamages :{
+    LiquidateddamagesId :{
         type:String
     },
-    SupplierReferenceQuote:{
+    SupplierReferenceQuoteId:{
         type:String
     },
     DeviationModificationUpgradationrequiement:{
@@ -65,7 +68,7 @@ const SalesOrderTransferSchema = mongoose.Schema({
     BoilerMakerNo:{
         type:String
     },
-    Remarks:{
+    remarkId:{
         type:String
     },
     Attachments:{

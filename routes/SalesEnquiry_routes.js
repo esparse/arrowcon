@@ -46,15 +46,11 @@ const bcrypt = require('bcryptjs')
  *         - EnquiryDate
  *         - CustomerId
  *         - RFQNo
- *         - EnquiryOwner
+ *         - EnquiryOwnerId
  *         - OfferingTypeId
  *         - EquipmentId
  *         - TypeOfEquipmentId
  *         - EnquiryTypeId
- *         - ItemDetails
- *         - Description
- *         - Unit
- *         - Quantity
  *         - WeightedsalesId
  *         - RequiredDate
  *         - EnquiryStatusId
@@ -77,9 +73,9 @@ const bcrypt = require('bcryptjs')
  *         RFQNo:
  *           type: string
  *           description: RFQNo
- *         EnquiryOwner:
+ *         EnquiryOwnerId:
  *           type: string
- *           description: EnquiryOwner
+ *           description: EnquiryOwnerId
  *         OfferingTypeId:
  *           type: string
  *           description: OfferingTypeId
@@ -92,18 +88,6 @@ const bcrypt = require('bcryptjs')
  *         EnquiryTypeId:
  *           type: string
  *           description: EnquiryTypeId
- *         ItemDetails:
- *           type: string
- *           description: ItemDetails
- *         Description:
- *           type: string
- *           description: Description
- *         Unit:
- *           type: string
- *           description: Unit
- *         Quantity:
- *           type: string
- *           description: Quantity
  *         WeightedsalesId:
  *           type: string
  *           description: WeightedsalesId
@@ -138,15 +122,11 @@ const bcrypt = require('bcryptjs')
  *         Password: pass@123
  *         CustomerId: CD1010001       
  *         RFQNo: ref012035       
- *         EnquiryOwner:  Registered Employee       
+ *         EnquiryOwnerId:  Registered Employee       
  *         OfferingTypeId: 1      
  *         EquipmentId: 1       
  *         TypeOfEquipmentId: 1,       
  *         EnquiryTypeId:  2,    
- *         ItemDetails: item1 ,
- *         Description: njfbfbu ,
- *         Unit: 20 ,
- *         Quantity : 10 ,
  *         WeightedsalesId : 1,
  *         RequiredDate: 15-03-2023,
  *         EnquiryStatusId: 3,
@@ -204,15 +184,11 @@ const bcrypt = require('bcryptjs')
         Password:req.body.Password,
         CustomerId: req.body.CustomerId,
         RFQNo: req.body.RFQNo,
-        EnquiryOwner: req.body.EnquiryOwner,
+        EnquiryOwnerId: req.body.EnquiryOwnerId,
         OfferingTypeId: req.body.OfferingTypeId,
         EquipmentId: req.body.EquipmentId,
         TypeOfEquipmentId: req.body.TypeOfEquipmentId,
         EnquiryTypeId: req.body.EnquiryTypeId,
-        ItemDetails: req.body.ItemDetails,
-        Description: req.body.Description,
-        Unit: req.body.Unit,
-        Quantity: req.body.Quantity,
         WeightedsalesId: req.body.WeightedsalesId,
         RequiredDate: req.body.RequiredDate,
         EnquiryStatusId: req.body.EnquiryStatusId,
@@ -307,6 +283,25 @@ const bcrypt = require('bcryptjs')
   },
 
 },
+{
+  $lookup:{
+      from:"salesenquiryitemdetails",
+      localField:"SalesEnquiryId",
+      foreignField:"SalesEnquiryId",
+      as:"SalesEnquiryItemDetails"
+  },
+
+},
+{
+  $lookup:{
+      from:"employees",
+      localField:"EnquiryOwnerId",
+      foreignField:"EmployeeId",
+      as:"EnquiryOwner"
+  },
+
+}
+
     ])
       res.json({
         succes: true ,

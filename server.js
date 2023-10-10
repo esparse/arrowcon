@@ -56,6 +56,12 @@ const OfferingType = require('./routes/OfferingType_routes');
 const Weightedsales = require('./routes/Weightedsales_routes');
 const EnquiryType = require('./routes/EnquiryType_routes');
 const EnquiryStatus = require('./routes/EnquiryStatus_routes');
+const salesEnquiryitemdetails = require('./routes/salesEnquiryItemDetails_routes');
+const FreightInsurance = require('./routes/FreightInsurance_routes');
+const Inspection = require('./routes/Inspection_routes');
+const SupplierReferenceQuote = require('./routes/SupplierReferenceQuote_routes');
+const Liquidateddamages = require('./routes/Liquidateddamages_routes');
+const remark = require('./routes/remark_routes');
 
 const options = {
     definition: {
@@ -125,6 +131,12 @@ const options = {
   app.use("/api/v1",Weightedsales)
   app.use("/api/v1",EnquiryType)
   app.use("/api/v1",EnquiryStatus)
+  app.use("/api/v1",salesEnquiryitemdetails)
+  app.use("/api/v1",FreightInsurance)
+  app.use("/api/v1",Inspection)
+  app.use("/api/v1",SupplierReferenceQuote)
+  app.use("/api/v1",Liquidateddamages)
+  app.use("/api/v1",remark)
  
 
 

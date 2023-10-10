@@ -1,88 +1,449 @@
 const express = require('express');
 const router = express.Router();
-const aws = require('aws-sdk');
-const multer = require('multer');
-const multerS3 = require('multer-s3');
 const SalesOrderTransfer = require('../model/salesOrderTransfer_model');
 
-const s3 = new aws.S3({
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  region: process.env.REGION
-});
-const upload = multer({
-    storage: multerS3({
-      s3: s3,
-      bucket: "avinya01",
-      ACL: 'authenticated-read',
-      AttachmentsSize: 1000000, 
-     
-      metadata: function (req, Attachments, cb) {
-        cb(null, { fieldName: Attachments.originalname },
-          );
-        
-        console.log(Attachments.originalname);
-      },
-      key: function (req, Attachments, cb) {
-        cb(null, Attachments.originalname);
-      }
-    })
-  });
-  const uploadAttachments = multer({
-    storage: multer.memoryStorage(),
-    limits: {
-      AttachmentsSize: 2000000000000000000000000 , // 5 MB limit
-    },
-  });
-  router.post('/SalesOrderTransfer', uploadAttachments.single('Attachments'), async  (req, res) => {
-    const { originalname, buffer } = req.Attachments;
-  
-    const params = {
-      Bucket: process.env.AWS_S3_BUCKET,
-      Key: originalname,
-      Body: buffer,
-      ContentType: 'image/png', // adjust accordingly
-      ACL: 'public-read',
-    };
-  
-    s3.upload(params, async(err, data) => {
-      if (err) {
-        console.error(err);
-        return res.status(500).send('Error uploading image');
-      }
-      let count = (await SalesOrderTransfer.countDocuments()+1)+1000;
-      const result = await SalesOrderTransfer.create({
-        SalesOrderTransferId: "SO-" +count,
-        SalesOrderTransferDate: req.body.SalesOrderTransferDate,
-        SalesEnquiryId: req.body.SalesEnquiryId,
-        CustomerId: req.body.CustomerId,
-        OrderNo: req.body.OrderNo,
-        OrderDate: req.body.OrderDate,
-        ScopeOfSupply: req.body.ScopeOfSupply,
-        TotalOrderValue: req.body.TotalOrderValue,
-        TearmsOfPayment: req.body.TearmsOfPayment,
-        Delivery: req.body.Delivery,
-        PFCharge: req.body.PFCharge,
-        PackingRequirementIfAny: req.body.PackingRequirementIfAny,
-        TaxiesAndDuties: req.body.TaxiesAndDuties,
-        FreightInsurance: req.body.FreightInsurance,
-        Basisofsale: req.body.Basisofsale,
-        Inspection: req.body.Inspection,
-        LiquidatedDamages: req.body.LiquidatedDamages,
-        SupplierReferenceQuote: req.body.SupplierReferenceQuote,
-        DeviationModificationUpgradationrequiement: req.body.DeviationModificationUpgradationrequiement,
-        TestRequirmentsCertificates: req.body.TestRequirmentsCertificates,
-        BoilerMakerNo: req.body.BoilerMakerNo,
-        Remarks: req.body.Remarks,
-        Attachments: `https://avinya01.s3.ap-south-1.amazonaws.com/${req.Attachments.originalname}`,
-        ContactPersonName: req.body.ContactPersonName,
-        Designation: req.body.Designation,
-        ContactNumber: req.body.ContactNumber,
-        ContactPersonEmailId: req.body.ContactPersonEmailId,
-        Comments: req.body.Comments,
-      })
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     SalesOrderTransfer:
+ *       type: object
+ *       required:
+ *         - SalesOrderTransferId
+ *         - SalesOrderTransferDate
+ *         - SalesEnquiryId
+ *         - OfferingTypeId
+ *         - CustomerId
+ *         - OrderNo
+ *         - OrderDate
+ *         - ScopeOfSupply
+ *         - TotalOrderValueId
+ *         - TearmsOfPayment
+ *         - Delivery
+ *         - PFCharge
+ *         - PackingRequirementIfAny
+ *         - TaxiesAndDuties
+ *         - FreightInsuranceId
+ *         - Basisofsale
+ *         - InspectionId
+ *         - LiquidateddamagesId
+ *         - SupplierReferenceQuoteId
+ *         - DeviationModificationUpgradationrequiement
+ *         - TestRequirmentsCertificates
+ *         - BoilerMakerNo
+ *         - remarkId
+ *         - ContactPersonName
+ *         - Designation
+ *         - ContactNumber
+ *         - ContactPersonEmailId
+ *         - Comments
+ *       properties:
+ *         SalesOrderTransferId:
+ *           type: string
+ *           description: SalesOrderTransferId
+ *         SalesOrderTransferDate:
+ *           type: string
+ *           description: SalesOrderTransferDate
+ *         SalesEnquiryId:
+ *           type: string
+ *           description: SalesEnquiryId
+ *         OfferingTypeId:
+ *           type: string
+ *           description: SalesEnquiryId
+ *         CustomerId:
+ *           type: string
+ *           description: CustomerId
+ *         OrderNo:
+ *           type: string
+ *           description: OrderNo
+ *         OrderDate:
+ *           type: string
+ *           description: OrderDate
+ *         ScopeOfSupply:
+ *           type: string
+ *           description: ScopeOfSupply
+ *         TotalOrderValueId:
+ *           type: string
+ *           description: TotalOrderValueId
+ *         TearmsOfPayment:
+ *           type: string
+ *           description: TearmsOfPayment
+ *         Delivery:
+ *           type: string
+ *           description: Delivery
+ *         PFCharge:
+ *           type: string
+ *           description: PFCharge
+ *         PackingRequirementIfAny:
+ *           type: string
+ *           description: PackingRequirementIfAny
+ *         TaxiesAndDuties:
+ *           type: string
+ *           description: TaxiesAndDuties
+ *         FreightInsuranceId:
+ *           type: string
+ *           description: FreightInsuranceId
+ *         Basisofsale:
+ *           type: string
+ *           description: Basisofsale
+ *         InspectionId:
+ *           type: string
+ *           description: InspectionId
+ *         LiquidateddamagesId:
+ *           type: string
+ *           description: LiquidateddamagesId
+ *         SupplierReferenceQuoteId:
+ *           type: string
+ *           description: SupplierReferenceQuoteId
+ *         DeviationModificationUpgradationrequiement: 
+ *           type: string
+ *           description: SupplierReferenceQuoteId
+ *         TestRequirmentsCertificates: 
+ *           type: string
+ *           description: SupplierReferenceQuoteId
+ *         BoilerMakerNo: 
+ *           type: string
+ *           description: SupplierReferenceQuoteId
+ *         remarkId: 
+ *           type: string
+ *           description: remarkId
+ *         ContactPersonName: 
+ *           type: string
+ *           description: ContactPersonName
+ *         Designation: 
+ *           type: string
+ *           description: Designation
+ *         ContactNumber: 
+ *           type: string
+ *           description: ContactNumber
+ *         ContactPersonEmailId: 
+ *           type: string
+ *           description: ContactPersonEmailId
+ *         Comments:
+ *           type: string
+ *           description: Comments
+ *       example:
+ *         SalesOrderTransferId : Autogenerated
+ *         SalesOrderTransferDate : 10-10-2023
+ *         OfferingTypeId : 1
+ *         SalesEnquiryId : EA00-1000
+ *         CustomerId : CD1010001
+ *         OrderNo : order
+ *         OrderDate : 10-10-2023
+ *         ScopeOfSupply : Air Slider Perforated Sheet (Sintered Mesh) 
+ *         TotalOrderValueId : 1
+ *         TearmsOfPayment : abc
+ *         Delivery : 10-10-2023
+ *         PFCharge : 0
+ *         PackingRequirementIfAny : 0
+ *         TaxiesAndDuties : 0
+ *         FreightInsuranceId : 1
+ *         Basisofsale : 0
+ *         InspectionId : 1
+ *         LiquidateddamagesId : 1
+ *         SupplierReferenceQuoteId : 1
+ *         DeviationModificationUpgradationrequiement : 0
+ *         TestRequirmentsCertificates : 0
+ *         BoilerMakerNo : 0
+ *         remarkId : 1
+ *         ContactPersonName : 0
+ *         Designation : 0
+ *         ContactNumber : 0
+ *         ContactPersonEmailId : 0
+ *         Comments  : 
+ *
+ */
+/**
+ * @swagger
+ * /api/v1/SalesOrderTransfer:
+ *   post:
+ *     summary: SalesOrderTransfer
+ *     tags: [SalesOrderTransfer]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/SalesOrderTransfer'
+ *     responses:
+ *       200:
+ *         description: SalesOrderTransfer login successfull
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/SalesOrderTransfer'
+ *       500:
+ *         description: Some server error
+ */
+
+ 
+  router.post('/SalesOrderTransfer',  async  (req, res) => {
     
-      res.json({ data: result });
-    });
+ try {
+  let count = (await SalesOrderTransfer.countDocuments()+1)+1000;
+  const result = await SalesOrderTransfer.create({
+    SalesOrderTransferId: "SO-" +count,
+    SalesOrderTransferDate: req.body.SalesOrderTransferDate,
+    SalesEnquiryId: req.body.SalesEnquiryId,
+    OfferingTypeId: req.body.OfferingTypeId,
+    CustomerId: req.body.CustomerId,
+    OrderNo: req.body.OrderNo,
+    OrderDate: req.body.OrderDate,
+    ScopeOfSupply: req.body.ScopeOfSupply,
+    TotalOrderValueId: req.body.TotalOrderValueId,
+    TearmsOfPayment: req.body.TearmsOfPayment,
+    Delivery: req.body.Delivery,
+    PFCharge: req.body.PFCharge,
+    PackingRequirementIfAny: req.body.PackingRequirementIfAny,
+    TaxiesAndDuties: req.body.TaxiesAndDuties,
+    FreightInsuranceId: req.body.FreightInsuranceId,
+    Basisofsale: req.body.Basisofsale,
+    InspectionId: req.body.InspectionId,
+    LiquidateddamagesId: req.body.LiquidateddamagesId,
+    SupplierReferenceQuoteId: req.body.SupplierReferenceQuoteId,
+    DeviationModificationUpgradationrequiement: req.body.DeviationModificationUpgradationrequiement,
+    TestRequirmentsCertificates: req.body.TestRequirmentsCertificates,
+    BoilerMakerNo: req.body.BoilerMakerNo,
+    remarkId: req.body.remarkId,
+    ContactPersonName: req.body.ContactPersonName,
+    Designation: req.body.Designation,
+    ContactNumber: req.body.ContactNumber,
+    ContactPersonEmailId: req.body.ContactPersonEmailId,
+    Comments: req.body.Comments,
+  })
+
+  res.json({ 
+    success:true,
+    message:"Sales Order Transfer Order Details",
+    data: result
+   });
+ } catch (error) {
+  res.json({ 
+    success:false,
+    message:"Something went wrong",
+    data: null
+   });
+ }
   });
+
+  /**
+ * @swagger
+ * /api/v1/getSalesOrderTransfer:
+ *   get:
+ *     summary: get SalesOrderTransfer
+ *     tags: [SalesOrderTransfer]
+ *     responses:
+ *       200:
+ *         description: get All SalesOrderTransfer
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               items:
+ *                 $ref: '#/components/schemas/SalesOrderTransfer'
+ */
+  router.get('/getSalesOrderTransfer',async(req,res)=>{
+    try {
+      const result = await SalesOrderTransfer.aggregate([
+        {
+            $lookup:{
+                from:'customers',
+                localField:'CustomerId',
+                foreignField:'CustomerId',
+                as:"Customer"
+            },
+        },
+       
+      
+    {
+        $lookup:{
+            from:"freightinsurances",
+            localField:"FreightInsuranceId",
+            foreignField:"FreightInsuranceId",
+            as:"FreightInsurance"
+        },
+     
+    },
+    {
+      $lookup:{
+          from:"weightedsales",
+          localField:"TotalOrderValueId",
+          foreignField:"WeightedsalesId",
+          as:"TotalOrderValue"
+      },
+   
+  },
+  {
+    $lookup:{
+        from:"inspections",
+        localField:"InspectionId",
+        foreignField:"InspectionId",
+        as:"Inspection"
+    },
+ 
+},
+{
+  $lookup:{
+      from:"liquidateddamages",
+      localField:"LiquidateddamagesId",
+      foreignField:"LiquidateddamagesId",
+      as:"Liquidateddamages"
+  },
+
+},
+{
+  $lookup:{
+      from:"supplierreferencequotes",
+      localField:"SupplierReferenceQuoteId",
+      foreignField:"SupplierReferenceQuoteId",
+      as:"SupplierReferenceQuote"
+  },
+
+},
+{
+  $lookup:{
+      from:"offeringtypes",
+      localField:"OfferingTypeId",
+      foreignField:"OfferingTypeId",
+      as:"OfferingType"
+  },
+
+},
+{
+  $lookup:{
+      from:"remarks",
+      localField:"remarkId",
+      foreignField:"remarkId",
+      as:"remark"
+  },
+
+}
+
+    ])
+      res.json({
+        succes: true ,
+        Message: "Get All Sales Order Transfer Details" ,
+        data : result
+      })
+    } catch (error) {
+      res.json({
+        succes: false ,
+        Message: "Something went Worng" ,
+        data : null
+      })
+    }
+  })
+   /**
+ * @swagger
+ * /api/v1/deleteSalesOrderTransferDetails/{SalesOrderTransferId}:
+ *   delete:
+ *     summary: Delete an SalesOrderTransfer
+ *     tags: [SalesOrderTransfer]
+ *     parameters:
+ *         - in: path
+ *           SalesOrderTransferName: SalesOrderTransferId
+ *           required: true
+ *           description: SalesOrderTransferId is required
+ *           schema:
+ *              type: string
+ *     responses:
+ *       200:
+ *         description: SalesOrderTransfer delete successfully
+ *   
+ */
+router.delete("/deleteSalesOrderTransferDetails/:SalesOrderTransferId",async(req,res)=>{
+  try {
+    const result = await SalesOrderTransfer.findOneAndDelete({SalesOrderTransferId:req.params.SalesOrderTransferId})
+    res.json({
+        success:true,
+        message:"Delete SalesOrderTransfer Details",
+        data:null
+    })
+} catch (error) {
+    res.json({
+        success:false,
+        message:"Something  went wrong",
+        data:null
+    })  
+}
+})
+
+/**
+* @swagger
+* /api/v1/updateSalesOrderTransferDetails:
+*   post:
+*     summary: Update SalesOrderTransfer Details
+*     tags: [SalesOrderTransfer]
+*     requestBody:
+*       required: true
+*       content:
+*         application/json:
+*           schema:
+*             $ref: '#/components/schemas/SalesOrderTransfer'
+*     responses:
+*       200:
+*         description: update SalesOrderTransfer Details successfull
+*         content:
+*           application/json:
+*             schema:
+*               $ref: '#/components/schemas/SalesOrderTransfer'
+*       500:
+*         description: Some server error
+*/
+router.post("/updateSalesOrderTransferDetails",async(req,res)=>{
+  try {
+    const result = await SalesOrderTransfer.findOneAndUpdate({SalesOrderTransferId:req.body.SalesOrderTransferId} , req.body , {
+        new: true,
+        runValidators: true,})
+    res.json({
+        success:true,
+        message:"update SalesOrderTransfer Details",
+        data:result
+    })
+} catch (error) {
+    res.json({
+        success:false,
+        message:"Something  went wrong"+Error,
+        data:null
+    })  
+}
+})
+
+/**
+ * @swagger
+ * /api/v1/getSingleSalesOrderTransferDetails/{SalesOrderTransferId}:
+ *   get:
+ *     summary: Get a SalesOrderTransfer by ID
+ *     tags: [SalesOrderTransfer]
+ *     description: Retrieve a SalesOrderTransfer by their unique ID.
+ *     parameters:
+ *       - in: path
+ *         name: SalesOrderTransferId
+ *         required: true
+ *         description: ID of the SalesOrderTransfer to retrieve
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Successfully retrieved the SalesOrderTransfer
+ *       404:
+ *         description: SalesOrderTransfer not found
+ */
+router.get("/getSingleSalesOrderTransferDetails/:SalesOrderTransferId",async(req,res)=>{
+  try {
+    const result = await SalesOrderTransfer.findOne({SalesOrderTransferId:req.params.SalesOrderTransferId})
+    res.json({
+        success:true,
+        message:"get a Single SalesOrderTransfer Details",
+        data:result
+    })
+  } catch (error) {
+    res.json({
+        success:false,
+        message:"Something  went wrong",
+        data:null
+    })  
+  }
+  
+})
   module.exports = router;
