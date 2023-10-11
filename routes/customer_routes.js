@@ -13,6 +13,7 @@ const router = express.Router()
  *         - CustomerName
  *         - HeadOfficeAddress
  *         - HeadOfficeDistrict
+ *         - HeadOfficeProvince
  *         - HeadOfficeHeadOfficeCountryId
  *         - HeadOfficeCountryId
  *         - HeadOfficeStateId
@@ -20,6 +21,7 @@ const router = express.Router()
  *         - HeadOfficePin
  *         - SiteAddress
  *         - SiteDistrict
+ *         - SiteAddressProvince
  *         - SiteAddressCountryId
  *         - SiteAddressStateId
  *         - SiteAddressCityId
@@ -64,6 +66,9 @@ const router = express.Router()
  *         HeadOfficeDistrict:
  *           type: string
  *           description: HeadOfficeDistrict
+ *         HeadOfficeProvince:
+ *           type: string
+ *           description: HeadOfficeProvince
  *         HeadOfficeAddress:
  *           type: string
  *           description: HeadOfficeAddress
@@ -85,6 +90,9 @@ const router = express.Router()
  *         SiteDistrict:
  *           type: string
  *           description: SiteDistrict
+ *         SiteAddressProvince:
+ *           type: string
+ *           description: SiteAddressProvince
  *         SiteAddressCountryId:
  *           type: string
  *           description: SiteAddressCountryId
@@ -178,6 +186,7 @@ const router = express.Router()
  *         CustomerName: Customer
  *         HeadOfficeAddress: 503, KSL Tower 9th Floor, Sriayudhya Rd
  *         HeadOfficeDistrict: Pune
+ *         HeadOfficeProvince: abcdfhf
  *         HeadOfficeCountryId: 1
  *         HeadOfficeStateId: 1
  *         HeadOfficeCityId: 2
@@ -185,6 +194,7 @@ const router = express.Router()
  *         Country: India
  *         SiteAddress: B2 mall Ranhe
  *         SiteDistrict: Pune
+ *         SiteAddressProvince: Pune
  *         SiteAddressCountryId: 1
  *         SiteAddressStateId: 1
  *         SiteAddressCityId: 2
