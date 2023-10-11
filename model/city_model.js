@@ -1,17 +1,37 @@
 const mongoose = require("mongoose")
 
 const citySchema = mongoose.Schema({
-    Cityid:{
-        type:String
-    },
-    City:{
-        type:String
-    },
-    State:{
-        type:String
-    },
-    StateId:{
+    id:{
         type:Number
+    },
+    name:{
+        type:String
+    },
+    state_id:{
+        type:Number
+    },
+    state_code:{
+        type:String
+    },
+    state_name:{
+        type:String
+    },
+    country_id:{
+        type:Number
+    },
+    country_code:{
+        type:String
+    },
+    country_name:{
+        type:String
+    },
+    latitude:{
+        type:String
+        
+    },
+    longitude:{
+        type:String
+
     }
     
        

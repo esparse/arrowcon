@@ -9,14 +9,14 @@ exports.CreateSuplierDetails = async(req,res)=>{
         RegisteredOfficeAddress:req.body.RegisteredOfficeAddress,
         RegisteredOfficeDistrict:req.body.RegisteredOfficeDistrict,
         RegisteredOfficeProvince:req.body.RegisteredOfficeProvince,
-        RegisteredOfficeCountry:req.body.RegisteredOfficeCountry,
+        RegisteredOfficeCountryId:req.body.RegisteredOfficeCountryId,
         RegisteredOfficeStateId:req.body.RegisteredOfficeStateId,
         RegisteredOfficeCityId:req.body.RegisteredOfficeCityId,
         RegisteredOfficePin:req.body.RegisteredOfficePin,
         BillingAddress:req.body. BillingAddress,
         BillingDistrict:req.body. BillingDistrict,
         BillingAddressProvince:req.body. BillingAddressProvince,
-        BillingAddressCountry:req.body. BillingAddressCountry,
+        BillingAddressCountryId:req.body. BillingAddressCountryId,
         BillingAddressStateId:req.body. BillingAddressStateId,
         BillingAddressCityId:req.body. BillingAddressCityId,
         BillingAddressPin:req.body. BillingAddressPin,
@@ -67,7 +67,7 @@ exports.viewSuplierDetails = async(req,res)=>{
                 $lookup:{
                     from:"states",
                     localField:"RegisteredOfficeStateId",
-                    foreignField:"StateId",
+                    foreignField:"id",
                     as:"RegisteredOfficeState"
                 },
              
@@ -76,7 +76,7 @@ exports.viewSuplierDetails = async(req,res)=>{
                 $lookup:{
                     from:"cities",
                     localField:"RegisteredOfficeCityId",
-                    foreignField:"Cityid",
+                    foreignField:"id",
                     as:"RegisteredOfficeCity"
                 },
              
@@ -85,7 +85,7 @@ exports.viewSuplierDetails = async(req,res)=>{
                 $lookup:{
                     from:"states",
                     localField:"BillingAddressStateId",
-                    foreignField:"StateId",
+                    foreignField:"id",
                     as:"BillingAddressState"
                 },
              
@@ -94,7 +94,7 @@ exports.viewSuplierDetails = async(req,res)=>{
                 $lookup:{
                     from:"cities",
                     localField:"BillingAddressCityId",
-                    foreignField:"Cityid",
+                    foreignField:"id",
                     as:"BillingAddressCity"
                 },
              
@@ -114,6 +114,24 @@ exports.viewSuplierDetails = async(req,res)=>{
                     localField:"BussinessCommodityServiceId",
                     foreignField:"BussinessCommodityServiceId",
                     as:"BussinessCommodityService"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"countries",
+                    localField:"RegisteredOfficeCountryId",
+                    foreignField:"id",
+                    as:"RegisteredOfficeCountry"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"countries",
+                    localField:"BillingAddressCountryId",
+                    foreignField:"id",
+                    as:"BillingAddressCountryId"
                 },
              
             },

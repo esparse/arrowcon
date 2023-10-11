@@ -13,14 +13,14 @@ const router = express.Router()
  *         - CustomerName
  *         - HeadOfficeAddress
  *         - HeadOfficeDistrict
- *         - HeadOfficeHeadOfficeCountry
- *         - HeadOfficeCountry
+ *         - HeadOfficeHeadOfficeCountryId
+ *         - HeadOfficeCountryId
  *         - HeadOfficeStateId
  *         - HeadOfficeCityId
  *         - HeadOfficePin
  *         - SiteAddress
  *         - SiteDistrict
- *         - SiteAddressCountry
+ *         - SiteAddressCountryId
  *         - SiteAddressStateId
  *         - SiteAddressCityId
  *         - SiteAddressPin
@@ -67,9 +67,9 @@ const router = express.Router()
  *         HeadOfficeAddress:
  *           type: string
  *           description: HeadOfficeAddress
- *         HeadOfficeCountry:
+ *         HeadOfficeCountryId:
  *           type: string
- *           description: HeadOfficeCountry
+ *           description: HeadOfficeCountryId
  *         HeadOfficeStateId:
  *           type: integer
  *           description: HeadOfficeStateId
@@ -85,9 +85,9 @@ const router = express.Router()
  *         SiteDistrict:
  *           type: string
  *           description: SiteDistrict
- *         SiteAddressCountry:
+ *         SiteAddressCountryId:
  *           type: string
- *           description: SiteAddressCountry
+ *           description: SiteAddressCountryId
  *         SiteAddressStateId:
  *           type: string
  *           description: SiteAddressStateId
@@ -178,14 +178,14 @@ const router = express.Router()
  *         CustomerName: Customer
  *         HeadOfficeAddress: 503, KSL Tower 9th Floor, Sriayudhya Rd
  *         HeadOfficeDistrict: Pune
- *         HeadOfficeCountry: 1
+ *         HeadOfficeCountryId: 1
  *         HeadOfficeStateId: 1
  *         HeadOfficeCityId: 2
  *         HeadOfficePin: 123456
  *         Country: India
  *         SiteAddress: B2 mall Ranhe
  *         SiteDistrict: Pune
- *         SiteAddressCountry: India
+ *         SiteAddressCountryId: 1
  *         SiteAddressStateId: 1
  *         SiteAddressCityId: 2
  *         SiteAddressPin: 789456

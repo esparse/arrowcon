@@ -19,14 +19,14 @@ const SuplierSchema = mongoose.Schema({
    RegisteredOfficeProvince:{
         type:String
     },
-   RegisteredOfficeCountry:{
-        type:String
+    RegisteredOfficeCountryId:{
+        type:Number
     },
     RegisteredOfficeStateId:{
         type:Number
     },
     RegisteredOfficeCityId:{
-        type:String
+        type:Number
     },
    RegisteredOfficePin:{
         type:String
@@ -40,8 +40,8 @@ const SuplierSchema = mongoose.Schema({
    BillingAddressProvince:{
       type:String
     },
-    BillingAddressCountry:{
-        type:String
+    BillingAddressCountryId:{
+        type:Number
     },
     BillingAddressStateId:{
         type:Number

@@ -12,7 +12,7 @@ exports.getStateWithCity = async(req,res)=>{
                 }
             },
             {
-                $sort:{State:1}
+                $sort:{id:1}
             }
         ])
         res.json({
@@ -46,4 +46,20 @@ exports.getAllState = async(req,res)=>{
         })  
     }
 }
-
+exports.getAllStatebyCountryID = async(req,res)=>{
+    try {
+        const result = await state.find({country_id:req.params.country_id}).sort({name:1})
+        res.json({
+            count:result.length,
+            success:true,
+            message:"get All State",
+            data:result
+        })
+    } catch (error) {
+        res.json({
+            success:false,
+            message:"Something  went wrong",
+            data:null
+        })  
+    }
+}

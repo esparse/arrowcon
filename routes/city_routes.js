@@ -8,28 +8,58 @@ const router = express.Router()
  *     City:
  *       type: object
  *       required:
- *         - Cityid
- *         - City
- *         - State
- *         - StateId
+ *         - id
+ *         - name
+ *         - state_id
+ *         - state_code
+ *         - state_name
+ *         - country_id
+ *         - country_code
+ *         - country_name
+ *         - latitude
+ *         - longitude
  *       properties:
- *         Cityid:
+ *         id:
  *           type: string
  *           description: City@gmail.com
- *         City:
+ *         name:
  *           type: string
- *           description: City
- *         State:
+ *           description: name
+ *         state_id:
+ *           type: string
+ *           description: name
+ *         state_code:
+ *           type: string
+ *           description: state_code
+ *         state_name:
  *           type: string
  *           description: State
- *         StateId:
+ *         country_id:
+ *           type: string
+ *           description: State
+ *         country_code:
+ *           type: string
+ *           description: State
+ *         country_name:
+ *           type: string
+ *           description: State
+ *         latitude:
+ *           type: string
+ *           description: State
+ *         longitude:
  *           type: string
  *           description: State
  *       example:
- *         Cityid: 1
- *         City: Mumbai    
- *         State: Maharashtra     
- *         StateId: 21     
+ *         id: 52
+ *         name: Ashkāsham    
+ *         state_id: 3901     
+ *         state_code: BDS     
+ *         state_name: Badakhshan     
+ *         country_id: 1     
+ *         country_code: AF     
+ *         country_name: Afghanistan     
+ *         latitude: 36.68333000     
+ *         longitude: 71.53333000     
  *
  */
 /**
@@ -69,14 +99,14 @@ router.route("/getAllCity").get( getAllCity)
 
 /**
  * @swagger
- * /api/v1/getCityByStateId/{StateId}:
+ * /api/v1/getCityByStateId/{state_id}:
  *   get:
  *     summary: Get cities by state ID
  *     tags: [City]
  *     description: Retrieve a list of cities by their associated state ID.
  *     parameters:
  *       - in: path
- *         name: StateId
+ *         name: state_id
  *         required: true
  *         description: ID of the state to retrieve cities for
  *         schema:
@@ -92,7 +122,7 @@ router.route("/getAllCity").get( getAllCity)
  *         description: State not found
  */
 
-router.route("/getCityByStateId").post( getCityByStateId)
+router.route("/getCityByStateId/:state_id").get( getCityByStateId)
 
 router.route("/deleteMany").delete(deleteAllCity)
 

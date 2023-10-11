@@ -9,14 +9,14 @@ exports.CreateCustomerDetails = async(req,res)=>{
         HeadOfficeAddress:req.body.HeadOfficeAddress,
         HeadOfficeDistrict:req.body.HeadOfficeDistrict,
         HeadOfficeProvince:req.body.HeadOfficeProvince,
-        HeadOfficeCountry:req.body.HeadOfficeCountry,
+        HeadOfficeCountryId:req.body.HeadOfficeCountryId,
         HeadOfficeStateId:req.body.HeadOfficeStateId,
         HeadOfficeCityId:req.body.HeadOfficeCityId,
         HeadOfficePin:req.body.HeadOfficePin,
         SiteAddress:req.body.SiteAddress,
         SiteDistrict:req.body.SiteDistrict,
         SiteAddressProvince:req.body.SiteAddressProvince,
-        SiteAddressCountry:req.body.SiteAddressCountry,
+        SiteAddressCountryId:req.body.SiteAddressCountryId,
         SiteAddressStateId:req.body.SiteAddressStateId,
         SiteAddressCityId:req.body.SiteAddressCityId,
         SiteAddressPin:req.body.SiteAddressPin,
@@ -68,7 +68,7 @@ exports.viewCustomerDetails = async(req,res)=>{
                 $lookup:{
                     from:"states",
                     localField:"HeadOfficeStateId",
-                    foreignField:"StateId",
+                    foreignField:"id",
                     as:"HeadOfficeState"
                 },
              
@@ -86,7 +86,7 @@ exports.viewCustomerDetails = async(req,res)=>{
                 $lookup:{
                     from:"cities",
                     localField:"HeadOfficeCityId",
-                    foreignField:"Cityid",
+                    foreignField:"id",
                     as:"HeadOfficeCity"
                 },
              
@@ -95,7 +95,7 @@ exports.viewCustomerDetails = async(req,res)=>{
                 $lookup:{
                     from:"states",
                     localField:"SiteAddressStateId",
-                    foreignField:"StateId",
+                    foreignField:"id",
                     as:"SiteAddressState"
                 },
              
@@ -104,7 +104,7 @@ exports.viewCustomerDetails = async(req,res)=>{
                 $lookup:{
                     from:"cities",
                     localField:"SiteAddressCityId",
-                    foreignField:"Cityid",
+                    foreignField:"id",
                     as:"SiteAddressCity"
                 },
              
@@ -202,9 +202,18 @@ exports.viewCustomerDetails = async(req,res)=>{
             {
                 $lookup:{
                     from:"countries",
-                    localField:"HeadOfficeCountry",
+                    localField:"HeadOfficeCountryId",
                     foreignField:"id",
-                    as:"Country"
+                    as:"HeadOfficeCountry"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"countries",
+                    localField:"SiteAddressCountryId",
+                    foreignField:"id",
+                    as:"SiteAddressCountry"
                 },
              
             },

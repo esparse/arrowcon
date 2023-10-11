@@ -1,5 +1,5 @@
 const express = require("express")
-const {getStateWithCity,getAllState} =require("../controller/state_controller")
+const {getStateWithCity,getAllState,getAllStatebyCountryID} =require("../controller/state_controller")
 const router = express.Router()
 
 
@@ -10,38 +10,44 @@ const router = express.Router()
  *     State:
  *       type: object
  *       required:
- *         - State
- *         - isoCode
- *         - countryCode
+ *         - id
+ *         - name
+ *         - country_id
+ *         - country_code
+ *         - country_name
+ *         - state_code
  *         - latitude
- *         - longitude
- *         - StateId
  *       properties:
- *         State:
+ *         id:
  *           type: string
- *           description: isoCode@gmail.com
- *         isoCode:
+ *           description: name@gmail.com
+ *         name:
  *           type: string
- *           description: isoCode
- *         countryCode:
+ *           description: name
+ *         country_id:
  *           type: string
- *           description: countryCode
- *         latitude:
+ *           description: country_id
+ *         country_code:
  *           type: string
  *           description: State
- *         longitude:
+ *         country_name:
  *           type: string
- *           description: longitude
- *         StateId:
+ *           description: country_name
+ *         state_code:
  *           type: string
- *           description: StateId
+ *           description: state_code
+ *         latitude:
+ *           type: string
+ *           description: latitude
  *       example:
- *         State: Andaman and Nicobar Islands
- *         isoCode: AN    
- *         countryCode: IN     
- *         latitude: 11.7400867     
- *         longitude: 92.6586401     
- *         StateId: 1     
+ *         id: 3901
+ *         name: Badakhshan    
+ *         country_id: 1     
+ *         country_code:  AF   
+ *         country_name: Afghanistan  
+ *         state_code: BDS     
+ *         latitude: 11.7400867      
+ *         longitude: 92.6586401        
  *
  */
 /**
@@ -64,5 +70,36 @@ router.route("/getAllState").get( getAllState)
 
 
 router.route("/getStateWithCity").get( getStateWithCity)
+/**
+ * @swagger
+ * /api/v1/getAllStatebyCountryID/{country_id}:
+ *   get:
+ *     summary: Get a list of states by country ID
+ *     tags: [State]
+ *     parameters:
+ *       - in: path
+ *         name: country_id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID of the country for which you want to retrieve states
+ *     responses:
+ *       '200':
+ *         description: Successful response
+ *         content:
+ *           application/json:
+ *             example:
+ *               - State1
+ *               - State2
+ *               - State3
+ *       '404':
+ *         description: Country not found
+ *         content:
+ *           application/json:
+ *             example:
+ *               error: Country not found
+ */
+
+router.route("/getAllStatebyCountryID/:country_id").get( getAllStatebyCountryID)
 
 module.exports = router

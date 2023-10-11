@@ -19,7 +19,7 @@ const CustomerSchema = mongoose.Schema({
     HeadOfficeProvince:{
         type:String
     },
-    HeadOfficeCountry:{
+    HeadOfficeCountryId:{
         type:Number
     },
     HeadOfficeStateId:{
@@ -27,7 +27,7 @@ const CustomerSchema = mongoose.Schema({
 
     },
     HeadOfficeCityId:{
-        type:String
+        type:Number
     },
     HeadOfficePin:{
         type:String
@@ -41,7 +41,7 @@ const CustomerSchema = mongoose.Schema({
    SiteAddressProvince:{
       type:String
     },
-    SiteAddressCountry:{
+    SiteAddressCountryId:{
         type:Number
     },
     SiteAddressStateId:{

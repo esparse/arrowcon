@@ -13,14 +13,14 @@ const router = express.Router()
  *         - SuplierName
  *         - RegisteredOfficeAddress
  *         - RegisteredOfficeDistrict
- *         - RegisteredOfficeRegisteredOfficeCountry
- *         - RegisteredOfficeCountry
+ *         - RegisteredOfficeRegisteredOfficeCountryId
+ *         - RegisteredOfficeCountryId
  *         - RegisteredOfficeStateId
  *         - RegisteredOfficeCityId
  *         - RegisteredOfficePin
  *         - BillingAddress
  *         - BillingDistrict
- *         - BillingAddressCountry
+ *         - BillingAddressCountryId
  *         - BillingAddressStateId
  *         - BillingAddressCityId
  *         - BillingAddressPin
@@ -56,14 +56,14 @@ const router = express.Router()
  *         RegisteredOfficeAddress:
  *           type: string
  *           description: RegisteredOfficeAddress
- *         RegisteredOfficeCountry:
- *           type: string
- *           description: RegisteredOfficeCountry
+ *         RegisteredOfficeCountryId:
+ *           type: integer
+ *           description: RegisteredOfficeCountryId
  *         RegisteredOfficeStateId:
  *           type: integer
  *           description: RegisteredOfficeStateId
  *         RegisteredOfficeCityId:
- *           type: string
+ *           type: integer
  *           description: RegisteredOfficeCityId
  *         RegisteredOfficePin:
  *           type: string
@@ -74,9 +74,9 @@ const router = express.Router()
  *         BillingDistrict:
  *           type: string
  *           description:  BillingDistrict
- *         BillingAddressCountry:
+ *         BillingAddressCountryId:
  *           type: string
- *           description:  BillingAddressCountry
+ *           description:  BillingAddressCountryId
  *         BillingAddressStateId:
  *           type: integer
  *           description:  BillingAddressStateId
@@ -133,14 +133,14 @@ const router = express.Router()
  *         SuplierName : Suplier
  *         RegisteredOfficeAddress : Suger
  *         RegisteredOfficeDistrict : 503, KSL Tower 9th Floor, Sriayudhya Rd.,
- *         RegisteredOfficeCountry : Bangkok
+ *         RegisteredOfficeCountryId : Bangkok
  *         RegisteredOfficeStateId : 21
  *         RegisteredOfficeCityId : 1
  *         RegisteredOfficePin : West
  *         Country: Domestic
  *         BillingAddress : West
  *         BillingDistrict : Iron
- *         BillingAddressCountry : Mr.Chiewchan
+ *         BillingAddressCountryId : Mr.Chiewchan
  *         BillingAddressStateId : 16
  *         BillingAddressCityId : 45
  *         ContactPersonName : 0817441009

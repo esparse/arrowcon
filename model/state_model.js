@@ -1,13 +1,22 @@
 const mongoose = require("mongoose")
 
 const stateSchema = mongoose.Schema({
-    State:{
+    id:{
+        type:Number
+    },
+    name:{
         type:String
     },
-    isoCode:{
+    country_id:{
+        type:Number
+    },
+    country_code:{
         type:String
     },
-    countryCode:{
+    country_name:{
+        type:String
+    },
+    state_code:{
         type:String
     },
     latitude:{
@@ -15,9 +24,6 @@ const stateSchema = mongoose.Schema({
     },
     longitude:{
         type:String
-    },
-    StateId:{
-        type:Number
     }
 
        
