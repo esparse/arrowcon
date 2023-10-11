@@ -13,6 +13,7 @@ const router = express.Router()
  *         - SuplierName
  *         - RegisteredOfficeAddress
  *         - RegisteredOfficeDistrict
+ *         - RegisteredOfficeProvince
  *         - RegisteredOfficeRegisteredOfficeCountryId
  *         - RegisteredOfficeCountryId
  *         - RegisteredOfficeStateId
@@ -20,6 +21,7 @@ const router = express.Router()
  *         - RegisteredOfficePin
  *         - BillingAddress
  *         - BillingDistrict
+ *         - BillingAddressProvince
  *         - BillingAddressCountryId
  *         - BillingAddressStateId
  *         - BillingAddressCityId
@@ -53,6 +55,9 @@ const router = express.Router()
  *         RegisteredOfficeDistrict:
  *           type: string
  *           description: RegisteredOfficeDistrict
+ *         RegisteredOfficeProvince:
+ *           type: string
+ *           description: RegisteredOfficeDistrict
  *         RegisteredOfficeAddress:
  *           type: string
  *           description: RegisteredOfficeAddress
@@ -72,6 +77,9 @@ const router = express.Router()
  *           type: string
  *           description:  BillingAddress
  *         BillingDistrict:
+ *           type: string
+ *           description:  BillingDistrict
+ *         BillingAddressProvince:
  *           type: string
  *           description:  BillingDistrict
  *         BillingAddressCountryId:
@@ -133,6 +141,7 @@ const router = express.Router()
  *         SuplierName : Suplier
  *         RegisteredOfficeAddress : Suger
  *         RegisteredOfficeDistrict : 503, KSL Tower 9th Floor, Sriayudhya Rd.,
+ *         RegisteredOfficeProvince : 503, KSL Tower 9th Floor, Sriayudhya Rd.,
  *         RegisteredOfficeCountryId : Bangkok
  *         RegisteredOfficeStateId : 21
  *         RegisteredOfficeCityId : 1
@@ -140,6 +149,7 @@ const router = express.Router()
  *         Country: Domestic
  *         BillingAddress : West
  *         BillingDistrict : Iron
+ *         BillingAddressProvince : Iron
  *         BillingAddressCountryId : Mr.Chiewchan
  *         BillingAddressStateId : 16
  *         BillingAddressCityId : 45
