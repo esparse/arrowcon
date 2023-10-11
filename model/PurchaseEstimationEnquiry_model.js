@@ -13,25 +13,25 @@ const PurchaseEstimationEnquirySchema = mongoose.Schema({
     CustomerId:{
         type:String
     },
-    EnquiryOwner :{
+    EnquiryOwnerId :{
         type:String
     },
-    OfferingType:{
+    OfferingTypeId:{
         type:String
     },
-    EnquiryType  :{
+    EnquiryTypeId  :{
         type:String
     },
-    Equipment:{
+    EquipmentId:{
         type:String
     },
-    TypeofEquipment:{
+    TypeOfEquipmentId:{
         type:String
     },
     EnquiryDescription:{
         type:String
     },
-    EnquiryStatus:{
+    EnquiryStatusId:{
         type:String
     },
     Remark:{

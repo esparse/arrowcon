@@ -198,7 +198,18 @@ exports.viewCustomerDetails = async(req,res)=>{
                     as:"PollutionControlEquipment"
                 },
              
-            }
+            },
+            {
+                $lookup:{
+                    from:"countries",
+                    localField:"HeadOfficeCountry",
+                    foreignField:"id",
+                    as:"Country"
+                },
+             
+            },
+            
+            
         ])
         res.json({
             count:result.length,

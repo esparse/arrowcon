@@ -1,5 +1,6 @@
 const express = require("express")
 const {Adminlogin} = require("../controller/AdminLogin_controller")
+// const {getallcountrywithnameandid} = require("..//_seeder/data/country")
 const router = express.Router()
 /**
  * @swagger
@@ -45,6 +46,7 @@ const router = express.Router()
  *         description: Some server error
  */
  router.route("/Adminlogin").post(Adminlogin)
+//  router.route("/getallcountrywithnameandid").get(getallcountrywithnameandid)
 
 module.exports = router
 

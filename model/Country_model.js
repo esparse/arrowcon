@@ -17,23 +17,7 @@ const CountrySchema = mongoose.Schema({
     subregion:{
         type:String
     },
-    states:[
-        {
-            id: {type:Number},
-            name:{type:String},
-            latitude: {type:String},
-            longitude: {type:String},
-            cities:[
-                {
-                id:{type:Number},
-                name:{type:String},
-                latitude:{type:String},
-                longitude:{type:String},
 
-            }
-        ]
-          },
-    ]
     
        
 

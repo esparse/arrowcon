@@ -6,13 +6,13 @@ exports.CreatePurchaseEstimationEnquiryDetails = async(req,res)=>{
         SalesEnquiryId:req.body.SalesEnquiryId,
         EnquiryDate:req.body.EnquiryDate,
         CustomerId:req.body.CustomerId,
-        EnquiryOwner:req.body.EnquiryOwner,
-        OfferingType:req.body.OfferingType,
-        EnquiryType:req.body.EnquiryType,
-        Equipment:req.body.Equipment,
-        TypeofEquipment:req.body.TypeofEquipment,
+        EnquiryOwnerId:req.body.EnquiryOwnerId,
+        OfferingTypeId:req.body.OfferingTypeId,
+        EnquiryTypeId:req.body.EnquiryTypeId,
+        EquipmentId:req.body.EquipmentId,
+        TypeOfEquipmentId:req.body.TypeOfEquipmentId,
         EnquiryDescription:req.body.EnquiryDescription,
-        EnquiryStatus:req.body.EnquiryStatus,
+        EnquiryStatusId:req.body.EnquiryStatusId,
         Remark:req.body.Remark,
         AddtionalComments:req.body.AddtionalComments,
         TargetDate:req.body.TargetDate,
@@ -49,7 +49,59 @@ exports.viewPurchaseEstimationEnquiryDetails = async(req,res)=>{
                     as:"SalesEnquiry"
                 },
             },
+            {
+                $lookup:{
+                    from:'offeringtypes',
+                    localField:'OfferingTypeId',
+                    foreignField:'OfferingTypeId',
+                    as:"OfferingType"
+                },
+            },
+            {
+              $lookup:{
+                  from:"equipment",
+                  localField:"EquipmentId",
+                  foreignField:"EquipmentId",
+                  as:"Equipment"
+              },
+           
+          },
+          {
+              $lookup:{
+                  from:"typeofequipments",
+                  localField:"TypeOfEquipmentId",
+                  foreignField:"TypeOfEquipmentId",
+                  as:"TypeOfEquipment"
+              },
+           
+          },
+          {
+            $lookup:{
+                from:"enquirytypes",
+                localField:"EnquiryTypeId",
+                foreignField:"EnquiryTypeId",
+                as:"EnquiryType"
+            },
+         
+        },
+        {
+          $lookup:{
+              from:"enquirystatuses",
+              localField:"EnquiryStatusId",
+              foreignField:"EnquiryStatusId",
+              as:"EnquiryStatus"
+          },
+        
+        },
+        {
+            $lookup:{
+                from:"employees",
+                localField:"EnquiryOwnerId",
+                foreignField:"EmployeeId",
+                as:"EnquiryOwner"
+            },
           
+          }
         ])
         res.json({
             count:result.length,

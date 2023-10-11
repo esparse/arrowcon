@@ -178,7 +178,7 @@ const router = express.Router()
  *         CustomerName: Customer
  *         HeadOfficeAddress: 503, KSL Tower 9th Floor, Sriayudhya Rd
  *         HeadOfficeDistrict: Pune
- *         HeadOfficeCountry: India
+ *         HeadOfficeCountry: 1
  *         HeadOfficeStateId: 1
  *         HeadOfficeCityId: 2
  *         HeadOfficePin: 123456
