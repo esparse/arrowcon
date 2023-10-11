@@ -21,10 +21,10 @@ const EmployeeSchema = mongoose.Schema({
         type:String
     },
     CityId:{
-        type:String
+        type:Number
     },
-    Country:{
-        type:String
+    CountryId:{
+        type:Number
     },
     Status:{
         type:String,  

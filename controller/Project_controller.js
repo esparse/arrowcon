@@ -11,7 +11,7 @@ exports.CreateProjectDetails = async(req,res)=>{
         ContactName:req.body.ContactName,
         ContactPhone:req.body.ContactPhone,
         ContactEmailId:req.body.ContactEmailId,
-        Country:req.body.Country,
+        CountryId:req.body.CountryId,
         StateId:req.body.StateId,
         CityId:req.body.CityId,
         Province:req.body.Province,
@@ -65,7 +65,7 @@ exports.viewProjectDetails = async(req,res)=>{
                 $lookup:{
                     from:"states",
                     localField:"StateId",
-                    foreignField:"StateId",
+                    foreignField:"id",
                     as:"State"
                 },
              
@@ -74,8 +74,17 @@ exports.viewProjectDetails = async(req,res)=>{
                 $lookup:{
                     from:"cities",
                     localField:"CityId",
-                    foreignField:"Cityid",
+                    foreignField:"id",
                     as:"City"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"countries",
+                    localField:"CountryId",
+                    foreignField:"id",
+                    as:"Country"
                 },
              
             },

@@ -17,7 +17,7 @@ const router = express.Router()
  *         - ContactName
  *         - ContactPhone
  *         - ContactEmailId
- *         - Country
+ *         - CountryId
  *         - CityId
  *         - StateId
  *         - Province
@@ -52,9 +52,9 @@ const router = express.Router()
  *         ContactEmailId:
  *           type: string
  *           description: ContactEmailId
- *         Country:
+ *         CountryId:
  *           type: string
- *           description: Country
+ *           description: CountryId
  *         StateId:
  *           type: integer
  *           description: StateId
@@ -83,7 +83,7 @@ const router = express.Router()
  *         ContactName: Ankit pawada
  *         ContactPhone: 9874561230
  *         ContactEmailId: akpd@gmail.com
- *         Country: india
+ *         CountryId: india
  *         StateId: 21
  *         CityId: 1
  *         Province: maharastra

@@ -14,7 +14,7 @@ const router = express.Router()
  *         - MobileNumber
  *         - Address
  *         - CityId
- *         - Country
+ *         - CountryId
  *         - Status
  *         - RoleId
  *         - DepartMentId
@@ -37,9 +37,9 @@ const router = express.Router()
  *         CityId:
  *           type: string
  *           description: CityId
- *         Country:
+ *         CountryId:
  *           type: string
- *           description: Country
+ *           description: CountryId
  *         Status:
  *           type: string
  *           description: Status
@@ -56,8 +56,8 @@ const router = express.Router()
  *         EmailId: jhon@example.com
  *         MobileNumber: 9874561230
  *         Address: TomJerry
- *         CityId: 1
- *         Country: India
+ *         CityId: 133504
+ *         CountryId: 101
  *         Status: Active
  *         DepartMentId: AD101
  *         RoleId: RD101

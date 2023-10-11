@@ -10,7 +10,7 @@ exports.CreateEmployeeDetails = async(req,res)=>{
         MobileNumber:req.body.MobileNumber,
         Address:req.body.Address,
         CityId:req.body.CityId,
-        Country:req.body.Country,
+        CountryId:req.body.CountryId,
         Status:req.body.Status,
         RoleId:req.body.RoleId,
         DepartMentId:req.body.DepartMentId,

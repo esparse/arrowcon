@@ -28,8 +28,8 @@ type:String
   ContactEmailId:{
     type:String
   },
-  Country:{
-    type:String
+  CountryId:{
+    type:Number
   },
   StateId:{
 type:Number
