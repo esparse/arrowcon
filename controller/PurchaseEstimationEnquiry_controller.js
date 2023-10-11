@@ -16,6 +16,8 @@ exports.CreatePurchaseEstimationEnquiryDetails = async(req,res)=>{
         Remark:req.body.Remark,
         AddtionalComments:req.body.AddtionalComments,
         TargetDate:req.body.TargetDate,
+        InstallationType:req.body.InstallationType,
+        CostEstimationStatus:req.body.CostEstimationStatus,
      })
      res.json({
         success:true,
@@ -33,14 +35,7 @@ exports.CreatePurchaseEstimationEnquiryDetails = async(req,res)=>{
 exports.viewPurchaseEstimationEnquiryDetails = async(req,res)=>{
     try {
         const result = await PurchaseEstimationEnquiry.aggregate([
-            {
-                $lookup:{
-                    from:'customers',
-                    localField:'CustomerId',
-                    foreignField:'CustomerId',
-                    as:"Customer"
-                },
-            },
+
             {
                 $lookup:{
                     from:'salesenquiries',
@@ -101,7 +96,42 @@ exports.viewPurchaseEstimationEnquiryDetails = async(req,res)=>{
                 as:"EnquiryOwner"
             },
           
+          },
+          {
+            $lookup:{
+                from:'customers',
+                localField:'CustomerId',
+                foreignField:'CustomerId',
+                as:"Customer"
+            },
+        },
+        {
+            $unwind:"$Customer"
+          },
+          {
+            $lookup:{
+              from:'customercategories',
+              localField:'Customer.CustomerCategoryId',
+              foreignField:'CustomerCategoryId',
+              as:"CustomerCategory"
           }
+          },
+          {
+            $lookup:{
+              from:'customerregions',
+              localField:'Customer.CustomerRegionId',
+              foreignField:'CustomerRegionId',
+              as:"CustomerRegion"
+          }
+          },
+          {
+            $lookup:{
+              from:'locations',
+              localField:'Customer.locationId',
+              foreignField:'locationId',
+              as:"Location"
+          }
+          },
         ])
         res.json({
             count:result.length,

@@ -38,6 +38,8 @@ exports.CreateSuplierDetails = async(req,res)=>{
         BankBranchAccountManagerName:req.body.BankBranchAccountManagerName,
         BankAddress:req.body.BankAddress,
         BankEmailId:req.body.BankEmailId,
+        ProductBrocher:req.body.ProductBrocher,
+        PANno:req.body.PANno,
      })
      res.json({
         success:true,

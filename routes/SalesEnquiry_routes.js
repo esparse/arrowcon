@@ -60,6 +60,7 @@ const bcrypt = require('bcryptjs')
  *         - Email
  *         - Password
  *         - GroupId
+ *         - InstallationType
  *       properties:
  *         SalesEnquiryId:
  *           type: integer
@@ -115,6 +116,9 @@ const bcrypt = require('bcryptjs')
  *         GroupId:
  *           type: string
  *           description: GroupId
+ *         InstallationType:
+ *           type: string
+ *           description: GroupId
  *       example:
  *         SalesEnquiryId: EA001
  *         EnquiryDate: 12-05-2023
@@ -134,6 +138,7 @@ const bcrypt = require('bcryptjs')
  *         AdditionalComments: jbbfrfr,
  *         TargetDate: 20-03-2023,
  *         GroupId: GID101,
+ *         InstallationType: GID101,
  *
  */
 
@@ -195,6 +200,7 @@ const bcrypt = require('bcryptjs')
         Remarks: req.body.Remarks,
         AdditionalComments: req.body.AdditionalComments,
         TargetDate: req.body.TargetDate,
+        InstallationType: req.body.InstallationType,
         // file: `https://avinya01.s3.ap-south-1.amazonaws.com/${req.file.originalname}`
       })
     
@@ -222,14 +228,7 @@ const bcrypt = require('bcryptjs')
   router.get('/getSalesEnquiry',async(req,res)=>{
     try {
       const result = await SalesEnquiry.aggregate([
-        {
-            $lookup:{
-                from:'customers',
-                localField:'CustomerId',
-                foreignField:'CustomerId',
-                as:"Customer"
-            },
-        },
+       
         {
           $lookup:{
               from:'offeringtypes',
@@ -300,8 +299,42 @@ const bcrypt = require('bcryptjs')
       as:"EnquiryOwner"
   },
 
+},
+{
+  $lookup:{
+      from:'customers',
+      localField:'CustomerId',
+      foreignField:'CustomerId',
+      as:"Customer"
+  },
+},
+{
+  $unwind:"$Customer"
+},
+{
+  $lookup:{
+    from:'customercategories',
+    localField:'Customer.CustomerCategoryId',
+    foreignField:'CustomerCategoryId',
+    as:"CustomerCategory"
 }
-
+},
+{
+  $lookup:{
+    from:'customerregions',
+    localField:'Customer.CustomerRegionId',
+    foreignField:'CustomerRegionId',
+    as:"CustomerRegion"
+}
+},
+{
+  $lookup:{
+    from:'locations',
+    localField:'Customer.locationId',
+    foreignField:'locationId',
+    as:"Location"
+}
+},
     ])
       res.json({
         succes: true ,

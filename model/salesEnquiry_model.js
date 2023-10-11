@@ -70,6 +70,10 @@ type:String
     verificationCode:{
         type:Number
     },
+    InstallationType:{
+        type:String
+    }
+
 },{
 timestamps:true
 })

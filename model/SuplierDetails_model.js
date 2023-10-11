@@ -106,6 +106,12 @@ const SuplierSchema = mongoose.Schema({
     BankEmailId:{
         type:String
     }, 
+    ProductBrocher:{
+        type:String
+    },
+    PANno:{
+        type:String
+    }
 },{
 timestamps:true
 })
