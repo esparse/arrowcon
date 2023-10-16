@@ -11,6 +11,7 @@ exports.CreateEmployeeDetails = async(req,res)=>{
         Address:req.body.Address,
         CityId:req.body.CityId,
         CountryId:req.body.CountryId,
+        StateId:req.body.StateId,
         Status:req.body.Status,
         RoleId:req.body.RoleId,
         DepartMentId:req.body.DepartMentId,
@@ -133,8 +134,26 @@ exports.viewEmployeeDetails = async(req,res)=>{
                 $lookup:{
                     from:"cities",
                     localField:"CityId",
-                    foreignField:"Cityid",
+                    foreignField:"id",
                     as:"City"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"countries",
+                    localField:"CountryId",
+                    foreignField:"id",
+                    as:"Country"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"states",
+                    localField:"StateId",
+                    foreignField:"id",
+                    as:"State"
                 },
              
             },
@@ -148,7 +167,7 @@ exports.viewEmployeeDetails = async(req,res)=>{
     } catch (error) {
         res.json({
             success:false,
-            message: `Something went worng `+ {error},
+            message: `Something went worng `+ error.message,
             data:null
          })
     }

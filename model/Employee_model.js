@@ -26,6 +26,9 @@ const EmployeeSchema = mongoose.Schema({
     CountryId:{
         type:Number
     },
+    StateId:{
+        type:Number
+    },
     Status:{
         type:String,  
     }, 

@@ -36,14 +36,7 @@ exports.viewPurchaseEstimationEnquiryDetails = async(req,res)=>{
     try {
         const result = await PurchaseEstimationEnquiry.aggregate([
 
-            {
-                $lookup:{
-                    from:'salesenquiries',
-                    localField:'SalesEnquiryId',
-                    foreignField:'SalesEnquiryId',
-                    as:"SalesEnquiry"
-                },
-            },
+         
             {
                 $lookup:{
                     from:'offeringtypes',
@@ -132,6 +125,25 @@ exports.viewPurchaseEstimationEnquiryDetails = async(req,res)=>{
               as:"Location"
           }
           },
+          {
+            $lookup:{
+                from:'salesenquiries',
+                localField:'SalesEnquiryId',
+                foreignField:'SalesEnquiryId',
+                as:"SalesEnquiry"
+            },
+        },
+        {
+            $unwind:"$SalesEnquiry"
+        },
+        {
+            $lookup:{
+                from:'weightedsales',
+                localField:'SalesEnquiry.WeightedsalesId',
+                foreignField:'WeightedsalesId',
+                as:"Weightedsales"
+            },
+        },
         ])
         res.json({
             count:result.length,
