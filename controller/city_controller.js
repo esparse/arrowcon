@@ -19,14 +19,7 @@ exports.getAllCity = async(req,res)=>{
 }
 exports.getCityByStateId = async(req,res)=>{
     try {
-        const result = await city.aggregate([
-            {
-               $match: {state_id:req.params.state_id}
-            },
-            {
-                $sort:{name:1}
-            }
-        ])
+        const result = await city.find({state_id:req.params.state_id})
         res.json({
             count:result.length,
             success:true,
