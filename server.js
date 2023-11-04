@@ -64,6 +64,7 @@ const Liquidateddamages = require('./routes/Liquidateddamages_routes');
 const remark = require('./routes/remark_routes');
 const Country = require('./routes/Country_routes');
 const ContactPerson = require('./routes/ContactPerson_routes');
+const getGeoGraphicServiceArea = require('./routes/GeoGraphicServiceArea_routes');
 
 const options = {
     definition: {
@@ -141,6 +142,7 @@ const options = {
   app.use("/api/v1",remark)
   app.use("/api/v1",Country)
   app.use("/api/v1",ContactPerson)
+  app.use("/api/v1",getGeoGraphicServiceArea)
  
 
 

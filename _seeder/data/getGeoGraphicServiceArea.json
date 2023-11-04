@@ -1,0 +1,23 @@
+[
+    {
+        "GeoGraphicServiceAreaId":"1",
+        "GeoGraphicServiceArea":"North"
+    },
+    {
+        "GeoGraphicServiceAreaId":"2",
+       "GeoGraphicServiceArea":"East"
+    },
+
+{
+        "GeoGraphicServiceAreaId":"3",
+       "GeoGraphicServiceArea":"West"
+    },
+    {
+        "GeoGraphicServiceAreaId":"4",
+       "GeoGraphicServiceArea":"South"
+    },
+    {
+        "GeoGraphicServiceAreaId":"5",
+       "GeoGraphicServiceArea":"Central"
+    }
+]

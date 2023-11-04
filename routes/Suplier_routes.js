@@ -25,7 +25,6 @@ const router = express.Router()
  *         - BillingAddressCountryId
  *         - BillingAddressStateId
  *         - BillingAddressCityId
- *         - BillingAddressPin
  *         - ContactPersonName
  *         - Designation
  *         - Email
@@ -35,7 +34,6 @@ const router = express.Router()
  *         - BussinessCommodityServiceId
  *         - GeograpicServiceArea
  *         - BankName
- *         - BankBranch
  *         - BankBranchCode
  *         - IFSCCode
  *         - BankManagerName
@@ -101,9 +99,6 @@ const router = express.Router()
  *         BillingAddressCityId:
  *           type: string
  *           description:  BillingAddressStateId
- *         BillingAddressPin:
- *           type: string
- *           description:  BillingAddressPin
  *         ContactPersonName:
  *           type: string
  *           description: ContactPersonName
@@ -128,9 +123,6 @@ const router = express.Router()
  *         BankName:
  *           type: string
  *           description: BankName
- *         BankBranch:
- *           type: string
- *           description: BankBranch
  *         IFSCCode:
  *           type: string
  *           description: IFSCCode
