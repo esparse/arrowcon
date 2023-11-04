@@ -115,6 +115,29 @@ const SuplierSchema = mongoose.Schema({
     IsHeadOfficeAddressSameasSiteOfficeAddress:{
         type:Boolean
 
+    },
+    SupplierType :{
+        type:String
+
+    },
+    BillingAddressPin :{
+        type:String
+
+    },
+    CountryCode :{
+        type:String
+    },
+    MobileNo:{
+        type:String
+    },
+    BankBranch:{
+        type:String
+    } ,
+    ContactNo :{
+        type:String
+    },
+    Bankswiftcode:{
+        type:String
     }
 },{
 timestamps:true

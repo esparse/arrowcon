@@ -41,6 +41,13 @@ exports.CreateSuplierDetails = async(req,res)=>{
         ProductBrocher:req.body.ProductBrocher,
         PANno:req.body.PANno,
         IsHeadOfficeAddressSameasSiteOfficeAddress:req.body.IsHeadOfficeAddressSameasSiteOfficeAddress,
+        SupplierType:req.body.SupplierType,
+        BillingAddressPin:req.body.BillingAddressPin,
+        CountryCode:req.body.CountryCode,
+        MobileNo:req.body.MobileNo,
+        BankBranch:req.body.BankBranch,
+        ContactNo:req.body.ContactNo,
+        Bankswiftcode:req.body.Bankswiftcode,
      })
      res.json({
         success:true,
