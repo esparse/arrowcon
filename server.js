@@ -63,6 +63,7 @@ const SupplierReferenceQuote = require('./routes/SupplierReferenceQuote_routes')
 const Liquidateddamages = require('./routes/Liquidateddamages_routes');
 const remark = require('./routes/remark_routes');
 const Country = require('./routes/Country_routes');
+const ContactPerson = require('./routes/ContactPerson_routes');
 
 const options = {
     definition: {
@@ -139,6 +140,7 @@ const options = {
   app.use("/api/v1",Liquidateddamages)
   app.use("/api/v1",remark)
   app.use("/api/v1",Country)
+  app.use("/api/v1",ContactPerson)
  
 
 

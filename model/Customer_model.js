@@ -55,21 +55,10 @@ const CustomerSchema = mongoose.Schema({
     SiteAddressPin:{
         type:String
     },
-    ContactPersonName:{
-        type:String
-    },
-    Designation:{
-        type:String
-    },
-    Email:{
-        type:String
-    },
-    ContactNo:{
-        type:String
-    },
-    LandlineNo:{
-        type:String
-    },
+  ConatctPersonID:{
+    type:String
+
+  },
     CompanyRegistrationNo:{
         type:String
     },
@@ -129,6 +118,9 @@ const CustomerSchema = mongoose.Schema({
     },
     Province:{
         type:String
+    },
+    isSiteAddressSameAsHeadOfficeAddress :{
+        type:Boolean
     }
 
     

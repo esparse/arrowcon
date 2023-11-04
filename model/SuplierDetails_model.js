@@ -111,6 +111,10 @@ const SuplierSchema = mongoose.Schema({
     },
     PANno:{
         type:String
+    },
+    IsHeadOfficeAddressSameasSiteOfficeAddress:{
+        type:Boolean
+
     }
 },{
 timestamps:true

@@ -20,12 +20,6 @@ exports.CreateCustomerDetails = async(req,res)=>{
         SiteAddressStateId:req.body.SiteAddressStateId,
         SiteAddressCityId:req.body.SiteAddressCityId,
         SiteAddressPin:req.body.SiteAddressPin,
-        ContactPersonName:req.body.ContactPersonName,
-        Designation:req.body.Designation,
-        Email:req.body.Email,
-        Address:req.body.Address,
-        ContactNo:req.body.ContactNo,
-        LandlineNo:req.body.LandlineNo,
         CompanyRegistrationNo:req.body.CompanyRegistrationNo,
         CompanyVATNo:req.body.CompanyVATNo,
         locationId:req.body.locationId,
@@ -46,6 +40,8 @@ exports.CreateCustomerDetails = async(req,res)=>{
         PollutionControlEquipmentId:req.body.PollutionControlEquipmentId,
         MakeOfPollutionControlEquipMent:req.body.MakeOfPollutionControlEquipMent,
         Province:req.body.Province,
+        isSiteAddressSameAsHeadOfficeAddress:req.body.isSiteAddressSameAsHeadOfficeAddress,
+        ConatctPersonID:req.body.ConatctPersonID,
 
      })
      res.json({
@@ -217,7 +213,15 @@ exports.viewCustomerDetails = async(req,res)=>{
                 },
              
             },
-            
+            {
+                $lookup:{
+                    from:"contactpeople",
+                    localField:"ConatctPersonID",
+                    foreignField:"ConatctPersonID",
+                    as:"ConatctPerson"
+                },
+             
+            }
             
         ])
         res.json({

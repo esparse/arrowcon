@@ -188,7 +188,7 @@ const upload = multer({
   })
    /**  /**
  * @swagger
- * /api/v1/getDocumentbyDocumentID/{autoDocumentId}:
+ * /api/v1/getDocumentbyDocumentID/{DocumentId}:
  *   get:
  *     summary: getDocumentbyDocumentID
  *     tags: [Document]
