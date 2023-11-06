@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 
 const ContactPersonSchema = mongoose.Schema({
-    ConatctPersonID:{
+    ContactPersonId:{
         type:String
     },
 ContactPersonName:{
