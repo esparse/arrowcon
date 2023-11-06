@@ -1,9 +1,10 @@
 const mongoose = require("mongoose")
 
 const SuplierSchema = mongoose.Schema({
-    SuplierType:{
+    SuplierTypeId:{
         type:String
     },
+
     SuplierId:{
         type:String
     },
@@ -138,6 +139,13 @@ const SuplierSchema = mongoose.Schema({
     },
     Bankswiftcode:{
         type:String
+    },
+    ContactNoBranchManager:{
+        type:String
+
+    },
+    isRegisterAddressSameAsBillingAddress:{
+        type:Boolean
     }
 },{
 timestamps:true

@@ -7,6 +7,9 @@ const DocumentSchema = mongoose.Schema({
     DocumentId:{
         type:String
     },
+    documentName:{
+        type:String 
+    },
     file:{
         type:String,
        

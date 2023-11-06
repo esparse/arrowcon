@@ -4,7 +4,7 @@ exports.CreateSuplierDetails = async(req,res)=>{
  try {
     const result = await Suplier.create({
       SuplierId:"VD10-"+count,
-        SuplierType:req.body.SuplierType,
+      SuplierTypeId:req.body.SuplierTypeId,
         SuplierName:req.body.SuplierName,
         RegisteredOfficeAddress:req.body.RegisteredOfficeAddress,
         RegisteredOfficeDistrict:req.body.RegisteredOfficeDistrict,
@@ -48,6 +48,8 @@ exports.CreateSuplierDetails = async(req,res)=>{
         BankBranch:req.body.BankBranch,
         ContactNo:req.body.ContactNo,
         Bankswiftcode:req.body.Bankswiftcode,
+        ContactNoBranchManager:req.body.ContactNoBranchManager,
+        isRegisterAddressSameAsBillingAddress:req.body.isRegisterAddressSameAsBillingAddress,
      })
      res.json({
         success:true,
@@ -71,6 +73,14 @@ exports.viewSuplierDetails = async(req,res)=>{
                     localField:'SuplierId',
                     foreignField:'DocumentId',
                     as:"Document"
+                },
+            },
+            {
+                $lookup:{
+                    from:'customertypes',
+                    localField:'SuplierTypeId',
+                    foreignField:'CustomerTypeId',
+                    as:"SuplierType"
                 },
             },
             {

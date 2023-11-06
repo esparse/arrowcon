@@ -43,6 +43,7 @@ const upload = multer({
  *       required:
  *         - autoDocumentId
  *         - DocumentId
+ *         - documentName
  *         - file
  *       properties:
  *         autoDocumentId:
@@ -54,10 +55,14 @@ const upload = multer({
  *         DocumentId:
  *           type: string
  *           description: file
+ *         documentName:
+ *           type: string
+ *           description: file
  *       example:
  *         autoDocumentId: autogeneted
  *         file: file
  *         DocumentId: file
+ *         documentName: file
  *         
  */
 /**

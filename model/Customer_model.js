@@ -123,7 +123,7 @@ const CustomerSchema = mongoose.Schema({
         type:Boolean
     }
 
-    
+   
 },{
 timestamps:true
 })
