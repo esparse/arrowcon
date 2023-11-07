@@ -104,7 +104,7 @@ const upload = multer({
       Bucket: "arrowenergy",
       Key: originalname,    
       Body: buffer,
-      ContentType: 'image/png', // adjust accordingly
+      ContentType: 'application/pdf', // adjust accordingly
       ACL: 'public-read',
     };
   
