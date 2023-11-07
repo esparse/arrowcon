@@ -96,24 +96,24 @@ router.route("/viewContactPersonDetails").get(viewContactPersonDetails)
  */
  router.route("/CreateContactPersonDetails").post(CreateContactPersonDetails)
 
-  /**
- * @swagger
- * /api/v1/deleteContactPersonDetails/{ContactPersonId}:
- *   delete:
- *     summary: Delete an ContactPerson
- *     tags: [ContactPerson]
- *     parameters:
- *         - in: path
- *           ContactPersonName: ContactPersonId
- *           required: true
- *           description: ContactPersonId is required
- *           schema:
- *              type: string
- *     responses:
- *       200:
- *         description: ContactPerson delete successfully
- *   
- */
+ /**
+* @swagger
+* /api/v1/deleteContactPersonDetails/{ContactPersonId}:
+*   delete:
+*     summary: Delete a ContactPerson
+*     tags: [ContactPerson]
+*     parameters:
+*         - in: path
+*           name: ContactPersonId
+*           required: true
+*           description: ContactPersonId is required
+*           schema:
+*              type: string
+*     responses:
+*       200:
+*         description: ContactPerson deleted successfully
+*/
+
 router.route("/deleteContactPersonDetails/:ContactPersonId").delete(deleteContactPersonDetails)
 
 /**
