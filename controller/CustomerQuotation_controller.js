@@ -26,7 +26,7 @@ exports.CreateCustomerQuotationDetails = async(req,res)=>{
 }
 exports.viewCustomerQuotationDetails = async(req,res)=>{
     try {
-        const result = await CustomerQuotation.ggregate([
+        const result = await CustomerQuotation.aggregate([
             {
                 $lookup:{
                     from:'customers',

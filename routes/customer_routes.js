@@ -259,24 +259,24 @@ router.route("/viewCustomerDetails").get(viewCustomerDetails)
  */
  router.route("/CreateCustomerDetails").post(CreateCustomerDetails)
 
-  /**
- * @swagger
- * /api/v1/deleteCustomerDetails/{CustomerId}:
- *   delete:
- *     summary: Delete an Customer
- *     tags: [Customer]
- *     parameters:
- *         - in: path
- *           CustomerName: CustomerId
- *           required: true
- *           description: CustomerId is required
- *           schema:
- *              type: string
- *     responses:
- *       200:
- *         description: Customer delete successfully
- *   
- */
+/**
+* @swagger
+* /api/v1/deleteCustomerDetails/{CustomerId}:
+*   delete:
+*     summary: Delete a Customer
+*     tags: [Customer]
+*     parameters:
+*       - in: path
+*         name: CustomerId
+*         required: true
+*         description: CustomerId is required
+*         schema:
+*           type: string
+*     responses:
+*       204:
+*         description: Customer deleted successfully
+*/
+
 router.route("/deleteCustomerDetails/:CustomerId").delete(deleteCustomerDetails)
 
 /**
