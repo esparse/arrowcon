@@ -67,7 +67,7 @@ const upload = multer({
  */
 /**
  * @swagger
- * /api/v1/createDocumentProfile:
+ * /api/v1/createDocument:
  *   post:
  *     summary: create Document Profile
  *     tags: [Document]
