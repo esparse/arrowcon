@@ -71,24 +71,24 @@ router.route("/viewDepartMentDetails").get(viewDepartMentDetails)
  */
  router.route("/CreateDepartMentDetails").post(CreateDepartMentDetails)
 
-  /**
+ /**
  * @swagger
  * /api/v1/deleteDepartMentDetails/{DepartMentId}:
  *   delete:
- *     summary: Delete an DepartMent
+ *     summary: Delete a Department
  *     tags: [DepartMent]
  *     parameters:
  *         - in: path
- *           DepartMentName: DepartMentId
+ *           name: DepartMentId
  *           required: true
  *           description: DepartMentId is required
  *           schema:
  *              type: string
  *     responses:
  *       200:
- *         description: DepartMent delete successfully
- *   
+ *         description: Department deleted successfully
  */
+
 router.route("/deleteDepartMentDetails/:DepartMentId").delete(deleteDepartMentDetails)
 
 /**

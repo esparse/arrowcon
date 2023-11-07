@@ -103,20 +103,20 @@ router.route("/viewCustomerQuotationDetails").get(viewCustomerQuotationDetails)
  * @swagger
  * /api/v1/deleteCustomerQuotationDetails/{CustomerQuotationId}:
  *   delete:
- *     summary: Delete an CustomerQuotation
+ *     summary: Delete a CustomerQuotation
  *     tags: [CustomerQuotation]
  *     parameters:
  *         - in: path
- *           CustomerId: CustomerQuotationId
+ *           name: CustomerQuotationId
  *           required: true
  *           description: CustomerQuotationId is required
  *           schema:
  *              type: string
  *     responses:
  *       200:
- *         description: CustomerQuotation delete successfully
- *   
+ *         description: CustomerQuotation deleted successfully
  */
+
 router.route("/deleteCustomerQuotationDetails/:CustomerQuotationId").delete(deleteCustomerQuotationDetails)
 
 /**
