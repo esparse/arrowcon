@@ -121,16 +121,16 @@ router.route("/viewEmployeeDetails").get(viewEmployeeDetails)
  *     tags: [Employee]
  *     parameters:
  *         - in: path
- *           EmployeeName: EmployeeId
+ *           name: EmployeeId
  *           required: true
  *           description: EmployeeId is required
  *           schema:
  *              type: string
  *     responses:
  *       200:
- *         description: Employee delete successfully
- *   
+ *         description: Employee deleted successfully
  */
+
 router.route("/deleteEmployeeDetails/:EmployeeId").delete(deleteEmployeeDetails)
 
 /**

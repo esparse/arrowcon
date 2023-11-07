@@ -268,22 +268,22 @@ router.route("/viewSuplierDetails").get(viewSuplierDetails)
 
   /**
  * @swagger
- * /api/v1/deleteSuplierDetails/{SuplierId}:
+ * /api/v1/deleteSupplierDetails/{SupplierId}:
  *   delete:
- *     summary: Delete an Suplier
- *     tags: [Suplier]
+ *     summary: Delete a Supplier
+ *     tags: [Supplier]
  *     parameters:
  *         - in: path
- *           SuplierName: SuplierId
+ *           name: SupplierId
  *           required: true
- *           description: SuplierId is required
+ *           description: ID of the Supplier to delete
  *           schema:
  *              type: string
  *     responses:
  *       200:
- *         description: Suplier delete successfully
- *   
+ *         description: Supplier deleted successfully
  */
+
 router.route("/deleteSuplierDetails/:SuplierId").delete(deleteSuplierDetails)
 
 /**

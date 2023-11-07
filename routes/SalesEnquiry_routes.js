@@ -353,20 +353,20 @@ const bcrypt = require('bcryptjs')
  * @swagger
  * /api/v1/deleteSalesEnquiryDetails/{SalesEnquiryId}:
  *   delete:
- *     summary: Delete an SalesEnquiry
+ *     summary: Delete a SalesEnquiry
  *     tags: [SalesEnquiry]
  *     parameters:
  *         - in: path
- *           SalesEnquiryName: SalesEnquiryId
+ *           name: SalesEnquiryId
  *           required: true
- *           description: SalesEnquiryId is required
+ *           description: ID of the SalesEnquiry to delete
  *           schema:
  *              type: string
  *     responses:
  *       200:
- *         description: SalesEnquiry delete successfully
- *   
+ *         description: SalesEnquiry deleted successfully
  */
+
 router.delete("/deleteSalesEnquiryDetails/:SalesEnquiryId",async(req,res)=>{
   try {
     const result = await SalesEnquiry.findOneAndDelete({SalesEnquiryId:req.params.SalesEnquiryId})

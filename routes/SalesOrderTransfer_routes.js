@@ -337,20 +337,20 @@ const SalesOrderTransfer = require('../model/salesOrderTransfer_model');
  * @swagger
  * /api/v1/deleteSalesOrderTransferDetails/{SalesOrderTransferId}:
  *   delete:
- *     summary: Delete an SalesOrderTransfer
+ *     summary: Delete a SalesOrderTransfer
  *     tags: [SalesOrderTransfer]
  *     parameters:
  *         - in: path
- *           SalesOrderTransferName: SalesOrderTransferId
+ *           name: SalesOrderTransferId
  *           required: true
  *           description: SalesOrderTransferId is required
  *           schema:
  *              type: string
  *     responses:
  *       200:
- *         description: SalesOrderTransfer delete successfully
- *   
+ *         description: SalesOrderTransfer deleted successfully
  */
+
 router.delete("/deleteSalesOrderTransferDetails/:SalesOrderTransferId",async(req,res)=>{
   try {
     const result = await SalesOrderTransfer.findOneAndDelete({SalesOrderTransferId:req.params.SalesOrderTransferId})
@@ -369,27 +369,28 @@ router.delete("/deleteSalesOrderTransferDetails/:SalesOrderTransferId",async(req
 })
 
 /**
-* @swagger
-* /api/v1/updateSalesOrderTransferDetails:
-*   post:
-*     summary: Update SalesOrderTransfer Details
-*     tags: [SalesOrderTransfer]
-*     requestBody:
-*       required: true
-*       content:
-*         application/json:
-*           schema:
-*             $ref: '#/components/schemas/SalesOrderTransfer'
-*     responses:
-*       200:
-*         description: update SalesOrderTransfer Details successfull
-*         content:
-*           application/json:
-*             schema:
-*               $ref: '#/components/schemas/SalesOrderTransfer'
-*       500:
-*         description: Some server error
-*/
+ * @swagger
+ * /api/v1/updateSalesOrderTransferDetails:
+ *   put:
+ *     summary: Update SalesOrderTransfer Details
+ *     tags: [SalesOrderTransfer]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/SalesOrderTransfer'
+ *     responses:
+ *       200:
+ *         description: Update SalesOrderTransfer Details successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/SalesOrderTransfer'
+ *       500:
+ *         description: Some server error
+ */
+
 router.post("/updateSalesOrderTransferDetails",async(req,res)=>{
   try {
     const result = await SalesOrderTransfer.findOneAndUpdate({SalesOrderTransferId:req.body.SalesOrderTransferId} , req.body , {

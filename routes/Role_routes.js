@@ -75,20 +75,20 @@ router.route("/viewRoleDetails").get(viewRoleDetails)
  * @swagger
  * /api/v1/deleteRoleDetails/{RoleId}:
  *   delete:
- *     summary: Delete an Role
+ *     summary: Delete a Role
  *     tags: [Role]
  *     parameters:
  *         - in: path
- *           RoleName: RoleId
+ *           name: RoleId
  *           required: true
  *           description: RoleId is required
  *           schema:
  *              type: string
  *     responses:
  *       200:
- *         description: Role delete successfully
- *   
+ *         description: Role deleted successfully
  */
+
 router.route("/deleteRoleDetails/:RoleId").delete(deleteRoleDetails)
 
 /**

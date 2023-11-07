@@ -138,24 +138,26 @@ router.route("/viewPurchaseEstimationEnquiryDetails").get(viewPurchaseEstimation
  */
  router.route("/CreatePurchaseEstimationEnquiryDetails").post(CreatePurchaseEstimationEnquiryDetails)
 
-  /**
- * @swagger
- * /api/v1/deletePurchaseEstimationEnquiryDetails/{PurchaseEstimationEnquiryId}:
- *   delete:
- *     summary: Delete an PurchaseEstimationEnquiry
- *     tags: [PurchaseEstimationEnquiry]
- *     parameters:
- *         - in: path
- *           SalesEnquiryId: PurchaseEstimationEnquiryId
- *           required: true
- *           description: PurchaseEstimationEnquiryId is required
- *           schema:
- *              type: string
- *     responses:
- *       200:
- *         description: PurchaseEstimationEnquiry delete successfully
- *   
- */
+ /**
+* @swagger
+* /api/v1/deletePurchaseEstimationEnquiryDetails/{PurchaseEstimationEnquiryId}:
+*   delete:
+*     summary: Delete a PurchaseEstimationEnquiry
+*     tags: [PurchaseEstimationEnquiry]
+*     parameters:
+*         - in: path
+*           name: PurchaseEstimationEnquiryId
+*           required: true
+*           description: PurchaseEstimationEnquiryId is required
+*           schema:
+*              type: string
+*     responses:
+*       200:
+*         description: PurchaseEstimationEnquiry deleted successfully
+*       404:
+*         description: PurchaseEstimationEnquiry not found
+*/
+
 router.route("/deletePurchaseEstimationEnquiryDetails/:PurchaseEstimationEnquiryId").delete(deletePurchaseEstimationEnquiryDetails)
 
 /**
@@ -213,7 +215,7 @@ router.route("/updatePurchaseEstimationEnquiryDetails").post(updatePurchaseEstim
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/PurchaseEnquiry'
+ *             $ref: '#/components/schemas/PurchaseEnquiryRequest'
  *     responses:
  *       200:
  *         description: Purchase enquiry estimation
@@ -224,6 +226,8 @@ router.route("/updatePurchaseEstimationEnquiryDetails").post(updatePurchaseEstim
  *       404:
  *         description: Purchase enquiry not found
  */
+   
+
 router.route("/getSinglePurchaseEstimationEnquiryDetails").post(getSinglePurchaseEstimationEnquiryDetails)
 
 module.exports = router

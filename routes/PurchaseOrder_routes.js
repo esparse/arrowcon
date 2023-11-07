@@ -103,24 +103,24 @@ router.route("/viewPurchaseOrderDetails").get(viewPurchaseOrderDetails)
  */
  router.route("/CreatePurchaseOrderDetails").post(CreatePurchaseOrderDetails)
 
-  /**
+/**
  * @swagger
  * /api/v1/deletePurchaseOrderDetails/{PurchaseOrderId}:
  *   delete:
- *     summary: Delete an PurchaseOrder
+ *     summary: Delete a PurchaseOrder
  *     tags: [PurchaseOrder]
  *     parameters:
  *         - in: path
- *           Reference: PurchaseOrderId
+ *           name: PurchaseOrderId
  *           required: true
  *           description: PurchaseOrderId is required
  *           schema:
  *              type: string
  *     responses:
  *       200:
- *         description: PurchaseOrder delete successfully
- *   
+ *         description: PurchaseOrder deleted successfully
  */
+
 router.route("/deletePurchaseOrderDetails/:PurchaseOrderId").delete(deletePurchaseOrderDetails)
 
 /**

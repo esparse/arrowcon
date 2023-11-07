@@ -118,7 +118,7 @@ router.route("/viewProjectDetails").get(viewProjectDetails)
  * @swagger
  * /api/v1/CreateProjectDetails:
  *   post:
- *     summary: add a new Project
+ *     summary: Add a new Project
  *     tags: [Project]
  *     requestBody:
  *       required: true
@@ -127,42 +127,47 @@ router.route("/viewProjectDetails").get(viewProjectDetails)
  *           schema:
  *             $ref: '#/components/schemas/Project'
  *     responses:
- *       200:
- *         description: create Project successfull
+ *       '200':
+ *         description: Project created successfully
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Project'
- *       500:
- *         description: Some server error
+ *       '500':
+ *         description: Server error
  */
+
  router.route("/CreateProjectDetails").post(CreateProjectDetails)
 
-  /**
- * @swagger
- * /api/v1/deleteProjectDetails/{ProjectId}:
- *   delete:
- *     summary: Delete an Project
- *     tags: [Project]
- *     parameters:
- *         - in: path
- *           ProjectName: ProjectId
- *           required: true
- *           description: ProjectId is required
- *           schema:
- *              type: string
- *     responses:
- *       200:
- *         description: Project delete successfully
- *   
- */
+ /**
+* @swagger
+* /api/v1/deleteProjectDetails/{ProjectId}:
+*   delete:
+*     summary: Delete a Project
+*     tags: [Project]
+*     parameters:
+*         - in: path
+*           name: ProjectId
+*           required: true
+*           description: The ID of the project to delete
+*           schema:
+*              type: string
+*     responses:
+*       204:
+*         description: Project deleted successfully
+*       401:
+*         description: Unauthorized - User not authenticated
+*       404:
+*         description: Project not found
+*/
+
 router.route("/deleteProjectDetails/:ProjectId").delete(deleteProjectDetails)
 
 /**
 * @swagger
 * /api/v1/updateProjectDetails:
 *   post:
-*     summary: upCompanyId Project Details
+*     summary: Update Company Project Details
 *     tags: [Project]
 *     requestBody:
 *       required: true
@@ -172,7 +177,7 @@ router.route("/deleteProjectDetails/:ProjectId").delete(deleteProjectDetails)
 *             $ref: '#/components/schemas/Project'
 *     responses:
 *       200:
-*         description: upCompanyId Project Details successfull
+*         description: Update Company Project Details successfully
 *         content:
 *           application/json:
 *             schema:
@@ -180,6 +185,7 @@ router.route("/deleteProjectDetails/:ProjectId").delete(deleteProjectDetails)
 *       500:
 *         description: Some server error
 */
+
 router.route("/updateProjectDetails").post(updateProjectDetails)
 /**
  * @swagger

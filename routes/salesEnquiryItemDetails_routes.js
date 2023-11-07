@@ -90,20 +90,20 @@ router.route("/viewsalesEnquiryitemdetailsDetails").get(viewsalesEnquiryitemdeta
  * @swagger
  * /api/v1/deletesalesEnquiryitemdetailsDetails/{salesEnquiryitemdetailsId}:
  *   delete:
- *     summary: Delete an salesEnquiryitemdetails
+ *     summary: Delete a salesEnquiryitemdetails
  *     tags: [salesEnquiryitemdetails]
  *     parameters:
  *         - in: path
- *           salesEnquiryitemdetailsName: salesEnquiryitemdetailsId
+ *           name: salesEnquiryitemdetailsId
  *           required: true
  *           description: salesEnquiryitemdetailsId is required
  *           schema:
  *              type: string
  *     responses:
  *       200:
- *         description: salesEnquiryitemdetails delete successfully
- *   
+ *         description: salesEnquiryitemdetails deleted successfully
  */
+
 router.route("/deletesalesEnquiryitemdetailsDetails/:salesEnquiryitemdetailsId").delete(deletesalesEnquiryitemdetailsDetails)
 
 /**
