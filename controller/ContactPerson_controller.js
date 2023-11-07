@@ -95,6 +95,7 @@ exports.getSingleContactPersonDetails = async(req,res)=>{
         })  
     }
 }
+
 exports.deleteContactPersonDetailsbysourceId = async(req,res)=>{
     try {
         const result = await ContactPerson.findOneAndDelete({sourceId:req.params.sourceId})
@@ -113,7 +114,7 @@ exports.deleteContactPersonDetailsbysourceId = async(req,res)=>{
 }
 exports.getContactDetailBySourceId = async(req,res)=>{
     try {
-        const result = await ContactPerson.findOne({sourceId:req.params.sourceId})
+        const result = await ContactPerson.find({sourceId:req.params.sourceId})
         res.json({
             success:true,
             message:"get a Single ContactPerson Details",

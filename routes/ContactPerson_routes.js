@@ -180,11 +180,11 @@ router.route("/getSingleContactPersonDetails/:ContactPersonId").get(getSingleCon
  *         description: sourceId delete successfully
  */
 
- router.route("/deleteContactPersonDetails/:sourceId").delete(deleteContactPersonDetailsbysourceId)
+ router.route("/deleteContactPersonDetailsbysourceId/:sourceId").delete(deleteContactPersonDetailsbysourceId)
 
  /**
  * @swagger
- * /api/v1/getContactDetailBySourceId/{sourceId}:
+ * /api/v1/getContactDetailBysourceId/{sourceId}:
  *   get:
  *     summary: Get a ContactPerson by ID
  *     tags: [ContactPerson]
