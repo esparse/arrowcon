@@ -11,6 +11,7 @@ exports.CreateContactPersonDetails = async(req,res)=>{
         MobileNo:req.body.MobileNo,
         LandlineNo:req.body.LandlineNo,
         Countrycode:req.body.Countrycode,
+        sourceId:req.body.sourceId,
         
 
      })
@@ -81,6 +82,38 @@ exports.updateContactPersonDetails = async(req,res)=>{
 exports.getSingleContactPersonDetails = async(req,res)=>{
     try {
         const result = await ContactPerson.findOne({ContactPersonId:req.params.ContactPersonId})
+        res.json({
+            success:true,
+            message:"get a Single ContactPerson Details",
+            data:result
+        })
+    } catch (error) {
+        res.json({
+            success:false,
+            message:"Something  went wrong",
+            data:null
+        })  
+    }
+}
+exports.deleteContactPersonDetailsbysourceId = async(req,res)=>{
+    try {
+        const result = await ContactPerson.findOneAndDelete({sourceId:req.params.sourceId})
+        res.json({
+            success:true,
+            message:"Delete ContactPerson Details",
+            data:null
+        })
+    } catch (error) {
+        res.json({
+            success:false,
+            message:"Something  went wrong",
+            data:null
+        })  
+    }
+}
+exports.getContactDetailBySourceId = async(req,res)=>{
+    try {
+        const result = await ContactPerson.findOne({sourceId:req.params.sourceId})
         res.json({
             success:true,
             message:"get a Single ContactPerson Details",
