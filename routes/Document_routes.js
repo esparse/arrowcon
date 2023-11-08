@@ -43,7 +43,7 @@ const upload = multer({
  *       required:
  *         - autoDocumentId
  *         - DocumentId
- *         - documentName
+ *         - DocumentName
  *         - file
  *       properties:
  *         autoDocumentId:
@@ -55,14 +55,14 @@ const upload = multer({
  *         DocumentId:
  *           type: string
  *           description: file
- *         documentName:
+ *         DocumentName:
  *           type: string
  *           description: file
  *       example:
  *         autoDocumentId: autogeneted
  *         file: file
  *         DocumentId: file
- *         documentName: file
+ *         DocumentName: file
  *         
  */
 /**
@@ -116,6 +116,7 @@ const upload = multer({
       const result = await Document.create({
         autoDocumentId:Math.floor((Math.random()*100000)+1),
         DocumentId: req.body.DocumentId,
+        DocumentName: req.body.DocumentName,
         file: `https://arrowenergy.s3.ap-south-1.amazonaws.com/${req.file.originalname}`,
     
       })

@@ -7,7 +7,7 @@ const DocumentSchema = mongoose.Schema({
     DocumentId:{
         type:String
     },
-    documentName:{
+    DocumentName:{
         type:String 
     },
     file:{
