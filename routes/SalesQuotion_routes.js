@@ -142,24 +142,24 @@ router.route("/viewSalesQuotionDetails").get(viewSalesQuotionDetails)
  */
  router.route("/CreateSalesQuotionDetails").post(CreateSalesQuotionDetails)
 
-  /**
+/**
  * @swagger
  * /api/v1/deleteSalesQuotionDetails/{SalesQuotionId}:
  *   delete:
- *     summary: Delete an SalesQuotion
+ *     summary: Delete a SalesQuotion
  *     tags: [SalesQuotion]
  *     parameters:
- *         - in: path
- *           QuotionCurrency: SalesQuotionId
- *           required: true
- *           description: SalesQuotionId is required
- *           schema:
- *              type: string
+ *       - in: path
+ *         name: SalesQuotionId
+ *         required: true
+ *         description: SalesQuotionId is required
+ *         schema:
+ *           type: string
  *     responses:
  *       200:
- *         description: SalesQuotion delete successfully
- *   
+ *         description: SalesQuotion deleted successfully
  */
+
 router.route("/deleteSalesQuotionDetails/:SalesQuotionId").delete(deleteSalesQuotionDetails)
 
 /**
