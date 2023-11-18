@@ -308,9 +308,7 @@ const bcrypt = require('bcryptjs')
       as:"Customer"
   },
 },
-{
-  $unwind:"$Customer"
-},
+
 {
   $lookup:{
     from:'customercategories',
@@ -337,6 +335,7 @@ const bcrypt = require('bcryptjs')
 },
     ])
       res.json({
+        count:result.length,
         succes: true ,
         Message: "Get All Sales Enquiry Details" ,
         data : result

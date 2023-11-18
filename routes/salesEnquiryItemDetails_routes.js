@@ -107,27 +107,28 @@ router.route("/viewsalesEnquiryitemdetailsDetails").get(viewsalesEnquiryitemdeta
 router.route("/deletesalesEnquiryitemdetailsDetails/:salesEnquiryitemdetailsId").delete(deletesalesEnquiryitemdetailsDetails)
 
 /**
-* @swagger
-* /api/v1/updatesalesEnquiryitemdetailsDetails:
-*   post:
-*     summary: upPassword salesEnquiryitemdetails Details
-*     tags: [salesEnquiryitemdetails]
-*     requestBody:
-*       required: true
-*       content:
-*         application/json:
-*           schema:
-*             $ref: '#/components/schemas/salesEnquiryitemdetails'
-*     responses:
-*       200:
-*         description: update salesEnquiryitemdetails Details successfull
-*         content:
-*           application/json:
-*             schema:
-*               $ref: '#/components/schemas/salesEnquiryitemdetails'
-*       500:
-*         description: Some server error
-*/
+ * @swagger
+ * /api/v1/updatesalesEnquiryitemdetailsDetails:
+ *   post:
+ *     summary: Update salesEnquiryitemdetails Details
+ *     tags: [salesEnquiryitemdetails]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/salesEnquiryitemdetails'
+ *     responses:
+ *       200:
+ *         description: Sales enquiry item details updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/salesEnquiryitemdetails'
+ *       500:
+ *         description: Internal server error
+ */
+
 router.route("/updatesalesEnquiryitemdetailsDetails").post(updatesalesEnquiryitemdetailsDetails)
 /**
  * @swagger

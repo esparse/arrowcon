@@ -382,14 +382,15 @@ router.delete("/deleteSalesOrderTransferDetails/:SalesOrderTransferId",async(req
  *             $ref: '#/components/schemas/SalesOrderTransfer'
  *     responses:
  *       200:
- *         description: Update SalesOrderTransfer Details successfully
+ *         description: SalesOrderTransfer Details updated successfully
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/SalesOrderTransfer'
  *       500:
- *         description: Some server error
+ *         description: Internal server error
  */
+
 
 router.post("/updateSalesOrderTransferDetails",async(req,res)=>{
   try {
