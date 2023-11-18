@@ -371,7 +371,7 @@ router.delete("/deleteSalesOrderTransferDetails/:SalesOrderTransferId",async(req
 /**
  * @swagger
  * /api/v1/updateSalesOrderTransferDetails:
- *   put:
+ *   post:
  *     summary: Update SalesOrderTransfer Details
  *     tags: [SalesOrderTransfer]
  *     requestBody:
