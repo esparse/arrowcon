@@ -42,7 +42,7 @@ const router = express.Router()
 router.route("/getAllCountry").get(getAllCountry)
 /**
  * @swagger
- * /api/v1/getsingleCountryDetailsbyCountryId/{id}:
+ * /api/v1/getsingleCountryDetailsbyCountryId/{country_id}:
  *   get:
  *     summary: Get a Country by ID
  *     tags: [Country]
@@ -61,7 +61,7 @@ router.route("/getAllCountry").get(getAllCountry)
  *         description: Country not found
  */
   
-router.route("/getsingleCountryDetailsbyCountryId/:id").get(getsingleCountryDetailsbyCountryId)
+router.route("/getsingleCountryDetailsbyCountryId/:country_id").get(getsingleCountryDetailsbyCountryId)
 
 
 

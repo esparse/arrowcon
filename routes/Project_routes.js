@@ -53,7 +53,7 @@ const router = express.Router()
  *           type: string
  *           description: ContactEmailId
  *         CountryId:
- *           type: string
+ *           type: integer
  *           description: CountryId
  *         StateId:
  *           type: integer

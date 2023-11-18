@@ -1,4 +1,4 @@
-const CustomerCapacity = require("../model/Country_model")
+const CustomerCapacity = require("../model/state_model")
 exports.getAllCountry = async(req,res)=>{
     try {
         const result = await CustomerCapacity.find()
@@ -18,12 +18,12 @@ exports.getAllCountry = async(req,res)=>{
 }
 exports.getsingleCountryDetailsbyCountryId = async(req,res)=>{
     try {
-        const result = await CustomerCapacity.findOne({id:req.params.id})
+        const result = await CustomerCapacity.find({country_id:req.params.country_id})
         res.json({
             count:result.length,
             success:true,
             message:"get All State by  CountryId Details",
-            data:result.states
+            data:result
         })
     } catch (error) {
         res.json({

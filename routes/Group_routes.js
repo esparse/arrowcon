@@ -71,24 +71,26 @@ router.route("/viewGroupDetails").get(viewGroupDetails)
  */
  router.route("/CreateGroupDetails").post(CreateGroupDetails)
 
-  /**
+/**
  * @swagger
  * /api/v1/deleteGroupDetails/{GroupId}:
  *   delete:
- *     summary: Delete an Group
+ *     summary: Delete a Group
  *     tags: [Group]
  *     parameters:
  *         - in: path
- *           GroupName: GroupId
+ *           name: GroupId
  *           required: true
  *           description: GroupId is required
  *           schema:
  *              type: string
  *     responses:
  *       200:
- *         description: Group delete successfully
- *   
+ *         description: Group deleted successfully
+ *       404:
+ *         description: Group not found
  */
+
 router.route("/deleteGroupDetails/:GroupId").delete(deleteGroupDetails)
 
 /**
