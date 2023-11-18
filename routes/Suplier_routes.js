@@ -194,8 +194,8 @@ const router = express.Router()
  *         BillingAddressCountryId : Mr.Chiewchan
  *         BillingAddressStateId : 16
  *         BillingAddressCityId : 45
- *         ContactPersonName : 0817441009
- *         Designation : 0817441009
+ *         ContactPersonName : abcd
+ *         Designation : Supervisor
  *         Email : Suplier@example.com
  *         LegalStructureId : 1
  *         DateOfCompanyEstablish : 08-03-2023
@@ -267,7 +267,7 @@ router.route("/viewSuplierDetails").get(viewSuplierDetails)
 
   /**
  * @swagger
- * /api/v1/deleteSupplierDetails/{SupplierId}:
+ * /api/v1/deleteSuplierDetails/{SupplierId}:
  *   delete:
  *     summary: Delete a Supplier
  *     tags: [Supplier]
