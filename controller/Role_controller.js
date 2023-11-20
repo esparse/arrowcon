@@ -22,7 +22,15 @@ exports.CreateRoleDetails = async(req,res)=>{
 }
 exports.viewRoleDetails = async(req,res)=>{
     try {
-        const result = await Role.find()
+        const result = await Role.aggregate([ {
+            $lookup:{
+                from:'employees',
+                localField:'RoleId',
+                foreignField:'RoleId',
+                as:"Employees"
+            },
+        },
+    ])
         res.json({
             count:result.length,
             success:true,

@@ -52,7 +52,7 @@ exports.CreateCustomerDetails = async(req,res)=>{
  } catch (error) {
     res.json({
         success:false,
-        message: `Something went worng `+ {error},
+        message: `Something went worng `+ error.message,
         data:null
      })
  }
@@ -221,7 +221,15 @@ exports.viewCustomerDetails = async(req,res)=>{
                     as:"ConatctPerson"
                 },
              
-            }
+            },
+            {
+                $lookup:{
+                    from:'salesenquiries',
+                    localField:'CustomerId',
+                    foreignField:'CustomerId',
+                    as:"SalesEnquiries"
+                },
+            },
             
         ])
         res.json({
@@ -233,7 +241,7 @@ exports.viewCustomerDetails = async(req,res)=>{
     } catch (error) {
         res.json({
             success:false,
-            message: `Something went worng `+ {error},
+            message: `Something went worng `+ error.message,
             data:null
          })
     }
@@ -249,7 +257,7 @@ exports.deleteCustomerDetails = async(req,res)=>{
     } catch (error) {
         res.json({
             success:false,
-            message:"Something  went wrong",
+            message:"Something  went wrong"+error.message,
             data:null
         })  
     }
@@ -267,7 +275,7 @@ exports.updateCustomerDetails = async(req,res)=>{
     } catch (error) {
         res.json({
             success:false,
-            message:"Something  went wrong"+Error,
+            message:"Something  went wrong"+error.message,
             data:null
         })  
     }

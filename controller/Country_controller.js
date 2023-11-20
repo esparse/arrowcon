@@ -1,7 +1,7 @@
 const CustomerCapacity = require("../model/state_model")
 exports.getAllCountry = async(req,res)=>{
     try {
-        const result = await CustomerCapacity.find()
+        const result = await CustomerCapacity.find().sort({ name: 1 })
         res.json({
             count:result.length,
             success:true,

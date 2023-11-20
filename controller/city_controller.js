@@ -2,7 +2,7 @@ const city = require("../model/city_model")
 const state = require("../model/state_model")
 exports.getAllCity = async(req,res)=>{
     try {
-        const result = await city.find()
+        const result = await city.find().sort({name:1})
         res.json({
             count:result.length,
             success:true,
@@ -19,7 +19,7 @@ exports.getAllCity = async(req,res)=>{
 }
 exports.getCityByStateId = async(req,res)=>{
     try {
-        const result = await city.find({state_id:req.params.state_id})
+        const result = await city.find({state_id:req.params.state_id}).sort({name:1})
         res.json({
             count:result.length,
             success:true,

@@ -31,7 +31,7 @@ exports.getStateWithCity = async(req,res)=>{
 }
 exports.getAllState = async(req,res)=>{
     try {
-        const result = await state.find().sort({State:1})
+        const result = await state.find().sort({name:1})
         res.json({
             count:result.length,
             success:true,

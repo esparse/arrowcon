@@ -22,7 +22,17 @@ exports.CreateDepartMentDetails = async(req,res)=>{
 }
 exports.viewDepartMentDetails = async(req,res)=>{
     try {
-        const result = await DepartMent.find()
+        const result = await DepartMent.aggregate([
+            {
+                $lookup:{
+                    from:'employees',
+                    localField:'DepartMentId',
+                    foreignField:'DepartMentId',
+                    as:"Employees"
+                },
+            },
+        ])
+
         res.json({
             count:result.length,
             success:true,
