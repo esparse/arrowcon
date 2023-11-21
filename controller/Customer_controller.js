@@ -216,8 +216,8 @@ exports.viewCustomerDetails = async(req,res)=>{
             {
                 $lookup:{
                     from:"contactpeople",
-                    localField:"ConatctPersonID",
-                    foreignField:"ConatctPersonID",
+                    localField:"CustomerId",
+                    foreignField:"CustomerId",
                     as:"ConatctPerson"
                 },
              

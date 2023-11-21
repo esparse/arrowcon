@@ -56,8 +56,8 @@ const CustomerSchema = mongoose.Schema({
         type:String
     },
   ConatctPersonID:{
-    type: [String], // This indicates that it's an array of strings
-    default: [],
+    type: String, // This indicates that it's an array of strings
+    
 
   },
     CompanyRegistrationNo:{

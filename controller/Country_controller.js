@@ -1,4 +1,4 @@
-const CustomerCapacity = require("../model/state_model")
+const CustomerCapacity = require("../model/Country_model")
 exports.getAllCountry = async(req,res)=>{
     try {
         const result = await CustomerCapacity.find().sort({ name: 1 })

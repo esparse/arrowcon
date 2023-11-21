@@ -1,32 +1,28 @@
 const ContactPerson = require("../model/contactperson_model")
-let createdContacts = [];
 exports.CreateContactPersonDetails = async(req,res)=>{
-    
-    try {
-        const newContactPerson = new ContactPerson({
-            ConatctPersonID: Math.floor((Math.random() * 100000) + 1),
-          ContactPersonName: req.body.ContactPersonName,
-          Designation: req.body.Designation,
-          Email: req.body.Email,
-          Address: req.body.Address,
-          MobileNo: req.body.MobileNo,
-          LandlineNo: req.body.LandlineNo,
-          Countrycode: req.body.Countrycode,
-          sourceId: req.body.sourceId,
-        });
-    
-        const savedContactPerson = await newContactPerson.save();
+ try {
+    // let count = (await ContactPerson.countDocuments()+1)+10000;
+    const result = await ContactPerson.create({
+        ContactPersonId: Math.floor((Math.random()*100000)+1),
+        ContactPersonName:req.body.ContactPersonName,
+        Designation:req.body.Designation,
+        Email:req.body.Email,
+        Address:req.body.Address,
+        MobileNo:req.body.MobileNo,
+        LandlineNo:req.body.LandlineNo,
+        Countrycode:req.body.Countrycode,
+        sourceId:req.body.sourceId,
         
-        // Push the new contact to the array
-        createdContacts.push(savedContactPerson);
+
+     })
+     
     
-        res.json({
-          success: true,
-          message: 'ContactPerson created successfully',
-          data: savedContactPerson,
-          allContacts: createdContacts,
-        });
-      }  catch (error) {
+     res.json({
+        success:true,
+        message: "ContactPerson Created Successfully",
+        data:result
+     })
+ } catch (error) {
     res.json({
         success:false,
         message: `the error message is `+ error.message,
