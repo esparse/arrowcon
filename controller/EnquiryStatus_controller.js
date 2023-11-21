@@ -11,7 +11,7 @@ exports.getEnquiryStatus = async(req,res)=>{
     } catch (error) {
         res.json({
             success:false,
-            message: `Something went worng `+ {error},
+            message: `Something went worng `+ error.message,
             data:null
          })
     }

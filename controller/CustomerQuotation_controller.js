@@ -19,7 +19,7 @@ exports.CreateCustomerQuotationDetails = async(req,res)=>{
  } catch (error) {
     res.json({
         success:false,
-        message: `Something went worng `+ {error},
+        message: `Something went worng `+ error.message,
         data:null
      })
  }
@@ -45,7 +45,7 @@ exports.viewCustomerQuotationDetails = async(req,res)=>{
     } catch (error) {
         res.json({
             success:false,
-            message: `Something went worng `+ {error},
+            message: `Something went worng `+ error.message,
             data:null
          })
     }
@@ -61,7 +61,7 @@ exports.deleteCustomerQuotationDetails = async(req,res)=>{
     } catch (error) {
         res.json({
             success:false,
-            message:"Something  went wrong",
+            message:"Something  went wrong"+error.message,
             data:null
         })  
     }

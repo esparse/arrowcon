@@ -28,7 +28,7 @@ exports.CreateProjectDetails = async(req,res)=>{
  } catch (error) {
     res.json({
         success:false,
-        message: `Something went worng `+ {error},
+        message: `Something went worng `+ error.message,
         data:null
      })
  }
@@ -99,7 +99,7 @@ exports.viewProjectDetails = async(req,res)=>{
     } catch (error) {
         res.json({
             success:false,
-            message: `Something went worng `+ {error},
+            message: `Something went worng `+ error.message,
             data:null
          })
     }
@@ -115,7 +115,7 @@ exports.deleteProjectDetails = async(req,res)=>{
     } catch (error) {
         res.json({
             success:false,
-            message:"Something  went wrong",
+            message:"Something  went wrong"+error.message,
             data:null
         })  
     }

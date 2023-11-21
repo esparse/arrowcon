@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
 
-const ContactPersonSchema = mongoose.Schema({
+const ContactPersonSchema = new  mongoose.Schema({
+    // _id: { type: mongoose.Schema.Types.ObjectId, default: mongoose.Types.ObjectId, unique: true },
     ContactPersonId:{
         type:String
     },

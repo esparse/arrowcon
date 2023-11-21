@@ -29,7 +29,7 @@ exports.getCityByStateId = async(req,res)=>{
     } catch (error) {
         res.json({
             success:false,
-            message:"Something  went wrong"+Error,
+            message:"Something  went wrong"+error.message,
             data:null
         })  
     }

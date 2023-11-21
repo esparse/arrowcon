@@ -59,7 +59,7 @@ exports.CreateSuplierDetails = async(req,res)=>{
  } catch (error) {
     res.json({
         success:false,
-        message: `Something went worng `+ {error},
+        message: `Something went worng `+ error.message,
         data:null
      })
  }
@@ -165,7 +165,7 @@ exports.viewSuplierDetails = async(req,res)=>{
     } catch (error) {
         res.json({
             success:false,
-            message: `Something went worng `+ {error},
+            message: `Something went worng `+ error.message,
             data:null
          })
     }
@@ -199,7 +199,7 @@ exports.updateSuplierDetails = async(req,res)=>{
     } catch (error) {
         res.json({
             success:false,
-            message:"Something  went wrong"+Error,
+            message:"Something  went wrong"+error.message,
             data:null
         })  
     }
