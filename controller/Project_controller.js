@@ -17,7 +17,7 @@ exports.CreateProjectDetails = async(req,res)=>{
         Province:req.body.Province,
         StartDate:req.body.StartDate,
         EndDate:req.body.EndDate,
-        ProjectPhase:req.body.ProjectPhase,
+        Rating:req.body.Rating,
         CustomerId:req.body.CustomerId,
      })
      res.json({

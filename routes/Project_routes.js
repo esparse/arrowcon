@@ -23,7 +23,7 @@ const router = express.Router()
  *         - Province
  *         - StartDate
  *         - EndDate
- *         - ProjectPhase
+ *         - Rating
  *       properties:
  *         ProjectId:
  *           type: integer
@@ -70,7 +70,7 @@ const router = express.Router()
  *         EndDate:
  *           type: string
  *           description: EndDate
- *         ProjectPhase:
+ *         Rating:
  *           type: string
  *           description: EndDate
  *       example:
@@ -89,7 +89,7 @@ const router = express.Router()
  *         Province: maharastra
  *         StartDate: 04-07-2023
  *         EndDate: 01-09-2023
- *         ProjectPhase: Contractor Awarded
+ *         Rating: 1
  *         
  *        
  *

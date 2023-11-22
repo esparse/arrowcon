@@ -46,7 +46,7 @@ type:Number
   EndDate:{
     type:String
   },
-  ProjectPhase:{
+  Rating:{
     type:String
   }
   
