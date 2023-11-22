@@ -1,0 +1,15 @@
+[
+    {
+        "ProjectTypeId":"1",
+        "ProjectType":"Completed"
+    },
+    {
+        "ProjectTypeId":"2",
+       "ProjectType":" Work in Progress"
+    },
+
+{
+        "ProjectTypeId":"3",
+       "ProjectType":"Not started"
+    }
+]

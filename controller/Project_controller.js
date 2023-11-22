@@ -4,7 +4,7 @@ exports.CreateProjectDetails = async(req,res)=>{
     const result = await Project.create({
         ProjectId:Math.floor((Math.random()*100000)+1),
         ProjectName:req.body.ProjectName,
-        projectType:req.body.projectType,
+        ProjectTypeId:req.body.ProjectTypeId,
         CompanyId:req.body.CompanyId,
         ProjectStatus:req.body.ProjectStatus,
         EstimatedAmt:req.body.EstimatedAmt,
@@ -76,6 +76,15 @@ exports.viewProjectDetails = async(req,res)=>{
                     localField:"CityId",
                     foreignField:"id",
                     as:"City"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"countries",
+                    localField:"CountryId",
+                    foreignField:"id",
+                    as:"Country"
                 },
              
             },

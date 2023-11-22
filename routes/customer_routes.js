@@ -27,6 +27,8 @@ const router = express.Router()
  *         - SiteAddressCityId
  *         - SiteAddressPin
  *         - SiteAddressPin
+ *         - ComapnyId
+ *         - CompanyName
  *         - CompanyRegistrationNo
  *         - CompanyVATNo
  *         - CustomerSiteDistrict
@@ -106,6 +108,12 @@ const router = express.Router()
  *         CompanyRegistrationNo:
  *           type: string
  *           description: CompanyRegistrationNo
+ *         ComapnyId:
+ *           type: string
+ *           description: CompanyRegistrationNo
+ *         CompanyName:
+ *            type: string
+ *            description: CompanyRegistrationNo
  *         CompanyVATNo:
  *           type: string
  *           description: CompanyVATNo
@@ -191,6 +199,8 @@ const router = express.Router()
  *         SiteAddressStateId: 1
  *         SiteAddressCityId: 2
  *         SiteAddressPin: 789456
+ *         ComapnyId: 1023654789
+ *         CompanyName: ABCD
  *         CompanyRegistrationNo: 1023654789
  *         CompanyVATNo: 0817441009
  *         CustomerSiteDistrict: Pune

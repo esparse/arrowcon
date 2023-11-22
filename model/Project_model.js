@@ -7,7 +7,7 @@ const ProjectSchema = mongoose.Schema({
     ProjectName:{
         type:String
     },
-    projectType:{
+    ProjectTypeId:{
         type:String
     },
     CompanyId:{

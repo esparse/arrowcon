@@ -20,6 +20,8 @@ exports.CreateCustomerDetails = async(req,res)=>{
         SiteAddressStateId:req.body.SiteAddressStateId,
         SiteAddressCityId:req.body.SiteAddressCityId,
         SiteAddressPin:req.body.SiteAddressPin,
+        ComapnyId:req.body.ComapnyId,
+        CompanyName:req.body.CompanyName,
         CompanyRegistrationNo:req.body.CompanyRegistrationNo,
         CompanyVATNo:req.body.CompanyVATNo,
         locationId:req.body.locationId,
