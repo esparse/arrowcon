@@ -101,7 +101,7 @@ exports.getSingleContactPersonDetails = async(req,res)=>{
 exports.deleteContactPersonDetailsbysourceId = async(req,res)=>{
     try {
         const  {sourceId} =req.params
-        const result = await ContactPerson.findOneAndDelete({sourceId:sourceId})
+        const result = await ContactPerson.deleteMany({sourceId:sourceId})
         res.json({
             success:true,
             message:"Delete ContactPerson Details",
