@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 
 const ProjectSchema = mongoose.Schema({
     ProjectId:{
-        type:Number
+        type:String
     },
     ProjectName:{
         type:String
