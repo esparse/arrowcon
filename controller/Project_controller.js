@@ -106,6 +106,15 @@ exports.viewProjectDetails = async(req,res)=>{
                 },
              
             },
+            {
+                $lookup:{
+                    from:"documents",
+                    localField:"ProjectId",
+                    foreignField:"DocumentId",
+                    as:"Document"
+                },
+             
+            },
         ])
         res.json({
             count:result.length,
