@@ -5,7 +5,6 @@ exports.CreateProjectDetails = async(req,res)=>{
         ProjectId:Math.floor((Math.random()*100000)+1),
         ProjectName:req.body.ProjectName,
         ProjectTypeId:req.body.ProjectTypeId,
-        CompanyId:req.body.CompanyId,
         ProjectStatus:req.body.ProjectStatus,
         EstimatedAmt:req.body.EstimatedAmt,
         ContactName:req.body.ContactName,
@@ -19,6 +18,7 @@ exports.CreateProjectDetails = async(req,res)=>{
         EndDate:req.body.EndDate,
         Rating:req.body.Rating,
         CustomerId:req.body.CustomerId,
+        EnquiryOwnerId:req.body.EnquiryOwnerId,
      })
      res.json({
         success:true,
@@ -97,7 +97,15 @@ exports.viewProjectDetails = async(req,res)=>{
                 },
              
             },
-
+            {
+                $lookup:{
+                    from:"employees",
+                    localField:"EnquiryOwnerId",
+                    foreignField:"EmployeeId",
+                    as:"EnquiryOwner"
+                },
+             
+            },
         ])
         res.json({
             count:result.length,

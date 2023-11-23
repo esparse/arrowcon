@@ -10,7 +10,7 @@ const ProjectSchema = mongoose.Schema({
     ProjectTypeId:{
         type:String
     },
-    CompanyId:{
+    CustomerId:{
         type:String
     },
   ProjectStatus:{
@@ -48,8 +48,12 @@ type:Number
   },
   Rating:{
     type:String
+  },
+  EnquiryOwnerId:{
+    type:String
+
   }
-  
+
     
 },{
 timestamps:true

@@ -60,13 +60,6 @@ const CustomerSchema = mongoose.Schema({
     
 
   },
-  ComapnyId:{
-    type:String
-  },
-  CompanyName:{
-    type:String
-
-  },
     CompanyRegistrationNo:{
         type:String
     },

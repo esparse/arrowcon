@@ -1,15 +1,15 @@
 [
     {
         "ProjectTypeId":"1",
-        "ProjectType":"Completed"
+        "ProjectType":"Supply"
     },
     {
         "ProjectTypeId":"2",
-       "ProjectType":" Work in Progress"
+       "ProjectType":"Service"
     },
 
 {
         "ProjectTypeId":"3",
-       "ProjectType":"Not started"
+       "ProjectType":"Turnkey"
     }
 ]
