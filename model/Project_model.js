@@ -19,27 +19,6 @@ const ProjectSchema = mongoose.Schema({
   EstimatedAmt:{
 type:String
   },
-  ContactName:{
-    type:String
-  },
-  ContactPhone:{
-    type:Number
-  },
-  ContactEmailId:{
-    type:String
-  },
-  CountryId:{
-    type:Number
-  },
-  StateId:{
-type:Number
-  },
-  CityId:{
-    type:String
-  },
-  Province:{
-    type:String
-  },
   StartDate:{
     type:String
   },

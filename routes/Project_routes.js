@@ -14,13 +14,6 @@ const router = express.Router()
  *         - CustomerId
  *         - ProjectStatus
  *         - EstimatedAmt
- *         - ContactName
- *         - ContactPhone
- *         - ContactEmailId
- *         - CountryId
- *         - CityId
- *         - StateId
- *         - Province
  *         - StartDate
  *         - EndDate
  *         - Rating
@@ -44,27 +37,6 @@ const router = express.Router()
  *         EstimatedAmt:
  *           type: string
  *           description: ProjectId
- *         ContactName:
- *           type: string
- *           description: ContactName
- *         ContactPhone:
- *           type: string
- *           description: ContactPhone
- *         ContactEmailId:
- *           type: string
- *           description: ContactEmailId
- *         CountryId:
- *           type: integer
- *           description: CountryId
- *         StateId:
- *           type: integer
- *           description: StateId
- *         CityId:
- *           type: string
- *           description: CityId
- *         Province:
- *           type: string
- *           description: Province
  *         StartDate:
  *           type: string
  *           description: Province
@@ -84,13 +56,6 @@ const router = express.Router()
  *         CustomerId: CD1010002,
  *         ProjectStatus: open
  *         EstimatedAmt: 162023
- *         ContactName: Ankit pawada
- *         ContactPhone: 9874561230
- *         ContactEmailId: akpd@gmail.com
- *         CountryId: 12
- *         StateId: 21
- *         CityId: 1
- *         Province: maharastra
  *         StartDate: 04-07-2023
  *         EndDate: 01-09-2023
  *         Rating: 1
