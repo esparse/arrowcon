@@ -90,3 +90,36 @@ exports.getSinglesalesEnquiryitemdetailsDetails = async(req,res)=>{
         })  
     }
 }
+exports.getsalesEnquiryitemdetailsDetailsbySalesEnquiryId = async(req,res)=>{
+    try {
+        const result = await salesEnquiryitemdetails.find({SalesEnquiryId:req.params.SalesEnquiryId})
+        res.json({
+            count:result.length,
+            success:true,
+            message:"get sales Enquiry item Details",
+            data:result
+        })
+    } catch (error) {
+        res.json({
+            success:false,
+            message: `Something went worng `+ {error},
+            data:null
+         })
+    }
+}
+exports.deletesalesEnquiryitemdetailsDetailsbySalesEnquiryId = async(req,res)=>{
+    try {
+        const result = await salesEnquiryitemdetails.deleteMany({SalesEnquiryId:req.params.SalesEnquiryId})
+        res.json({
+            success:true,
+            message:"Delete salesEnquiryitemdetails Details",
+            data:null
+        })
+    } catch (error) {
+        res.json({
+            success:false,
+            message:"Something  went wrong",
+            data:null
+        })  
+    }
+}

@@ -1,5 +1,5 @@
 const express = require("express")
-const {CreatesalesEnquiryitemdetailsDetails,viewsalesEnquiryitemdetailsDetails,deletesalesEnquiryitemdetailsDetails,updatesalesEnquiryitemdetailsDetails,getSinglesalesEnquiryitemdetailsDetails} = require("../controller/SalesEnquiryitemdetails_controller")
+const {CreatesalesEnquiryitemdetailsDetails,viewsalesEnquiryitemdetailsDetails,deletesalesEnquiryitemdetailsDetails,updatesalesEnquiryitemdetailsDetails,getSinglesalesEnquiryitemdetailsDetails,getsalesEnquiryitemdetailsDetailsbySalesEnquiryId,deletesalesEnquiryitemdetailsDetailsbySalesEnquiryId} = require("../controller/SalesEnquiryitemdetails_controller")
 const router = express.Router()
 /**
  * @swagger
@@ -151,5 +151,53 @@ router.route("/updatesalesEnquiryitemdetailsDetails").post(updatesalesEnquiryite
  *         description: salesEnquiryitemdetails not found
  */
 router.route("/getSinglesalesEnquiryitemdetailsDetails/:salesEnquiryitemdetailsId").get(getSinglesalesEnquiryitemdetailsDetails)
+/**
+ * @swagger
+ * /api/v1/getsalesEnquiryitemdetailsDetailsbySalesEnquiryId/{SalesEnquiryId}:
+ *   get:
+ *     summary: Get sales enquiry item details by SalesEnquiryId
+ *     parameters:
+ *       - in: path
+ *         name: SalesEnquiryId
+ *         required: true
+ *         description: ID of the sales enquiry
+ *         schema:
+ *           type: string
+ *     responses:
+ *       '200':
+ *         description: Successful response
+ *       '404':
+ *         description: Sales enquiry not found
+ */
+
+
+router.route("/getsalesEnquiryitemdetailsDetailsbySalesEnquiryId/:SalesEnquiryId").get(getsalesEnquiryitemdetailsDetailsbySalesEnquiryId)
+
+/**
+ * @swagger
+ * /api/v1/deletesalesEnquiryitemdetailsDetailsbySalesEnquiryId/{SalesEnquiryId}:
+ *   delete:
+ *     summary: Delete sales enquiry item details by SalesEnquiryId
+ *     parameters:
+ *       - in: path
+ *         name: SalesEnquiryId
+ *         required: true
+ *         description: ID of the sales enquiry
+ *         schema:
+ *           type: string
+ *     responses:
+ *       '200':
+ *         description: Successful deletion
+ *       '404':
+ *         description: Sales enquiry not found
+ */
+
+
+router.route("/deletesalesEnquiryitemdetailsDetailsbySalesEnquiryId/:SalesEnquiryId").delete(deletesalesEnquiryitemdetailsDetailsbySalesEnquiryId)
+
+
+
+
+
 module.exports = router
 
