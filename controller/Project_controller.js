@@ -101,10 +101,10 @@ exports.viewProjectDetails = async(req,res)=>{
             },
             {
                 $lookup:{
-                    from:"documents",
-                    localField:"ProjectId",
-                    foreignField:"DocumentId",
-                    as:"Document"
+                    from:"contactpeople",
+                    localField:"CustomerId",
+                    foreignField:"CustomerId",
+                    as:"ContactPeople"
                 },
              
             },
