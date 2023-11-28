@@ -10,34 +10,10 @@ const SalesQuotionSchema = mongoose.Schema({
     QuotionCurrency:{
         type:String,   
     },
-    CustomerName:{
-        type:String
-    },
     CustomerId:{
         type:String
     },
-    CustomerAddress:{
-        type:String
-    },
     Subject:{
-        type:String
-    },
-    ContactNumber:{
-        type:String
-    },
-    ContactEmail:{
-        type:String
-    },
-    ProductService:{
-        type:String
-    },
-    Description:{
-        type:String
-    },
-    Quantity:{
-        type:String
-    },
-    UnitPriceTHB:{
         type:String
     },
     OfferValidity:{

@@ -5,17 +5,9 @@ exports.CreateSalesQuotionDetails = async(req,res)=>{
     const result = await SalesQuotion.create({
         SalesQuotionId: "QT" + count ,
         Date:req.body.Date,
-        QuotionCurrency:req.body.QuotionCurrency,
-        CustomerName:req.body.CustomerName,
+        QuotionCurrencyId:req.body.QuotionCurrencyId,
         CustomerId:req.body.CustomerId,
-        CustomerAddress:req.body.CustomerAddress,
         Subject:req.body.Subject,
-        ContactNumber:req.body.ContactNumber,
-        ContactEmail:req.body.ContactEmail,
-        ProductService:req.body.ProductService,
-        Description:req.body.Description,
-        Quantity:req.body.Quantity,
-        UnitPriceTHB:req.body.UnitPriceTHB,
         OfferValidity:req.body.OfferValidity,
         PaymentTerm:req.body.PaymentTerm,
         DeliveryTerm:req.body.DeliveryTerm,
@@ -46,6 +38,15 @@ exports.viewSalesQuotionDetails = async(req,res)=>{
                     as:"Customer"
                 },
             },
+            {
+                $lookup:{
+                    from:"contactpeople",
+                    localField:"CustomerId",
+                    foreignField:"sourceId",
+                    as:"ContactPeople"
+                },
+              
+              },
         ])
         res.json({
             count:result.length,
@@ -95,3 +96,30 @@ exports.updateSalesQuotionDetails = async(req,res)=>{
         })  
     }
 }
+ // Import your SalesQuotion model
+
+exports.getsingleSalesQuotionDetails = async (req, res) => {
+    try {
+        const result = await SalesQuotion.findOne({ SalesQuotionId: req.params.SalesQuotionId });
+
+        if (result) {
+            res.json({
+                success: true,
+                message: "SalesQuotion Details Found",
+                data: result
+            });
+        } else {
+            res.json({
+                success: false,
+                message: "SalesQuotion Details Not Found",
+                data: null
+            });
+        }
+    } catch (error) {
+        res.json({
+            success: false,
+            message: "Something went wrong",
+            data: null
+        });
+    }
+};

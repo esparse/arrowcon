@@ -302,6 +302,15 @@ const bcrypt = require('bcryptjs')
 },
 {
   $lookup:{
+      from:"contactpeople",
+      localField:"CustomerId",
+      foreignField:"sourceId",
+      as:"ContactPeople"
+  },
+
+},
+{
+  $lookup:{
       from:'customers',
       localField:'CustomerId',
       foreignField:'CustomerId',
