@@ -16,7 +16,6 @@ exports.CreatePurchaseEstimationEnquiryDetails = async(req,res)=>{
         Remark:req.body.Remark,
         AddtionalComments:req.body.AddtionalComments,
         TargetDate:req.body.TargetDate,
-        InstallationType:req.body.InstallationType,
         CostEstimationStatus:req.body.CostEstimationStatus,
      })
      res.json({

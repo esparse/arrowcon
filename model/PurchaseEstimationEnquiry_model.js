@@ -43,10 +43,6 @@ const PurchaseEstimationEnquirySchema = mongoose.Schema({
     TargetDate:{
         type:String
     },
-    InstallationType:{
-        type:String
-        
-    },
     CostEstimationStatus:{
         type:String
 
