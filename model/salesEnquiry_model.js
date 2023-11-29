@@ -73,7 +73,6 @@ type:String
     InstallationType:{
         type:String
     }
-
 },{
 timestamps:true
 })

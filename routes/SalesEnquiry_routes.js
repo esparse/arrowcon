@@ -311,6 +311,14 @@ const bcrypt = require('bcryptjs')
 },
 {
   $lookup:{
+      from:'installationtypes',
+      localField:'InstallationType',
+      foreignField:'InstallationTypeId',
+      as:"InstallationType"
+  },
+},
+{
+  $lookup:{
       from:'customers',
       localField:'CustomerId',
       foreignField:'CustomerId',
