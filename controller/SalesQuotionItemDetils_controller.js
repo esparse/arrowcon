@@ -1,10 +1,10 @@
 const SalesQuotionItemDetils = require("../model/salesQuotionItemDetils_model")
-exports.CreateSalesQuotionItemDetilsDetails = async(req,res)=>{
+exports.CreateSalesQuotionItemDetils = async(req,res)=>{
     let count = (await SalesQuotionItemDetils.countDocuments()+1)+1000;
  try {
     const result = await SalesQuotionItemDetils.create({
         SalesQuotionItemDetilsId: "QTITEM" + count ,
-        SalesQuotionId:req.body.ProductService,
+        SalesQuotionId:req.body.SalesQuotionId,
         ProductService:req.body.ProductService,
         Description:req.body.Description,
         Quantity:req.body.Quantity,
@@ -26,7 +26,7 @@ exports.CreateSalesQuotionItemDetilsDetails = async(req,res)=>{
      })
  }
 }
-exports.viewSalesQuotionItemDetilsDetails = async(req,res)=>{
+exports.viewSalesQuotionItemDetils = async(req,res)=>{
     try {
         const result = await SalesQuotionItemDetils.find()
         res.json({
@@ -43,7 +43,7 @@ exports.viewSalesQuotionItemDetilsDetails = async(req,res)=>{
          })
     }
 }
-exports.deleteSalesQuotionItemDetilsDetails = async(req,res)=>{
+exports.deleteSalesQuotionItemDetils = async(req,res)=>{
     try {
         const result = await SalesQuotionItemDetils.findOneAndDelete({SalesQuotionItemDetilsId:req.params.SalesQuotionItemDetilsId})
         res.json({
@@ -59,7 +59,7 @@ exports.deleteSalesQuotionItemDetilsDetails = async(req,res)=>{
         })  
     }
 }
-exports.updateSalesQuotionItemDetilsDetails = async(req,res)=>{
+exports.updateSalesQuotionItemDetils = async(req,res)=>{
     try {
         const result = await SalesQuotionItemDetils.findOneAndUpdate({SalesQuotionItemDetilsId:req.body.SalesQuotionItemDetilsId} , req.body , {
             new: true,

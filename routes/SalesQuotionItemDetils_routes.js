@@ -1,5 +1,5 @@
 const express = require("express")
-const {CreateSalesQuotionItemDetilsDetails,viewSalesQuotionItemDetilsDetails,deleteSalesQuotionItemDetilsDetails,updateSalesQuotionItemDetilsDetails,getSalesQuotationItemDetailsBySalesQuotationId,deleteSalesQuotionItemDetilsbySalesQuotionId} = require("../controller/SalesQuotionItemDetils_controller")
+const {CreateSalesQuotionItemDetils,viewSalesQuotionItemDetils,deleteSalesQuotionItemDetils,updateSalesQuotionItemDetils,getSalesQuotationItemDetailsBySalesQuotationId,deleteSalesQuotionItemDetilsbySalesQuotionId} = require("../controller/SalesQuotionItemDetils_controller")
 const router = express.Router()
 /**
  * @swagger
@@ -52,7 +52,7 @@ const router = express.Router()
 
 /**
  * @swagger
- * /api/v1/viewSalesQuotionItemDetilsDetails:
+ * /api/v1/viewSalesQuotionItemDetils:
  *   get:
  *     summary: get all SalesQuotionItemDetils
  *     tags: [SalesQuotionItemDetils]
@@ -66,12 +66,12 @@ const router = express.Router()
  *               items:
  *                 $ref: '#/components/schemas/SalesQuotionItemDetils'
  */
-router.route("/viewSalesQuotionItemDetilsDetails").get(viewSalesQuotionItemDetilsDetails)
+router.route("/viewSalesQuotionItemDetils").get(viewSalesQuotionItemDetils)
 
 
 /**
  * @swagger
- * /api/v1/CreateSalesQuotionItemDetilsDetails:
+ * /api/v1/CreateSalesQuotionItemDetils:
  *   post:
  *     summary: add a new SalesQuotionItemDetils
  *     tags: [SalesQuotionItemDetils]
@@ -91,11 +91,11 @@ router.route("/viewSalesQuotionItemDetilsDetails").get(viewSalesQuotionItemDetil
  *       500:
  *         description: Some server error
  */
- router.route("/CreateSalesQuotionItemDetilsDetails").post(CreateSalesQuotionItemDetilsDetails)
+ router.route("/CreateSalesQuotionItemDetils").post(CreateSalesQuotionItemDetils)
 
 /**
  * @swagger
- * /api/v1/deleteSalesQuotionItemDetilsDetails/{SalesQuotionItemDetilsId}:
+ * /api/v1/deleteSalesQuotionItemDetils/{SalesQuotionItemDetilsId}:
  *   delete:
  *     summary: Delete a SalesQuotionItemDetils
  *     tags: [SalesQuotionItemDetils]
@@ -111,7 +111,7 @@ router.route("/viewSalesQuotionItemDetilsDetails").get(viewSalesQuotionItemDetil
  *         description: SalesQuotionItemDetils deleted successfully
  */
 
-router.route("/deleteSalesQuotionItemDetilsDetails/:SalesQuotionItemDetilsId").delete(deleteSalesQuotionItemDetilsDetails)
+router.route("/deleteSalesQuotionItemDetils/:SalesQuotionItemDetilsId").delete(deleteSalesQuotionItemDetils)
 
 /**
 * @swagger
@@ -135,7 +135,7 @@ router.route("/deleteSalesQuotionItemDetilsDetails/:SalesQuotionItemDetilsId").d
 *       500:
 *         description: Some server error
 */
-router.route("/updateSalesQuotionItemDetils").post(updateSalesQuotionItemDetilsDetails)
+router.route("/updateSalesQuotionItemDetils").post(updateSalesQuotionItemDetils)
 /**
  * @swagger
  * /api/v1/getSalesQuotationItemDetailsBySalesQuotationId/{SalesQuotionId}:
