@@ -77,3 +77,38 @@ exports.updateSalesQuotionItemDetilsDetails = async(req,res)=>{
         })  
     }
 }
+exports.getSalesQuotationItemDetailsBySalesQuotationId = async (req, res) => {
+    try { 
+        const result = await SalesQuotionItemDetils.find({SalesQuotionId:req.params.SalesQuotionId})
+
+        res.json({
+            count: result.length,
+            success: true,
+            message: "Get Sales Quotation Item Details",
+            data: result,
+        });
+    } catch (error) {
+        res.json({
+            success: false,
+            message: `Something went wrong: ${error.message}`,
+            data: null,
+        });
+    }
+};
+
+exports.deleteSalesQuotionItemDetilsbySalesQuotionId = async(req,res)=>{
+    try {
+        const result = await SalesQuotionItemDetils.deleteMany({SalesQuotionId:req.params.SalesQuotionId})
+        res.json({
+            success:true,
+            message:"Delete SalesQuotion item  Details",
+            data:null
+        })
+    } catch (error) {
+        res.json({
+            success:false,
+            message:"Something  went wrong"+error.message,
+            data:null
+        })  
+    }
+}

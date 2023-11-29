@@ -28,9 +28,9 @@ const SalesQuotionSchema = mongoose.Schema({
     DeliveryBasis:{
         type:String
     },
-    Status:{
+    StatusId:{
         type:String,
-        default:"Pending"
+        default:"1"
     }
 },{
 timestamps:true

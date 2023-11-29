@@ -43,9 +43,12 @@ const PurchaseEstimationEnquirySchema = mongoose.Schema({
     TargetDate:{
         type:String
     },
-    CostEstimationStatus:{
+    CostEstimationStatusId:{
         type:String
 
+    },
+    InstallationTypeId:{
+        type:String
     }
     
 },{

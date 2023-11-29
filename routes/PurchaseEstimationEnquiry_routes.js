@@ -22,7 +22,8 @@ const router = express.Router()
  *         - Remark
  *         - AddtionalComments
  *         - TargetDate
- *         - CostEstimationStatus
+ *         - CostEstimationStatusId
+ *         - InstallationTypeId
  *       properties:
  *         PurchaseEstimationEnquiryId:
  *           type: integer
@@ -66,7 +67,10 @@ const router = express.Router()
  *         TargetDate:
  *           type: string
  *           description: AddtionalComments
- *         CostEstimationStatus:
+ *         CostEstimationStatusId:
+ *           type: string
+ *           description: CostEstimationStatusId
+ *         InstallationTypeId:
  *           type: string
  *           description: CostEstimationStatus
  *       example:
@@ -84,7 +88,8 @@ const router = express.Router()
  *         Remark: Active
  *         AddtionalComments: jggdffgd
  *         TargetDate: 11-12-2023
- *         CostEstimationStatus: Active
+ *         CostEstimationStatusId: 1
+ *         InstallationTypeId: 1
  *         
  *        
  *

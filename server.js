@@ -68,6 +68,8 @@ const getGeoGraphicServiceArea = require('./routes/GeoGraphicServiceArea_routes'
 const ProjectType = require('./routes/ProjectType_routes');
 const SalesQuotionItem = require('./routes/SalesQuotionItemDetils_routes');
 const QuotionCurrency = require('./routes/QuotionCurrency_routes');
+const InstallationType = require('./routes/InstallationType_routes');
+const Status = require('./routes/Status_routes');
 // const Personcontact = require('./middleware/contactperson');
 
 const options = {
@@ -150,6 +152,8 @@ const options = {
   app.use("/api/v1",ProjectType)
   app.use("/api/v1",SalesQuotionItem)
   app.use("/api/v1",QuotionCurrency)
+  app.use("/api/v1",InstallationType)
+  app.use("/api/v1",Status)
   // app.use("/api/v1",Personcontact)
  
 

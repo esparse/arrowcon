@@ -16,7 +16,7 @@ exports.CreatePurchaseEstimationEnquiryDetails = async(req,res)=>{
         Remark:req.body.Remark,
         AddtionalComments:req.body.AddtionalComments,
         TargetDate:req.body.TargetDate,
-        CostEstimationStatus:req.body.CostEstimationStatus,
+        CostEstimationStatusId:req.body.CostEstimationStatusId,
      })
      res.json({
         success:true,
@@ -33,9 +33,7 @@ exports.CreatePurchaseEstimationEnquiryDetails = async(req,res)=>{
 }
 exports.viewPurchaseEstimationEnquiryDetails = async(req,res)=>{
     try {
-        const result = await PurchaseEstimationEnquiry.aggregate([
-
-         
+        const result = await PurchaseEstimationEnquiry.aggregate([         
             {
                 $lookup:{
                     from:'offeringtypes',
@@ -97,33 +95,7 @@ exports.viewPurchaseEstimationEnquiryDetails = async(req,res)=>{
                 as:"Customer"
             },
         },
-        {
-            $unwind:"$Customer"
-          },
-          {
-            $lookup:{
-              from:'customercategories',
-              localField:'Customer.CustomerCategoryId',
-              foreignField:'CustomerCategoryId',
-              as:"CustomerCategory"
-          }
-          },
-          {
-            $lookup:{
-              from:'customerregions',
-              localField:'Customer.CustomerRegionId',
-              foreignField:'CustomerRegionId',
-              as:"CustomerRegion"
-          }
-          },
-          {
-            $lookup:{
-              from:'locations',
-              localField:'Customer.locationId',
-              foreignField:'locationId',
-              as:"Location"
-          }
-          },
+    
           {
             $lookup:{
                 from:'salesenquiries',
@@ -133,21 +105,26 @@ exports.viewPurchaseEstimationEnquiryDetails = async(req,res)=>{
             },
         },
         {
-            $unwind:"$SalesEnquiry"
+            $lookup:{
+                from:'installationtypes',
+                localField:'InstallationTypeId',
+                foreignField:'InstallationTypeId',
+                as:"InstallationType"
+            },
         },
         {
             $lookup:{
-                from:'weightedsales',
-                localField:'SalesEnquiry.WeightedsalesId',
-                foreignField:'WeightedsalesId',
-                as:"Weightedsales"
+                from:'status',
+                localField:'CostEstimationStatusId',
+                foreignField:'StatusId',
+                as:"CostEstimationStatus"
             },
         },
         ])
         res.json({
             count:result.length,
             success:true,
-            message:"get PurchaseEstimationEnquiry Details",
+            message:"get Purchase Estimation Enquiry Details",
             data:result
         })
     } catch (error) {

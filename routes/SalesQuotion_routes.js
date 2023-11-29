@@ -17,7 +17,7 @@ const router = express.Router()
  *         - PaymentTerm
  *         - DeliveryTerm
  *         - DeliveryBasis
- *         - Status
+ *         - StatusId
  *       properties:
  *         SalesQuotionId :
  *           type: integer
@@ -58,7 +58,7 @@ const router = express.Router()
  *         DeliveryBasis:
  *           type: string
  *           description: DeliveryBasis
- *         Status:
+ *         StatusId:
  *           type: string
  *           description: DeliveryBasis
  *       example:
@@ -70,7 +70,7 @@ const router = express.Router()
  *         PaymentTerm : SalesQuotion@example.com
  *         DeliveryTerm : one-time-Structure
  *         DeliveryBasis : 08-03-2023
- *         Status : Pending
+ *         StatusId : 1
  */
 
 /**
@@ -161,13 +161,13 @@ router.route("/deleteSalesQuotionDetails/:SalesQuotionId").delete(deleteSalesQuo
 router.route("/updateSalesQuotionDetails").post(updateSalesQuotionDetails)
 /**
  * @swagger
- * /api/v1/getsingleSalesQuotionDetails/{salesQuotionId}:
+ * /api/v1/getsingleSalesQuotionDetails/{SalesQuotionId}:
  *   get:
  *     summary: Get details of a single SalesQuotion
  *     description: Retrieve details of a SalesQuotion based on its ID.
  *     parameters:
  *       - in: path
- *         name: salesQuotionId
+ *         name: SalesQuotionId
  *         required: true
  *         description: ID of the SalesQuotion to retrieve
  *         schema:
@@ -199,6 +199,6 @@ router.route("/updateSalesQuotionDetails").post(updateSalesQuotionDetails)
  *               message: Something went wrong
  *               data: null
  */
-router.route("/getsingleSalesQuotionDetails").get(getsingleSalesQuotionDetails)
+router.route("/getsingleSalesQuotionDetails/:SalesQuotionId").get(getsingleSalesQuotionDetails)
 module.exports = router
 

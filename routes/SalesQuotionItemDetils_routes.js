@@ -1,5 +1,5 @@
 const express = require("express")
-const {CreateSalesQuotionItemDetilsDetails,viewSalesQuotionItemDetilsDetails,deleteSalesQuotionItemDetilsDetails,updateSalesQuotionItemDetilsDetails} = require("../controller/SalesQuotionItemDetils_controller")
+const {CreateSalesQuotionItemDetilsDetails,viewSalesQuotionItemDetilsDetails,deleteSalesQuotionItemDetilsDetails,updateSalesQuotionItemDetilsDetails,getSalesQuotationItemDetailsBySalesQuotationId,deleteSalesQuotionItemDetilsbySalesQuotionId} = require("../controller/SalesQuotionItemDetils_controller")
 const router = express.Router()
 /**
  * @swagger
@@ -115,7 +115,7 @@ router.route("/deleteSalesQuotionItemDetilsDetails/:SalesQuotionItemDetilsId").d
 
 /**
 * @swagger
-* /api/v1/updateSalesQuotionItemDetilsDetails:
+* /api/v1/updateSalesQuotionItemDetils:
 *   post:
 *     summary: upAddress SalesQuotionItemDetils Details
 *     tags: [SalesQuotionItemDetils]
@@ -135,6 +135,49 @@ router.route("/deleteSalesQuotionItemDetilsDetails/:SalesQuotionItemDetilsId").d
 *       500:
 *         description: Some server error
 */
-router.route("/updateSalesQuotionItemDetilsDetails").post(updateSalesQuotionItemDetilsDetails)
+router.route("/updateSalesQuotionItemDetils").post(updateSalesQuotionItemDetilsDetails)
+/**
+ * @swagger
+ * /api/v1/getSalesQuotationItemDetailsBySalesQuotationId/{SalesQuotionId}:
+ *   get:
+ *     summary: Get sales enquiry item details by SalesQuotionId
+ *     parameters:
+ *       - in: path
+ *         name: SalesQuotionId
+ *         required: true
+ *         description: ID of the sales enquiry
+ *         schema:
+ *           type: string
+ *     responses:
+ *       '200':
+ *         description: Successful response
+ *       '404':
+ *         description: Sales enquiry not found
+ */
+
+
+router.route("/getSalesQuotationItemDetailsBySalesQuotationId/:SalesQuotionId").get(getSalesQuotationItemDetailsBySalesQuotationId)
+
+/**
+ * @swagger
+ * /api/v1/deletesalesEnquiryitemdetailsDetailsbySalesQuotionId/{SalesQuotionId}:
+ *   delete:
+ *     summary: Delete sales enquiry item details by SalesQuotionId
+ *     parameters:
+ *       - in: path
+ *         name: SalesQuotionId
+ *         required: true
+ *         description: ID of the sales enquiry
+ *         schema:
+ *           type: string
+ *     responses:
+ *       '200':
+ *         description: Successful deletion
+ *       '404':
+ *         description: Sales enquiry not found
+ */
+
+
+router.route("/deleteSalesQuotionItemDetilsbySalesQuotionId/:SalesQuotionId").delete(deleteSalesQuotionItemDetilsbySalesQuotionId)
 module.exports = router
 

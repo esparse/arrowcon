@@ -12,7 +12,7 @@ exports.CreateSalesQuotionDetails = async(req,res)=>{
         PaymentTerm:req.body.PaymentTerm,
         DeliveryTerm:req.body.DeliveryTerm,
         DeliveryBasis:req.body.DeliveryBasis,
-        Status:req.body.Status,
+        StatusId:req.body.StatusId,
      })
      res.json({
         success:true,
@@ -47,6 +47,14 @@ exports.viewSalesQuotionDetails = async(req,res)=>{
                 },
               
               },
+              {
+                $lookup:{
+                    from:'status',
+                    localField:'StatusId',
+                    foreignField:'StatusId',
+                    as:"Status"
+                },
+            },
         ])
         res.json({
             count:result.length,
