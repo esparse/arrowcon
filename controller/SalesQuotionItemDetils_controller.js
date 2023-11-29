@@ -1,4 +1,4 @@
-const SalesQuotionItemDetils = require("../model/SalesQuotation_model")
+const SalesQuotionItemDetils = require("../model/salesQuotionItemDetils_model")
 exports.CreateSalesQuotionItemDetilsDetails = async(req,res)=>{
     let count = (await SalesQuotionItemDetils.countDocuments()+1)+1000;
  try {
