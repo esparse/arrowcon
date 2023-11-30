@@ -393,7 +393,7 @@ exports.getSinglePurchaseEstimationEnquiryDetails = async (req, res) => {
         const result = await PurchaseEstimationEnquiry.findOne({PurchaseEstimationEnquiryId:purchaseEstimationEnquiryId})
             // Process the result as needed
             res.json({
-                count: result.length,
+                // count: result.length,
                 success: true,
                 message: 'Get PurchaseEstimationEnquiry Details by Purchase Estimation Enquiry Id',
                 data: result
