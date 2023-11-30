@@ -5,14 +5,7 @@ exports.CreatePurchaseEstimationEnquiryDetails = async(req,res)=>{
         PurchaseEstimationEnquiryId:Math.floor((Math.random()*100000)+1),
         SalesEnquiryId:req.body.SalesEnquiryId,
         EnquiryDate:req.body.EnquiryDate,
-        CustomerId:req.body.CustomerId,
-        EnquiryOwnerId:req.body.EnquiryOwnerId,
-        OfferingTypeId:req.body.OfferingTypeId,
-        EnquiryTypeId:req.body.EnquiryTypeId,
-        EquipmentId:req.body.EquipmentId,
-        TypeOfEquipmentId:req.body.TypeOfEquipmentId,
         EnquiryDescription:req.body.EnquiryDescription,
-        EnquiryStatusId:req.body.EnquiryStatusId,
         Remark:req.body.Remark,
         AddtionalComments:req.body.AddtionalComments,
         TargetDate:req.body.TargetDate,
@@ -34,84 +27,7 @@ exports.CreatePurchaseEstimationEnquiryDetails = async(req,res)=>{
 exports.viewPurchaseEstimationEnquiryDetails = async(req,res)=>{
     try {
         const result = await PurchaseEstimationEnquiry.aggregate([         
-            {
-                $lookup:{
-                    from:'offeringtypes',
-                    localField:'OfferingTypeId',
-                    foreignField:'OfferingTypeId',
-                    as:"OfferingType"
-                },
-            },
-            {
-              $lookup:{
-                  from:"equipment",
-                  localField:"EquipmentId",
-                  foreignField:"EquipmentId",
-                  as:"Equipment"
-              },
-           
-          },
-          {
-              $lookup:{
-                  from:"typeofequipments",
-                  localField:"TypeOfEquipmentId",
-                  foreignField:"TypeOfEquipmentId",
-                  as:"TypeOfEquipment"
-              },
-           
-          },
-          {
-            $lookup:{
-                from:"enquirytypes",
-                localField:"EnquiryTypeId",
-                foreignField:"EnquiryTypeId",
-                as:"EnquiryType"
-            },
-         
-        },
-        {
-          $lookup:{
-              from:"enquirystatuses",
-              localField:"EnquiryStatusId",
-              foreignField:"EnquiryStatusId",
-              as:"EnquiryStatus"
-          },
         
-        },
-        {
-            $lookup:{
-                from:"employees",
-                localField:"EnquiryOwnerId",
-                foreignField:"EmployeeId",
-                as:"EnquiryOwner"
-            },
-          
-          },
-          {
-            $lookup:{
-                from:'customers',
-                localField:'CustomerId',
-                foreignField:'CustomerId',
-                as:"Customer"
-            },
-        },
-    
-          {
-            $lookup:{
-                from:'salesenquiries',
-                localField:'SalesEnquiryId',
-                foreignField:'SalesEnquiryId',
-                as:"SalesEnquiry"
-            },
-        },
-        {
-            $lookup:{
-                from:'installationtypes',
-                localField:'InstallationTypeId',
-                foreignField:'InstallationTypeId',
-                as:"InstallationType"
-            },
-        },
         {
             $lookup:{
                 from:'status',
@@ -120,6 +36,89 @@ exports.viewPurchaseEstimationEnquiryDetails = async(req,res)=>{
                 as:"CostEstimationStatus"
             },
         },
+
+
+        {
+            $lookup:{
+                from:'salesenquiries',
+                localField:'SalesEnquiryId',
+                foreignField:'SalesEnquiryId',
+                as:"SalesEnquiry"
+            },
+        },
+        {
+            $unwind: "$SalesEnquiry"
+          },
+        {
+            $lookup:{
+                from:'customers',
+                localField:'SalesEnquiry.CustomerId',
+                foreignField:'CustomerId',
+                as:"SalesEnquiry.Customer"
+            },
+        },
+
+ {
+                $lookup:{
+                    from:'offeringtypes',
+                    localField:'SalesEnquiry.OfferingTypeId',
+                    foreignField:'OfferingTypeId',
+                    as:"SalesEnquiry.OfferingType"
+                },
+            },
+            {
+                $lookup:{
+                    from:"typeofequipments",
+                    localField:"SalesEnquiry.TypeOfEquipmentId",
+                    foreignField:"TypeOfEquipmentId",
+                    as:"SalesEnquiry.TypeOfEquipment"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"equipment",
+                    localField:"SalesEnquiry.EquipmentId",
+                    foreignField:"EquipmentId",
+                    as:"SalesEnquiry.Equipment"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"enquirytypes",
+                    localField:"SalesEnquiry.EnquiryTypeId",
+                    foreignField:"EnquiryTypeId",
+                    as:"SalesEnquiry.EnquiryType"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"enquirystatuses",
+                    localField:"SalesEnquiry.EnquiryStatusId",
+                    foreignField:"EnquiryStatusId",
+                    as:"SalesEnquiry.EnquiryStatus"
+                },
+              
+              },
+              {
+                $lookup:{
+                    from:"employees",
+                    localField:"SalesEnquiry.EnquiryOwnerId",
+                    foreignField:"EmployeeId",
+                    as:"SalesEnquiry.EnquiryOwner"
+                },
+              
+              },
+              {
+                $lookup:{
+                    from:'installationtypes',
+                    localField:'SalesEnquiry.InstallationType',
+                    foreignField:'InstallationTypeId',
+                    as:"SalesEnquiry.InstallationType"
+                },
+            },
         ])
         res.json({
             count:result.length,
@@ -130,7 +129,7 @@ exports.viewPurchaseEstimationEnquiryDetails = async(req,res)=>{
     } catch (error) {
         res.json({
             success:false,
-            message: `Something went worng `+ {error},
+            message: `Something went worng `+ error.message,
             data:null
          })
     }
@@ -169,40 +168,257 @@ exports.updatePurchaseEstimationEnquiryDetails = async(req,res)=>{
         })  
     }
 }
-exports.getSinglePurchaseEstimationEnquiryDetails = async(req,res)=>{
+
+
+// exports.getSinglePurchaseEstimationEnquiryDetails = async (req, res) => {
+//     try {
+//         const purchaseEstimationEnquiryId = req.params.PurchaseEstimationEnquiryId;
+
+// const existingDocument = await PurchaseEstimationEnquiry.findOne({ PurchaseEstimationEnquiryId: purchaseEstimationEnquiryId });
+// console.log(existingDocument);
+// if (!existingDocument) {
+//     return res.status(404).json({
+//         success: false,
+//         message: 'Purchase estimation enquiry not found',
+//         data: null
+//     });
+// }
+
+//         const result = await PurchaseEstimationEnquiry.aggregate([
+//             {
+//                 $lookup: {
+//                     from: 'salesenquiries',
+//                     localField: 'SalesEnquiryId',
+//                     foreignField: 'SalesEnquiryId',
+//                     as: 'SalesEnquiry'
+//                 },
+//             },
+//             {
+//                 $unwind: '$SalesEnquiry'
+//             },
+//             {
+//                 $lookup: {
+//                     from: 'customers',
+//                     localField: 'SalesEnquiry.CustomerId',
+//                     foreignField: 'CustomerId',
+//                     as: 'SalesEnquiry.Customer'
+//                 },
+//             },
+//             {
+//                 $lookup: {
+//                     from: 'offeringtypes',
+//                     localField: 'SalesEnquiry.OfferingTypeId',
+//                     foreignField: 'OfferingTypeId',
+//                     as: 'SalesEnquiry.OfferingType'
+//                 },
+//             },
+//             {
+//                                     $lookup:{
+//                                         from:"typeofequipments",
+//                                         localField:"SalesEnquiry.TypeOfEquipmentId",
+//                                         foreignField:"TypeOfEquipmentId",
+//                                         as:"SalesEnquiry.TypeOfEquipment"
+//                                     },
+                                 
+//                                 },
+//                                 {
+//                                     $lookup:{
+//                                         from:"equipment",
+//                                         localField:"SalesEnquiry.EquipmentId",
+//                                         foreignField:"EquipmentId",
+//                                         as:"SalesEnquiry.Equipment"
+//                                     },
+                                 
+//                                 },
+//                                 {
+//                                     $lookup:{
+//                                         from:"enquirytypes",
+//                                         localField:"SalesEnquiry.EnquiryTypeId",
+//                                         foreignField:"EnquiryTypeId",
+//                                         as:"SalesEnquiry.EnquiryType"
+//                                     },
+                                 
+//                                 },
+//                                 {
+//                                     $lookup:{
+//                                         from:"enquirystatuses",
+//                                         localField:"SalesEnquiry.EnquiryStatusId",
+//                                         foreignField:"EnquiryStatusId",
+//                                         as:"SalesEnquiry.EnquiryStatus"
+//                                     },
+                                  
+//                                   },
+//                                   {
+//                                     $lookup:{
+//                                         from:"employees",
+//                                         localField:"SalesEnquiry.EnquiryOwnerId",
+//                                         foreignField:"EmployeeId",
+//                                         as:"SalesEnquiry.EnquiryOwner"
+//                                     },
+                                  
+//                                   },
+//                                   {
+//                                     $lookup:{
+//                                         from:'installationtypes',
+//                                         localField:'SalesEnquiry.InstallationType',
+//                                         foreignField:'InstallationTypeId',
+//                                         as:"SalesEnquiry.InstallationType"
+//                                     },
+//                                 },
+//                                 {
+//                                     $match: { PurchaseEstimationEnquiryId: existingDocument.PurchaseEstimationEnquiryId }
+//                                 },
+           
+//         ]);
+// console.log(existingDocument.PurchaseEstimationEnquiryId);
+//         res.json({
+//             count: result.length,
+//             success: true,
+//             message: 'get PurchaseEstimationEnquiry Details by Purchase estimation Id',
+//             data: result
+//         });
+//     } catch (error) {
+//         res.json({
+//             success: false,
+//             message: `Something went wrong: ${error}`,
+//             data: null
+//         });
+//     }
+// };
+
+exports.getSinglePurchaseEstimationEnquiryDetails = async (req, res) => {
     try {
-        const result = await PurchaseEstimationEnquiry.aggregate([
-            {
-                $lookup:{
-                    from:'customers',
-                    localField:'CustomerId',
-                    foreignField:'CustomerId',
-                    as:"Customer"
-                },
-            },
-            {
-                $lookup:{
-                    from:'salesenquiries',
-                    localField:'SalesEnquiryId',
-                    foreignField:'SalesEnquiryId',
-                    as:"SalesEnquiry"
-                },
-            },
-          {
-            $match:{PurchaseEstimationEnquiryId:req.body.PurchaseEstimationEnquiryId}
-          }
-        ])
-        res.json({
-            count:result.length,
-            success:true,
-            message:"get PurchaseEstimationEnquiry Details",
-            data:result
-        })
+        const purchaseEstimationEnquiryId = req.params.PurchaseEstimationEnquiryId;
+        // console.log(purchaseEstimationEnquiryId);
+        // const aggregationPipeline = [
+        //     // ... your existing pipeline stages ...
+        //     {
+        //         $lookup: {
+        //             from: 'salesenquiries',
+        //             localField: 'SalesEnquiryId',
+        //             foreignField: 'SalesEnquiryId',
+        //             as: 'SalesEnquiry'
+        //         },
+        //     },
+        //     {
+        //         $unwind: '$SalesEnquiry'
+        //     },
+        //     {
+        //         $lookup: {
+        //             from: 'customers',
+        //             localField: 'SalesEnquiry.CustomerId',
+        //             foreignField: 'CustomerId',
+        //             as: 'SalesEnquiry.Customer'
+        //         },
+        //     },
+        //     {
+        //         $lookup: {
+        //             from: 'offeringtypes',
+        //             localField: 'SalesEnquiry.OfferingTypeId',
+        //             foreignField: 'OfferingTypeId',
+        //             as: 'SalesEnquiry.OfferingType'
+        //         },
+        //     },
+        //     {
+        //                             $lookup:{
+        //                                 from:"typeofequipments",
+        //                                 localField:"SalesEnquiry.TypeOfEquipmentId",
+        //                                 foreignField:"TypeOfEquipmentId",
+        //                                 as:"SalesEnquiry.TypeOfEquipment"
+        //                             },
+                                 
+        //                         },
+        //                         {
+        //                             $lookup:{
+        //                                 from:"equipment",
+        //                                 localField:"SalesEnquiry.EquipmentId",
+        //                                 foreignField:"EquipmentId",
+        //                                 as:"SalesEnquiry.Equipment"
+        //                             },
+                                 
+        //                         },
+        //                         {
+        //                             $lookup:{
+        //                                 from:"enquirytypes",
+        //                                 localField:"SalesEnquiry.EnquiryTypeId",
+        //                                 foreignField:"EnquiryTypeId",
+        //                                 as:"SalesEnquiry.EnquiryType"
+        //                             },
+                                 
+        //                         },
+        //                         {
+        //                             $lookup:{
+        //                                 from:"enquirystatuses",
+        //                                 localField:"SalesEnquiry.EnquiryStatusId",
+        //                                 foreignField:"EnquiryStatusId",
+        //                                 as:"SalesEnquiry.EnquiryStatus"
+        //                             },
+                                  
+        //                           },
+        //                           {
+        //                             $lookup:{
+        //                                 from:"employees",
+        //                                 localField:"SalesEnquiry.EnquiryOwnerId",
+        //                                 foreignField:"EmployeeId",
+        //                                 as:"SalesEnquiry.EnquiryOwner"
+        //                             },
+                                  
+        //                           },
+        //                           {
+        //                             $lookup:{
+        //                                 from:'installationtypes',
+        //                                 localField:'SalesEnquiry.InstallationType',
+        //                                 foreignField:'InstallationTypeId',
+        //                                 as:"SalesEnquiry.InstallationType"
+        //                             },
+        //                         },
+                               
+           
+        //     {
+        //         $match: { PurchaseEstimationEnquiryId: purchaseEstimationEnquiryId }
+        //     }
+        // ];
+       
+        try {
+            // Execute the aggregation and await the result
+            // const result = await PurchaseEstimationEnquiry.aggregate(aggregationPipeline);
+        
+            // if (!result || result.length === 0) {
+            //     return res.status(404).json({
+            //         success: false,
+            //         message: 'Purchase estimation enquiry not found',
+            //         data: null
+            //     });
+            // }
+        const result = await PurchaseEstimationEnquiry.findOne({PurchaseEstimationEnquiryId:purchaseEstimationEnquiryId})
+            // Process the result as needed
+            res.json({
+                count: result.length,
+                success: true,
+                message: 'Get PurchaseEstimationEnquiry Details by Purchase Estimation Enquiry Id',
+                data: result
+            });
+        } catch (error) {
+            console.error(`Error: ${error}`);
+            res.json({
+                success: false,
+                message: `Something went wrong: ${error.message}`,
+                data: null
+            });
+        }
+       
     } catch (error) {
         res.json({
-            success:false,
-            message: `Something went worng `+ {error},
-            data:null
-         })
+            success: false,
+            message: `Something went wrong: ${error}`,
+            data: null
+        });
     }
-}
+};
+
+
+// Your aggregation pipeline
+
+
+// Execute the aggregation with a callback
+

@@ -60,7 +60,7 @@ const bcrypt = require('bcryptjs')
  *         - Email
  *         - Password
  *         - GroupId
- *         - InstallationType
+ *         - InstallationTypeId
  *       properties:
  *         SalesEnquiryId:
  *           type: integer
@@ -116,9 +116,9 @@ const bcrypt = require('bcryptjs')
  *         GroupId:
  *           type: string
  *           description: GroupId
- *         InstallationType:
+ *         InstallationTypeId:
  *           type: string
- *           description: GroupId
+ *           description: InstallationTypeId
  *       example:
  *         SalesEnquiryId: EA001
  *         EnquiryDate: 12-05-2023
@@ -138,7 +138,7 @@ const bcrypt = require('bcryptjs')
  *         AdditionalComments: jbbfrfr,
  *         TargetDate: 20-03-2023,
  *         GroupId: GID101,
- *         InstallationType: GID101,
+ *         InstallationTypeId: 1,
  *
  */
 
@@ -200,7 +200,7 @@ const bcrypt = require('bcryptjs')
         Remarks: req.body.Remarks,
         AdditionalComments: req.body.AdditionalComments,
         TargetDate: req.body.TargetDate,
-        InstallationType: req.body.InstallationType,
+        InstallationTypeId: req.body.InstallationTypeId,
         // file: `https://avinya01.s3.ap-south-1.amazonaws.com/${req.file.originalname}`
       })
     
@@ -312,7 +312,7 @@ const bcrypt = require('bcryptjs')
 {
   $lookup:{
       from:'installationtypes',
-      localField:'InstallationType',
+      localField:'InstallationTypeId',
       foreignField:'InstallationTypeId',
       as:"InstallationType"
   },

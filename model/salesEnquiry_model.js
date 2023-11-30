@@ -70,7 +70,7 @@ type:String
     verificationCode:{
         type:Number
     },
-    InstallationType:{
+    InstallationTypeId:{
         type:String
     }
 },{

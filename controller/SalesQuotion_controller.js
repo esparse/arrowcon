@@ -13,6 +13,9 @@ exports.CreateSalesQuotionDetails = async(req,res)=>{
         DeliveryTerm:req.body.DeliveryTerm,
         DeliveryBasis:req.body.DeliveryBasis,
         StatusId:req.body.StatusId,
+        TotalAmtTHB:req.body.TotalAmtTHB,
+        IssuedBy:req.body.IssuedBy,
+        ApprovedBy:req.body.ApprovedBy,
      })
      res.json({
         success:true,

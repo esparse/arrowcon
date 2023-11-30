@@ -31,6 +31,15 @@ const SalesQuotionSchema = mongoose.Schema({
     StatusId:{
         type:String,
         default:"1"
+    },
+    TotalAmtTHB:{
+        type:String
+    },
+    IssuedBy:{
+        type:String
+    },
+    ApprovedBy:{
+        type:String
     }
 },{
 timestamps:true

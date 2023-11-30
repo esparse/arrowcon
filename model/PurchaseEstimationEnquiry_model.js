@@ -10,30 +10,11 @@ const PurchaseEstimationEnquirySchema = mongoose.Schema({
     EnquiryDate:{
         type:String,
     },
-    CustomerId:{
-        type:String
-    },
-    EnquiryOwnerId :{
-        type:String
-    },
-    OfferingTypeId:{
-        type:String
-    },
-    EnquiryTypeId  :{
-        type:String
-    },
-    EquipmentId:{
-        type:String
-    },
-    TypeOfEquipmentId:{
-        type:String
-    },
+   
     EnquiryDescription:{
         type:String
     },
-    EnquiryStatusId:{
-        type:String
-    },
+
     Remark:{
         type:String
     },
@@ -47,9 +28,7 @@ const PurchaseEstimationEnquirySchema = mongoose.Schema({
         type:String
 
     },
-    InstallationTypeId:{
-        type:String
-    }
+   
     
 },{
 timestamps:true
