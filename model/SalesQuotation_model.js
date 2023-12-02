@@ -7,7 +7,7 @@ const SalesQuotionSchema = mongoose.Schema({
     Date:{
         type:String
     },
-    QuotionCurrency:{
+    QuotionCurrencyId:{
         type:String,   
     },
     CustomerId:{

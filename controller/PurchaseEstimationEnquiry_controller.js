@@ -49,14 +49,7 @@ exports.viewPurchaseEstimationEnquiryDetails = async(req,res)=>{
         {
             $unwind: "$SalesEnquiry"
           },
-        {
-            $lookup:{
-                from:'customers',
-                localField:'SalesEnquiry.CustomerId',
-                foreignField:'CustomerId',
-                as:"SalesEnquiry.Customer"
-            },
-        },
+       
 
  {
                 $lookup:{
@@ -114,11 +107,59 @@ exports.viewPurchaseEstimationEnquiryDetails = async(req,res)=>{
               {
                 $lookup:{
                     from:'installationtypes',
-                    localField:'SalesEnquiry.InstallationType',
+                    localField:'SalesEnquiry.InstallationTypeId',
                     foreignField:'InstallationTypeId',
                     as:"SalesEnquiry.InstallationType"
                 },
             },
+            {
+                $lookup:{
+                    from:"weightedsales",
+                    localField:"SalesEnquiry.WeightedsalesId",
+                    foreignField:"WeightedsalesId",
+                    as:"SalesEnquiry.Weightedsales"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:'customers',
+                    localField:'SalesEnquiry.CustomerId',
+                    foreignField:'CustomerId',
+                    as:"SalesEnquiry.Customer"
+                },
+            },
+{
+    $unwind:"$SalesEnquiry.Customer"
+},
+{
+    $lookup:{
+        from:"customercategories",
+        localField:"SalesEnquiry.Customer.CustomerCategoryId",
+        foreignField:"CustomerCategoryId",
+        as:"SalesEnquiry.Customer.CustomerCategory"
+    },
+ 
+},
+{
+    $lookup:{
+        from:"customerregions",
+        localField:"SalesEnquiry.Customer.CustomerRegionId",
+        foreignField:"CustomerRegionId",
+        as:"SalesEnquiry.Customer.CustomerRegion"
+    },
+ 
+},
+{
+    $lookup:{
+        from:"locations",
+        localField:"SalesEnquiry.Customer.locationId",
+        foreignField:"locationId",
+        as:"SalesEnquiry.Customer.location"
+    },
+ 
+},
+
         ])
         res.json({
             count:result.length,
