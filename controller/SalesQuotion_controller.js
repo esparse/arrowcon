@@ -58,6 +58,14 @@ exports.viewSalesQuotionDetails = async(req,res)=>{
                     as:"Status"
                 },
             },
+            {
+                $lookup:{
+                    from:'quotioncurrencies',
+                    localField:'QuotionCurrencyId',
+                    foreignField:'QuotionCurrencyId',
+                    as:"QuotionCurrency"
+                },
+            },
         ])
         res.json({
             count:result.length,
