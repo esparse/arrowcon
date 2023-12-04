@@ -14,6 +14,9 @@ const SalesOrderTransferSchema = mongoose.Schema({
     SalesEnquiryId:{
         type:String
     },
+    QuotionCurrencyId:{
+        type:String
+    },
     CustomerId:{
         type:String
     },
@@ -26,7 +29,7 @@ const SalesOrderTransferSchema = mongoose.Schema({
     ScopeOfSupply:{
         type:String
     },
-    TotalOrderValueId:{
+    TotalOrderValue:{
         type:String
     },
     TearmsOfPayment:{
