@@ -270,15 +270,15 @@ const SalesOrderTransfer = require('../model/salesOrderTransfer_model');
         },
      
     },
-    {
-      $lookup:{
-          from:"weightedsales",
-          localField:"TotalOrderValue",
-          foreignField:"WeightedsalesId",
-          as:"TotalOrderValue"
-      },
+  //   {
+  //     $lookup:{
+  //         from:"weightedsales",
+  //         localField:"TotalOrderValue",
+  //         foreignField:"WeightedsalesId",
+  //         as:"TotalOrderValue"
+  //     },
    
-  },
+  // },
   {
     $lookup:{
         from:"inspections",
