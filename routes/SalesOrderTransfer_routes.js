@@ -251,14 +251,7 @@ const SalesOrderTransfer = require('../model/salesOrderTransfer_model');
   router.get('/getSalesOrderTransfer',async(req,res)=>{
     try {
       const result = await SalesOrderTransfer.aggregate([
-        {
-            $lookup:{
-                from:'customers',
-                localField:'CustomerId',
-                foreignField:'CustomerId',
-                as:"Customer"
-            },
-        },
+        
        
       
     {
@@ -324,6 +317,15 @@ const SalesOrderTransfer = require('../model/salesOrderTransfer_model');
   },
 
 },
+
+{
+  $lookup:{
+      from:'quotioncurrencies',
+      localField:'QuotionCurrencyId',
+      foreignField:'QuotionCurrencyId',
+      as:"QuotionCurrency"
+  },
+},
 {
   $lookup:{
       from:"salesenquiries",
@@ -334,11 +336,14 @@ const SalesOrderTransfer = require('../model/salesOrderTransfer_model');
 
 },
 {
+  $unwind:"$SalesEnquiry"
+},
+{
   $lookup:{
-      from:'quotioncurrencies',
-      localField:'QuotionCurrencyId',
-      foreignField:'QuotionCurrencyId',
-      as:"QuotionCurrency"
+      from:'customers',
+      localField:'SalesEnquiry.CustomerId',
+      foreignField:'CustomerId',
+      as:"SalesEnquiry.Customer"
   },
 },
 
