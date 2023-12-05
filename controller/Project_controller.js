@@ -46,14 +46,7 @@ exports.viewProjectDetails = async(req,res)=>{
                     as:"Document"
                 },
             },
-            {
-                $lookup:{
-                    from:'customers',
-                    localField:'CustomerId',
-                    foreignField:'CustomerId',
-                    as:"Customer"
-                },
-            },
+           
             {
                 $lookup:{
                     from:"states",
@@ -108,6 +101,33 @@ exports.viewProjectDetails = async(req,res)=>{
                 },
              
             },
+            {
+                $lookup:{
+                    from:'customers',
+                    localField:'CustomerId',
+                    foreignField:'CustomerId',
+                    as:"Customer"
+                },
+            },
+            {
+                $unwind:"$Customer"
+            },
+            {
+                $lookup:{
+                  from:'customercategories',
+                  localField:'Customer.CustomerCategoryId',
+                  foreignField:'CustomerCategoryId',
+                  as:"Customer.CustomerCategory"
+              }
+              },
+              {
+                $lookup:{
+                  from:'customerregions',
+                  localField:'Customer.CustomerRegionId',
+                  foreignField:'CustomerRegionId',
+                  as:"Customer.CustomerRegion"
+              }
+              },
         ])
         res.json({
             count:result.length,
