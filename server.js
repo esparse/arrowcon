@@ -70,6 +70,7 @@ const SalesQuotionItem = require('./routes/SalesQuotionItemDetils_routes');
 const QuotionCurrency = require('./routes/QuotionCurrency_routes');
 const InstallationType = require('./routes/InstallationType_routes');
 const Status = require('./routes/Status_routes');
+const itemdetailsinpurchaseestimationenquiry = require('./routes/itemdetailsinpurchaseestimationenquiry_routes');
 // const Personcontact = require('./middleware/contactperson');
 
 const options = {
@@ -154,6 +155,7 @@ const options = {
   app.use("/api/v1",QuotionCurrency)
   app.use("/api/v1",InstallationType)
   app.use("/api/v1",Status)
+  app.use("/api/v1",itemdetailsinpurchaseestimationenquiry)
   // app.use("/api/v1",Personcontact)
  
 

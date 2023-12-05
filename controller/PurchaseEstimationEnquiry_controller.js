@@ -37,7 +37,14 @@ exports.viewPurchaseEstimationEnquiryDetails = async(req,res)=>{
             },
         },
 
-
+        {
+            $lookup:{
+                from:'salesenquiryitemdetails',
+                localField:'SalesEnquiryId',
+                foreignField:'SalesEnquiryId',
+                as:"SalesEnquiryItemDetails"
+            },
+        },
         {
             $lookup:{
                 from:'salesenquiries',
