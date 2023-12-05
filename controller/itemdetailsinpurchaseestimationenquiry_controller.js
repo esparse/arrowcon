@@ -42,7 +42,7 @@ exports.viewitemdetailsinpurchaseestimationenquiryDetails = async(req,res)=>{
                     from:'salesenquiryitemdetails',
                     localField:'ItemDetails',
                     foreignField:'ItemDetails',
-                    as:"ItemDetails"
+                    as:"ItemDetail"
                 },
             },
             {
