@@ -326,7 +326,7 @@ const bcrypt = require('bcryptjs')
   },
 },
 {
-  $unwind:"Customer"
+  $unwind:"$Customer"
 },
 
 {
@@ -334,7 +334,7 @@ const bcrypt = require('bcryptjs')
     from:'customercategories',
     localField:'Customer.CustomerCategoryId',
     foreignField:'CustomerCategoryId',
-    as:"CustomerCategory"
+    as:"Customer.CustomerCategory"
 }
 },
 {
@@ -342,7 +342,7 @@ const bcrypt = require('bcryptjs')
     from:'customerregions',
     localField:'Customer.CustomerRegionId',
     foreignField:'CustomerRegionId',
-    as:"CustomerRegion"
+    as:"Customer.CustomerRegion"
 }
 },
 {
@@ -350,7 +350,7 @@ const bcrypt = require('bcryptjs')
     from:'locations',
     localField:'Customer.locationId',
     foreignField:'locationId',
-    as:"Location"
+    as:"Customer.Location"
 }
 },
     ])
