@@ -18,6 +18,10 @@ const itemdetailsinpurchaseestimationenquirySchema = mongoose.Schema({
         type:String
 
     },
+    QuotionCurrencyId:{
+        type:String
+
+    },
     BasePrice:{
         type:String  
     },

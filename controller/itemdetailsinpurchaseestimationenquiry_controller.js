@@ -9,6 +9,7 @@ exports.CreateitemdetailsinpurchaseestimationenquiryDetails = async(req,res)=>{
         QuotationDate:req.body.QuotationDate,
         BasePrice:req.body.BasePrice,
         Discount:req.body.Discount,
+        QuotionCurrencyId:req.body.QuotionCurrencyId,
         BasePriceAfterDiscount:req.body.BasePriceAfterDiscount,
         PF:req.body.PF,
         VAT:req.body.VAT,
@@ -53,6 +54,15 @@ exports.viewitemdetailsinpurchaseestimationenquiryDetails = async(req,res)=>{
                     as:"Suplier"
                 },
             },
+            {
+                $lookup:{
+                    from:'quotioncurrencies',
+                    localField:'QuotionCurrencyId',
+                    foreignField:'QuotionCurrencyId',
+                    as:"QuotionCurrency"
+                },
+            },
+
         ])
         res.json({
             count:result.length,

@@ -13,6 +13,7 @@ const router = express.Router()
  *         - SuplierId
  *         - QuotationNo
  *         - QuotationDate
+ *         - QuotionCurrencyId
  *         - BasePrice
  *         - Discount
  *         - BasePriceAfterDiscount
@@ -42,6 +43,9 @@ const router = express.Router()
  *         QuotationNo:
  *           type: string
  *           description: QuotationNo
+ *         QuotionCurrencyId:
+ *           type: string
+ *           description: QuotionCurrencyId
  *         BasePrice:
  *           type: string
  *           description: itemdetailsinpurchaseestimationenquiryId
@@ -87,6 +91,7 @@ const router = express.Router()
  *         SuplierId: VD101001
  *         QuotationNo: 98745
  *         QuotationDate: 05-12-23
+ *         QuotionCurrencyId: 1
  *         BasePrice: 43500
  *         Discount: 0
  *         BasePriceAfterDiscount: 43500
