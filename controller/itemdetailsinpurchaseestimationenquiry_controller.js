@@ -39,10 +39,18 @@ exports.viewitemdetailsinpurchaseestimationenquiryDetails = async(req,res)=>{
         const result = await itemdetailsinpurchaseestimationenquiry.aggregate([
             {
                 $lookup:{
-                    from:'groups',
-                    localField:'GroupId',
-                    foreignField:'GroupId',
-                    as:"Group"
+                    from:'salesenquiryitemdetails',
+                    localField:'ItemDetails',
+                    foreignField:'ItemDetails',
+                    as:"ItemDetails"
+                },
+            },
+            {
+                $lookup:{
+                    from:'supliers',
+                    localField:'SuplierId',
+                    foreignField:'SuplierId',
+                    as:"Suplier"
                 },
             },
         ])
