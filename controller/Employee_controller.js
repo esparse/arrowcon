@@ -1,5 +1,6 @@
 const Employee = require("../model/Employee_model")
 const nodemailer = require("nodemailer");
+const bcrypt = require("bcryptjs")
 exports.CreateEmployeeDetails = async(req,res)=>{
  try {
     let count = (await Employee.countDocuments()+1)+100;
@@ -7,6 +8,7 @@ exports.CreateEmployeeDetails = async(req,res)=>{
         EmployeeId: "ED"+count,
         EmployeeName:req.body.EmployeeName,
         EmailId:req.body.EmailId,
+        Password:bcrypt.hashSync(req.body.Password,10),
         MobileNumber:req.body.MobileNumber,
         Address:req.body.Address,
         CityId:req.body.CityId,

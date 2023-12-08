@@ -9,17 +9,17 @@ const router = express.Router()
  *     admin:
  *       type: object
  *       required:
- *         - Email
+ *         - EmailId
  *         - Password
  *       properties:
- *         Email:
+ *         EmailId:
  *           type: string
  *           description: admin@gmail.com
  *         Password:
  *           type: string
  *           description: password
  *       example:
- *         Email: arrowcon@gmail.com
+ *         EmailId: arrowcon@gmail.com
  *         Password: 1234     
  *
  */

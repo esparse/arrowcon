@@ -28,7 +28,12 @@ const PurchaseEstimationEnquirySchema = mongoose.Schema({
         type:String
 
     },
-   
+   AllocatedEmployeeId:{
+    type:String
+   },
+   AllocatedRemark:{
+    type:String
+   }
     
 },{
 timestamps:true

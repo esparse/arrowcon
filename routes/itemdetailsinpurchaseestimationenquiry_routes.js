@@ -1,5 +1,5 @@
 const express = require("express")
-const {CreateitemdetailsinpurchaseestimationenquiryDetails,viewitemdetailsinpurchaseestimationenquiryDetails,deleteitemdetailsinpurchaseestimationenquiryDetails,updateitemdetailsinpurchaseestimationenquiryDetails,getSingleitemdetailsinpurchaseestimationenquiryDetails} = require("../controller/itemdetailsinpurchaseestimationenquiry_controller")
+const {CreateitemdetailsinpurchaseestimationenquiryDetails,viewitemdetailsinpurchaseestimationenquiryDetails,deleteitemdetailsinpurchaseestimationenquiryDetails,updateitemdetailsinpurchaseestimationenquiryDetails,getSingleitemdetailsinpurchaseestimationenquiryDetails,getitemdetailsinpurchaseestimationenquiryDetailsbysalesEnquiryitemdetailsIdandSalesEnquiryId} = require("../controller/itemdetailsinpurchaseestimationenquiry_controller")
 const router = express.Router()
 /**
  * @swagger
@@ -221,6 +221,51 @@ router.route("/updateitemdetailsinpurchaseestimationenquiryDetails").post(update
  *       404:
  *         description: itemdetailsinpurchaseestimationenquiry not found
  */
+
 router.route("/getSingleitemdetailsinpurchaseestimationenquiryDetails/:itemdetailsinpurchaseestimationenquiryId").get(getSingleitemdetailsinpurchaseestimationenquiryDetails)
-module.exports = router
+/**
+ * @swagger
+ * tags:
+ *   name: PurchaseEstimationEnquiryDetails
+ *   description: Operations related to Purchase Estimation Enquiry Details
+ */
+
+/**
+ * @swagger
+ * path:
+ *   /viewitemdetailsinpurchaseestimationenquiryDetails/{salesEnquiryitemdetailsId}/{SalesEnquiryId}:
+ *     get:
+ *       summary: View item details in Purchase Estimation Enquiry Details
+ *       tags: [PurchaseEstimationEnquiryDetails]
+ *       parameters:
+ *         - in: path
+ *           name: salesEnquiryitemdetailsId
+ *           required: true
+ *           schema:
+ *             type: string
+ *           description: Sales Enquiry Item Details Id
+ *         - in: path
+ *           name: SalesEnquiryId
+ *           required: true
+ *           schema:
+ *             type: string
+ *           description: Sales Enquiry Id
+ *       responses:
+ *         '200':
+ *           description: Successful response
+ *         '400':
+ *           description: Bad request
+ */
+
+
+
+
+router.route('/getitemdetailsinpurchaseestimationenquiryDetailsbysalesEnquiryitemdetailsIdandSalesEnquiryId/:salesEnquiryitemdetailsId/:SalesEnquiryId')
+  .get(getitemdetailsinpurchaseestimationenquiryDetailsbysalesEnquiryitemdetailsIdandSalesEnquiryId);
+
+module.exports = router;
+
+module.exports = router 
+
+
 

@@ -8,13 +8,13 @@ const router = express.Router()
  *     admin1:
  *       type: object
  *       required:
- *         - Email
+ *         - EmailId
  *       properties:
- *         Email:
+ *         EmailId:
  *           type: string
- *           description: email
+ *           description: EmailId
  *       example:
- *         Email: arrowcon@gmail.com
+ *         EmailId: arrowcon@gmail.com
  *        
  *
  */
@@ -22,7 +22,7 @@ const router = express.Router()
  * @swagger
  * /api/v1/send-verification-code:
  *   post:
- *     summary: Email Send for forgot Password
+ *     summary: EmailId Send for forgot Password
  *     tags: [admin]
  *     requestBody:
  *       required: true
@@ -41,36 +41,36 @@ const router = express.Router()
  *         description: Some server error
  */
 router.post('/send-verification-code', async (req, res) => {
-    const { Email } = req.body;
+    const { EmailId } = req.body;
     const verificationCode = Math.floor(Math.random() * 900000) + 100000; // Generate a 6-digit verification code
   
     const Admin = await Admin.findOneAndUpdate(
-      { Email },
+      { EmailId },
       { verificationCode },
       { new: true, upsert: true }
     );
   
-    const transporter = nodemailer.createTransport({
+    const transporter = nodEmailIder.createTransport({
       service: 'gmail',
       auth: {
           user:"icaet20@nmiet.edu.in",
-          pass:"Bonybaba125@", // Replace with your own email password
+          pass:"Bonybaba125@", // Replace with your own EmailId password
       },
     });
   
     const mailOptions = {
       from: "icaet20@nmiet.edu.in",
-      to: Email,
-      subject: 'Email Verification Code',
-      text: `Your email verification code is ${verificationCode}`,
+      to: EmailId,
+      subject: 'EmailId Verification Code',
+      text: `Your EmailId verification code is ${verificationCode}`,
     };
   
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
         console.log(error);
-        res.status(500).send('Error sending email');
+        res.status(500).send('Error sending EmailId');
       } else {
-        console.log('Email sent: ' + info.response);
+        console.log('EmailId sent: ' + info.response);
         res.send('Verification code sent successfully');
       }
     });
@@ -83,11 +83,11 @@ router.post('/send-verification-code', async (req, res) => {
  *     admin2:
  *       type: object
  *       required:
- *         - Email
+ *         - EmailId
  *         - Password
  *         - verificationCode
  *       properties:
- *         Email:
+ *         EmailId:
  *           type: string
  *           description: Admin@gmail.com
  *         Password:
@@ -97,7 +97,7 @@ router.post('/send-verification-code', async (req, res) => {
  *           type: integer
  *           description: verificationCode
  *       example:
- *         Email: Admin@gmail.com
+ *         EmailId: Admin@gmail.com
  *         Password: 12345
  *         verificationCode: 9874
  *
@@ -124,9 +124,9 @@ router.post('/send-verification-code', async (req, res) => {
  *         description: Some server error
  */
 router.post('/change-password-admin', async (req, res) => {
-    const { Email, verificationCode } = req.body;
+    const { EmailId, verificationCode } = req.body;
   
-    const admin = await Admin.findOne({ Email });
+    const admin = await Admin.findOne({ EmailId });
     if (!admin) {
       return res.status(400).send('Admin not found');
     }

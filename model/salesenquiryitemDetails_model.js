@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 
 const SalesEnquiryitemdetailsSchema = mongoose.Schema({
-    SalesEnquiryitemdetailsId:{
+    salesEnquiryitemdetailsId:{
         type:String
     },
    

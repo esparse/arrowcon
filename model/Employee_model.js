@@ -14,6 +14,9 @@ const EmployeeSchema = mongoose.Schema({
         type:String
 
     },
+    Password:{
+        type:String
+    },
     MobileNumber:{
         type:String
     },

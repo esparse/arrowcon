@@ -1,20 +1,20 @@
-const admin = require("../model/admin_model")
+const admin = require("../model/Employee_model")
 brycpt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 exports.Adminlogin = async(req,res) =>{
     try {
-     const {Email,Password} = req.body
-     const result = await admin.findOne({Email}) 
+     const {EmailId,Password} = req.body
+     const result = await admin.findOne({EmailId}) 
      
      if(!result){
          return res.json({
              success:false,
-             message:"Plese enter your correct Email",
+             message:"Plese enter your correct EmailId",
              data:null
  
          })
         }
-    //  email found
+    //  EmailId found
      const verify = await brycpt.compare(Password,result.Password)  
      if(!verify){
         return res.json({
@@ -25,18 +25,18 @@ exports.Adminlogin = async(req,res) =>{
         }) 
  }
  const token = await jwt.sign({user:result._id},process.env.JWT_SECRET_KEY)
- // all email and pasword match
+ // all EmailId and pasword match
  const resAdmin = await admin.aggregate([ 
     {
    $lookup:{
-       from:'groups',
-       localField:'GroupId',
-       foreignField:'GroupId',
-       as:"Group"
+       from:'roles',
+       localField:'RoleId',
+       foreignField:'RoleId',
+       as:"Roles"
    },
 },
 {
-    $match:{Email:result.Email}
+    $match:{EmailId:result.EmailId}
 }
 ])
  res.json({

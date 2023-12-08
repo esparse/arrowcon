@@ -5,7 +5,7 @@ exports.CreateitemdetailsinpurchaseestimationenquiryDetails = async(req,res)=>{
 
     const result = await itemdetailsinpurchaseestimationenquiry.create({
         itemdetailsinpurchaseestimationenquiryId:Math.floor((Math.random()*100000)+1),
-        ItemDetails:req.body.ItemDetails,
+        salesEnquiryitemdetailsId:req.body.salesEnquiryitemdetailsId,
         SalesEnquiryId:req.body.SalesEnquiryId,
         SuplierId:req.body.SuplierId,
         QuotationNo:req.body.QuotationNo,
@@ -47,6 +47,14 @@ exports.viewitemdetailsinpurchaseestimationenquiryDetails = async(req,res)=>{
                     localField:'SalesEnquiryId',
                     foreignField:'SalesEnquiryId',
                     as:"SalesEnquiry"
+                },
+            },
+            {
+                $lookup:{
+                    from:'salesenquiryitemdetails',
+                    localField:'salesEnquiryitemdetailsId',
+                    foreignField:'salesEnquiryitemdetailsId',
+                    as:"SalesEnquiryitemdetails"
                 },
             },
             {
@@ -131,3 +139,64 @@ exports.getSingleitemdetailsinpurchaseestimationenquiryDetails = async(req,res)=
         })  
     }
 }
+exports.getitemdetailsinpurchaseestimationenquiryDetailsbysalesEnquiryitemdetailsIdandSalesEnquiryId = async (req, res) => {
+    try {
+      const salesEnquiryitemdetailsId = req.params.salesEnquiryitemdetailsId; // Assuming the parameter is in the request params
+      const SalesEnquiryId = req.params.SalesEnquiryId; // Assuming the parameter is in the request params
+  
+      const result = await itemdetailsinpurchaseestimationenquiry.aggregate([
+        {
+          $match: {
+            salesEnquiryitemdetailsId: salesEnquiryitemdetailsId,
+            SalesEnquiryId: SalesEnquiryId,
+          },
+        },
+        {
+          $lookup: {
+            from: 'salesenquiries',
+            localField: 'SalesEnquiryId',
+            foreignField: 'SalesEnquiryId',
+            as: 'SalesEnquiry',
+          },
+        },
+        {
+          $lookup: {
+            from: 'salesenquiryitemdetails',
+            localField: 'salesEnquiryitemdetailsId',
+            foreignField: 'salesEnquiryitemdetailsId',
+            as: 'SalesEnquiryitemdetails',
+          },
+        },
+        {
+          $lookup: {
+            from: 'supliers',
+            localField: 'SuplierId',
+            foreignField: 'SuplierId',
+            as: 'Suplier',
+          },
+        },
+        {
+          $lookup: {
+            from: 'quotioncurrencies',
+            localField: 'QuotionCurrencyId',
+            foreignField: 'QuotionCurrencyId',
+            as: 'QuotionCurrency',
+          },
+        },
+      ]);
+  
+      res.json({
+        count: result.length,
+        success: true,
+        message: 'Get item details in purchase estimation enquiry Details by salesEnquiryitemdetailsId and SalesEnquiryId',
+        data: result,
+      });
+    } catch (error) {
+      res.json({
+        success: false,
+        message: `Something went wrong ` + { error },
+        data: null,
+      });
+    }
+  };
+  
