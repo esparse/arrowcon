@@ -1,9 +1,12 @@
 const itemdetailsinpurchaseestimationenquiry = require("../model/ItemsdetailsinpurchaseEstimationEnquiry_model")
 exports.CreateitemdetailsinpurchaseestimationenquiryDetails = async(req,res)=>{
  try {
+
+
     const result = await itemdetailsinpurchaseestimationenquiry.create({
         itemdetailsinpurchaseestimationenquiryId:Math.floor((Math.random()*100000)+1),
         ItemDetails:req.body.ItemDetails,
+        SalesEnquiryId:req.body.SalesEnquiryId,
         SuplierId:req.body.SuplierId,
         QuotationNo:req.body.QuotationNo,
         QuotationDate:req.body.QuotationDate,
@@ -40,10 +43,10 @@ exports.viewitemdetailsinpurchaseestimationenquiryDetails = async(req,res)=>{
         const result = await itemdetailsinpurchaseestimationenquiry.aggregate([
             {
                 $lookup:{
-                    from:'salesenquiryitemdetails',
-                    localField:'ItemDetails',
-                    foreignField:'ItemDetails',
-                    as:"ItemDetail"
+                    from:'salesenquiries',
+                    localField:'SalesEnquiryId',
+                    foreignField:'SalesEnquiryId',
+                    as:"SalesEnquiry"
                 },
             },
             {

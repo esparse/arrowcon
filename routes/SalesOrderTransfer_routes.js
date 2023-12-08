@@ -356,7 +356,7 @@ const SalesOrderTransfer = require('../model/salesOrderTransfer_model');
     } catch (error) {
       res.json({
         succes: false ,
-        Message: "Something went Worng" ,
+        Message: "Something went Worng"+error.message ,
         data : null
       })
     }

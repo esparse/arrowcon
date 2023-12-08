@@ -38,6 +38,7 @@ const EmployeeSchema = mongoose.Schema({
     DepartMentId:{
         type:String
     },
+    verificationCode:{type:Number}
 },{
 timestamps:true
 })
