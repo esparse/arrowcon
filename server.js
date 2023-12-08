@@ -72,7 +72,8 @@ const InstallationType = require('./routes/InstallationType_routes');
 const Status = require('./routes/Status_routes');
 const itemdetailsinpurchaseestimationenquiry = require('./routes/itemdetailsinpurchaseestimationenquiry_routes');
 const Allocatecostestimationtopurchaseteam = require('./routes/Allocatecostestimationtopurchaseteam_routes');
-const purchasetramlogin = require('./routes/purchaselogin_routes');
+const purchasetramlogin = require('./routes/purchaseloginteam_routes');
+const purchaseteamforgotpassword= require('./routes/purchaseteam_forgotpassword_routes');
 // const Personcontact = require('./middleware/contactperson');
 
 const options = {
@@ -160,6 +161,7 @@ const options = {
   app.use("/api/v1",itemdetailsinpurchaseestimationenquiry)
   app.use("/api/v1",Allocatecostestimationtopurchaseteam)
   app.use("/api/v1",purchasetramlogin)
+  app.use("/api/v1",purchaseteamforgotpassword)
   // app.use("/api/v1",Personcontact)
  
 

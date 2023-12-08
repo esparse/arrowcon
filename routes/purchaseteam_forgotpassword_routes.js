@@ -1,5 +1,5 @@
 const express = require("express")
-const purchaseteam = require("../model/purchaseteam_model")
+const purchaseteam = require("../model/Employee_model")
 const router = express.Router()
 /**
  * @swagger
