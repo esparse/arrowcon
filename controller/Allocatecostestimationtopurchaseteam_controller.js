@@ -27,8 +27,8 @@ exports.viewAllocatecostestimationtopurchaseteamDetails = async(req,res)=>{
             {
                 $lookup:{
                     from:'employees',
-                    localField:'AllocatecostestimationtopurchaseteamId',
-                    foreignField:'AllocatecostestimationtopurchaseteamId',
+                    localField:'AllocationToId',
+                    foreignField:'EmployeeId',
                     as:"Employees"
                 },
             },

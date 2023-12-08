@@ -4,7 +4,7 @@ const AllocatecostestimationtopurchaseteamSchema = mongoose.Schema({
     AllocatecostestimationtopurchaseteamId:{
         type:String
     },
-    AllocationId:{
+    AllocationToId:{
         type:String,
     },
     Date:{
