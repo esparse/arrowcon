@@ -1,5 +1,5 @@
 const express = require("express")
-const {CreatePurchaseEstimationEnquiryDetails,viewPurchaseEstimationEnquiryDetails,deletePurchaseEstimationEnquiryDetails,updatePurchaseEstimationEnquiryDetails,getSinglePurchaseEstimationEnquiryDetails,getPurchaseEstimationEnquiryDetailsbyAllocatedEmployeeId} = require("../controller/PurchaseEstimationEnquiry_controller")
+const {CreatePurchaseEstimationEnquiryDetails,viewPurchaseEstimationEnquiryDetails,deletePurchaseEstimationEnquiryDetails,updatePurchaseEstimationEnquiryDetails,getSinglePurchaseEstimationEnquiryDetails,getPurchaseEstimationEnquiryDetailsbyAllocatedEmployeeId,AllocatePurchaseEstimationEnquiryDetails,DeallocatePurchaseEstimationEnquiryDetails} = require("../controller/PurchaseEstimationEnquiry_controller")
 const router = express.Router()
 /**
  * @swagger
@@ -57,8 +57,7 @@ const router = express.Router()
  *         CostEstimationStatusId: 1
  *         AllocatedEmployeeId: ED101
  *         AllocatedRemark: NA
- *         
- *        
+ *                
  *
  */
 
@@ -218,6 +217,94 @@ router.route("/getSinglePurchaseEstimationEnquiryDetails/:PurchaseEstimationEnqu
  *           description: Bad request
  */
 router.route("/getPurchaseEstimationEnquiryDetailsbyAllocatedEmployeeId/:AllocatedEmployeeId").get(getPurchaseEstimationEnquiryDetailsbyAllocatedEmployeeId)
+/**
+ * @swagger
+ * /api/v1/AllocatePurchaseEstimationEnquiryDetails:
+ *   post:
+ *     summary: Allocate Purchase Estimation Enquiry Details
+ *     tags: [Purchase Estimation Enquiry]
+ *     requestBody:
+ *       description: Purchase Estimation Enquiry details for allocation
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               PurchaseEstimationEnquiryId:
+ *                 type: integer
+ *                 description: Unique identifier for the Purchase Estimation Enquiry.
+ *               AllocatedEmployeeId:
+ *                 type: string
+ *                 description: ID of the employee to allocate.
+ *               AllocatedRemark:
+ *                 type: string
+ *                 description: Remark for the allocation.
+ *             required:
+ *               - PurchaseEstimationEnquiryId
+ *               - AllocatedEmployeeId
+ *               - AllocatedRemark
+ *     responses:
+ *       200:
+ *         description: Allocation successful
+ *         content:
+ *           application/json:
+ *             example:
+ *               success: true
+ *               message: Allocation successful
+ *               data:
+ *                 PurchaseEstimationEnquiryId: 123
+ *                 AllocatedEmployeeId: "employee123"
+ *                 AllocatedRemark: "Allocation successful"
+ *       500:
+ *         description: Something went wrong
+ *         content:
+ *           application/json:
+ *             example:
+ *               success: false
+ *               message: Something went wrong
+ *               data: null
+ */
+router.route("/AllocatePurchaseEstimationEnquiryDetails").post(AllocatePurchaseEstimationEnquiryDetails)
+/**
+ * @swagger
+ * /api/v1/DeallocatePurchaseEstimationEnquiryDetails:
+ *   post:
+ *     summary: Deallocate Purchase Estimation Enquiry Details
+ *     tags: [Purchase Estimation Enquiry]
+ *     requestBody:
+ *       description: Purchase Estimation Enquiry details for deallocation
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               PurchaseEstimationEnquiryId:
+ *                 type: integer
+ *                 description: Unique identifier for the Purchase Estimation Enquiry.
+ *             required:
+ *               - PurchaseEstimationEnquiryId
+ *     responses:
+ *       200:
+ *         description: Deallocation successful
+ *         content:
+ *           application/json:
+ *             example:
+ *               success: true
+ *               message: Deallocation successful
+ *               data:
+ *                 PurchaseEstimationEnquiryId: 123
+ *       500:
+ *         description: Something went wrong
+ *         content:
+ *           application/json:
+ *             example:
+ *               success: false
+ *               message: Something went wrong
+ *               data: null
+ */
+router.route("/DeallocatePurchaseEstimationEnquiryDetails").post(DeallocatePurchaseEstimationEnquiryDetails);
 
 module.exports = router
 

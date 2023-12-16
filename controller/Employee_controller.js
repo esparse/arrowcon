@@ -192,7 +192,19 @@ exports.deleteEmployeeDetails = async(req,res)=>{
 }
 exports.updateEmployeeDetails = async(req,res)=>{
     try {
-        const result = await Employee.findOneAndUpdate({EmployeeId:req.body.EmployeeId} , req.body , {
+        const result = await Employee.findOneAndUpdate({EmployeeId:req.body.EmployeeId} , {
+            EmployeeName:req.body.EmployeeName,
+        EmailId:req.body.EmailId,
+        Password:bcrypt.hashSync(req.body.Password,10),
+        MobileNumber:req.body.MobileNumber,
+        Address:req.body.Address,
+        CityId:req.body.CityId,
+        CountryId:req.body.CountryId,
+        StateId:req.body.StateId,
+        Status:req.body.Status,
+        RoleId:req.body.RoleId,
+        DepartMentId:req.body.DepartMentId,
+        } , {
             new: true,
             runValidators: true,})
         res.json({

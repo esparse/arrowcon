@@ -218,7 +218,53 @@ exports.updatePurchaseEstimationEnquiryDetails = async(req,res)=>{
         })  
     }
 }
-
+exports.AllocatePurchaseEstimationEnquiryDetails = async(req,res)=>{
+    try {
+        const result = await PurchaseEstimationEnquiry.findOneAndUpdate({PurchaseEstimationEnquiryId:req.body.PurchaseEstimationEnquiryId} , {
+            AllocatedEmployeeId:req.body.AllocatedEmployeeId,
+            AllocatedRemark:req.body.AllocatedRemark,
+        } , {
+            new: true,
+            runValidators: true,})
+        res.json({
+            success:true,
+            message:"update PurchaseEstimationEnquiry Details",
+            data:result
+        })
+    } catch (error) {
+        res.json({
+            success:false,
+            message:"Something  went wrong"+Error,
+            data:null
+        })  
+    }
+}
+exports.DeallocatePurchaseEstimationEnquiryDetails = async (req, res) => {
+    try {
+        const result = await PurchaseEstimationEnquiry.findOneAndUpdate(
+            { PurchaseEstimationEnquiryId: req.body.PurchaseEstimationEnquiryId },
+            {
+                AllocatedEmployeeId: null,
+                AllocatedRemark: null,
+            },
+            {
+                new: true,
+                runValidators: true,
+            }
+        );
+        res.json({
+            success: true,
+            message: "Deallocation successful",
+            data: result,
+        });
+    } catch (error) {
+        res.json({
+            success: false,
+            message: "Something went wrong" + error,
+            data: null,
+        });
+    }
+};
 
 // exports.getSinglePurchaseEstimationEnquiryDetails = async (req, res) => {
 //     try {
