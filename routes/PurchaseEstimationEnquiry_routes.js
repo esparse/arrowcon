@@ -222,7 +222,7 @@ router.route("/getPurchaseEstimationEnquiryDetailsbyAllocatedEmployeeId/:Allocat
  * /api/v1/AllocatePurchaseEstimationEnquiryDetails:
  *   post:
  *     summary: Allocate Purchase Estimation Enquiry Details
- *     tags: [Purchase Estimation Enquiry]
+ *     tags: [PurchaseEstimationEnquiry]
  *     requestBody:
  *       description: Purchase Estimation Enquiry details for allocation
  *       required: true
@@ -271,7 +271,7 @@ router.route("/AllocatePurchaseEstimationEnquiryDetails").post(AllocatePurchaseE
  * /api/v1/DeallocatePurchaseEstimationEnquiryDetails:
  *   post:
  *     summary: Deallocate Purchase Estimation Enquiry Details
- *     tags: [Purchase Estimation Enquiry]
+ *     tags: [PurchaseEstimationEnquiry]
  *     requestBody:
  *       description: Purchase Estimation Enquiry details for deallocation
  *       required: true
