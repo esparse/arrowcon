@@ -33,6 +33,9 @@ const PurchaseEstimationEnquirySchema = mongoose.Schema({
    },
    AllocatedRemark:{
     type:String
+   },
+   TotalEstimationCost:{
+    type:String
    }
     
 },{

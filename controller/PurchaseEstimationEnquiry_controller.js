@@ -12,6 +12,7 @@ exports.CreatePurchaseEstimationEnquiryDetails = async(req,res)=>{
         CostEstimationStatusId:req.body.CostEstimationStatusId,
         AllocatedEmployeeId:req.body.AllocatedEmployeeId,
         AllocatedRemark:req.body.AllocatedRemark,
+        TotalEstimationCost:req.body.TotalEstimationCost,
      })
      res.json({
         success:true,
@@ -40,6 +41,14 @@ exports.viewPurchaseEstimationEnquiryDetails = async(req,res)=>{
         },
 
         {
+            $lookup:{
+                from:'employees',
+                localField:'AllocatedEmployeeId',
+                foreignField:'EmployeeId',
+                as:"Employee"
+            },
+        },
+          {
             $lookup:{
                 from:'salesenquiryitemdetails',
                 localField:'SalesEnquiryId',

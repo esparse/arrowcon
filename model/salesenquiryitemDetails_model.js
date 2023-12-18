@@ -22,6 +22,9 @@ const SalesEnquiryitemdetailsSchema = mongoose.Schema({
     SalesEnquiryId:{
         type:String
     },
+    itemdetailsinpurchaseestimationenquiryId:{
+        type:String
+    },
 },{
 timestamps:true
 })

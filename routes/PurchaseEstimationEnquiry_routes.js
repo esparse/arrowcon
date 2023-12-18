@@ -21,6 +21,7 @@ const router = express.Router()
  *         - CostEstimationStatusId
  *         - AllocatedEmployeeId
  *         - AllocatedRemark
+ *         - TotalEstimationCost
  *       properties:
  *         SalesEnquiryId:
  *           type: string
@@ -49,6 +50,9 @@ const router = express.Router()
  *         AllocatedRemark:
  *           type: string
  *           description: Allocated Remark
+ *         TotalEstimationCost:
+ *           type: string
+ *           description: Allocated Remark
  *       example:
  *         SalesEnquiryId: EA00-1000
  *         EnquiryDate: "11-10-2023"
@@ -59,6 +63,7 @@ const router = express.Router()
  *         CostEstimationStatusId: "1"
  *         AllocatedEmployeeId: "ED101"
  *         AllocatedRemark: "NA"
+ *         TotalEstimationCost: 18500
  * 
  *   parameters:
  *     PurchaseEstimationEnquiryId:

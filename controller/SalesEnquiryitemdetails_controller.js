@@ -9,6 +9,7 @@ exports.CreatesalesEnquiryitemdetailsDetails = async(req,res)=>{
         Description: req.body.Description,
         Unit: req.body.Unit,
         Quantity: req.body.Quantity,
+        itemdetailsinpurchaseestimationenquiryId: req.body.itemdetailsinpurchaseestimationenquiryId,
      })
      res.json({
         success:true,
@@ -25,7 +26,17 @@ exports.CreatesalesEnquiryitemdetailsDetails = async(req,res)=>{
 }
 exports.viewsalesEnquiryitemdetailsDetails = async(req,res)=>{
     try {
-        const result = await salesEnquiryitemdetails.find()
+        const result = await salesEnquiryitemdetails.aggregate([         
+        
+            {
+                $lookup:{
+                    from:'itemdetailsinpurchaseestimationenquiries',
+                    localField:'itemdetailsinpurchaseestimationenquiryId',
+                    foreignField:'itemdetailsinpurchaseestimationenquiryId',
+                    as:"ItemQuotationDetails"
+                },
+            },
+        ])
         res.json({
             count:result.length,
             success:true,
