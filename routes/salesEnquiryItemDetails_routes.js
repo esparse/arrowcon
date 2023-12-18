@@ -224,8 +224,7 @@ router.route("/deletesalesEnquiryitemdetailsDetailsbySalesEnquiryId/:SalesEnquir
  *       500:
  *         description: Internal server error
  */
-
-router.route("/api/v1/updatesalesEnquiryitemdetailsDetailsbysalesQuotationId")
+router.route("/updatesalesEnquiryitemdetailsDetailsbysalesQuotationId")
   .post(updatesalesEnquiryitemdetailsDetailsbysalesQuotationId);
 module.exports = router
 

@@ -141,7 +141,7 @@ exports.updatesalesEnquiryitemdetailsDetailsbysalesQuotationId = async(req,res)=
             runValidators: true,})
         res.json({
             success:true,
-            message:"update salesEnquiryitemdetails Details",
+            message:"update sales Enquiry item details Details by sales QuotationIds",
             data:result
         })
     } catch (error) {
