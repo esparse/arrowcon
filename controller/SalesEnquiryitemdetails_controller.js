@@ -134,3 +134,21 @@ exports.deletesalesEnquiryitemdetailsDetailsbySalesEnquiryId = async(req,res)=>{
         })  
     }
 }
+exports.updatesalesEnquiryitemdetailsDetailsbysalesQuotationId = async(req,res)=>{
+    try {
+        const result = await salesEnquiryitemdetails.findOneAndUpdate({itemdetailsinpurchaseestimationenquiryId:req.body.itemdetailsinpurchaseestimationenquiryId} , req.body , {
+            new: true,
+            runValidators: true,})
+        res.json({
+            success:true,
+            message:"update salesEnquiryitemdetails Details",
+            data:result
+        })
+    } catch (error) {
+        res.json({
+            success:false,
+            message:"Something  went wrong"+Error,
+            data:null
+        })  
+    }
+}
