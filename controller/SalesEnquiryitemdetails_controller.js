@@ -136,7 +136,7 @@ exports.deletesalesEnquiryitemdetailsDetailsbySalesEnquiryId = async(req,res)=>{
 }
 exports.updatesalesEnquiryitemdetailsDetailsbysalesQuotationId = async(req,res)=>{
     try {
-        const result = await salesEnquiryitemdetails.findOneAndUpdate({itemdetailsinpurchaseestimationenquiryId:req.body.itemdetailsinpurchaseestimationenquiryId} , req.body , {
+        const result = await salesEnquiryitemdetails.findOneAndUpdate({salesEnquiryitemdetailsId:req.body.salesEnquiryitemdetailsId},{ itemdetailsinpurchaseestimationenquiryId: req.body.itemdetailsinpurchaseestimationenquiryId,}  ,{
             new: true,
             runValidators: true,})
         res.json({
@@ -147,7 +147,7 @@ exports.updatesalesEnquiryitemdetailsDetailsbysalesQuotationId = async(req,res)=
     } catch (error) {
         res.json({
             success:false,
-            message:"Something  went wrong"+Error,
+            message:"Something  went wrong"+error.message,
             data:null
         })  
     }
