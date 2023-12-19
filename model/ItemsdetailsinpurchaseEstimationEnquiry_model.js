@@ -7,7 +7,7 @@ const itemdetailsinpurchaseestimationenquirySchema = mongoose.Schema({
     SalesEnquiryId:{
         type:String, 
     },
-    ItemDetails:{
+    salesEnquiryitemdetailsId:{
         type:String,
     }, 
     SuplierId:{
