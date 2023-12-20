@@ -101,23 +101,47 @@ exports.getSinglesalesEnquiryitemdetailsDetails = async(req,res)=>{
         })  
     }
 }
-exports.getsalesEnquiryitemdetailsDetailsbySalesEnquiryId = async(req,res)=>{
+exports.getsalesEnquiryitemdetailsDetailsbySalesEnquiryId = async (req, res) => {
     try {
-        const result = await salesEnquiryitemdetails.find({SalesEnquiryId:req.params.SalesEnquiryId})
+        const result = await salesEnquiryitemdetails.aggregate([
+            {
+                $match: {
+                    SalesEnquiryId: req.params.SalesEnquiryId
+                }
+            },
+            {
+                $lookup: {
+                    from: 'itemdetailsinpurchaseestimationenquiries', // Change 'OtherCollection' to your actual collection name
+                    localField: 'SalesEnquiryId',
+                    foreignField: 'SalesEnquiryId', // Change 'CommonField' to the field in 'OtherCollection'
+                    as: 'ItemDetilasforQuotation'
+                }
+            },
+            {
+                $lookup: {
+                    from: 'salesenquiries', // Change 'OtherCollection' to your actual collection name
+                    localField: 'SalesEnquiryId',
+                    foreignField: 'SalesEnquiryId', // Change 'CommonField' to the field in 'OtherCollection'
+                    as: 'SalesEnquiries'
+                }
+            },
+        ]);
+
         res.json({
-            count:result.length,
-            success:true,
-            message:"get sales Enquiry item Details",
-            data:result
-        })
+            count: result.length,
+            success: true,
+            message: "Get sales Enquiry item Details with lookup data",
+            data: result
+        });
     } catch (error) {
         res.json({
-            success:false,
-            message: `Something went worng `+ {error},
-            data:null
-         })
+            success: false,
+            message: `Something went wrong: ${error}`,
+            data: null
+        });
     }
-}
+};
+
 exports.deletesalesEnquiryitemdetailsDetailsbySalesEnquiryId = async(req,res)=>{
     try {
         const result = await salesEnquiryitemdetails.deleteMany({SalesEnquiryId:req.params.SalesEnquiryId})
