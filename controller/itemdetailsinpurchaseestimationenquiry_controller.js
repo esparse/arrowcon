@@ -199,4 +199,61 @@ exports.getitemdetailsinpurchaseestimationenquiryDetailsbysalesEnquiryitemdetail
       });
     }
   };
-  
+  exports.getitemdetailsinpurchaseestimationenquiryDetailsbysalesEnqiryItemdetailsId = async(req,res)=>{
+    try {
+        const result = await itemdetailsinpurchaseestimationenquiry.aggregate([
+            
+                {
+                    $match: {
+                        salesEnquiryitemdetailsId:req.params.salesEnquiryitemdetailsId
+                    }
+                },
+            
+            {
+                $lookup:{
+                    from:'salesenquiries',
+                    localField:'SalesEnquiryId',
+                    foreignField:'SalesEnquiryId',
+                    as:"SalesEnquiry"
+                },
+            },
+            {
+                $lookup:{
+                    from:'salesenquiryitemdetails',
+                    localField:'salesEnquiryitemdetailsId',
+                    foreignField:'salesEnquiryitemdetailsId',
+                    as:"SalesEnquiryitemdetails"
+                },
+            },
+            {
+                $lookup:{
+                    from:'supliers',
+                    localField:'SuplierId',
+                    foreignField:'SuplierId',
+                    as:"Suplier"
+                },
+            },
+            {
+                $lookup:{
+                    from:'quotioncurrencies',
+                    localField:'QuotionCurrencyId',
+                    foreignField:'QuotionCurrencyId',
+                    as:"QuotionCurrency"
+                },
+            },
+
+        ])
+        res.json({
+            count:result.length,
+            success:true,
+            message:"get itemdetailsinpurchaseestimationenquiry Details",
+            data:result
+        })
+    } catch (error) {
+        res.json({
+            success:false,
+            message: `Something went worng `+ {error},
+            data:null
+         })
+    }
+}

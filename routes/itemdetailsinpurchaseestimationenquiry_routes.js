@@ -1,5 +1,5 @@
 const express = require("express")
-const {CreateitemdetailsinpurchaseestimationenquiryDetails,viewitemdetailsinpurchaseestimationenquiryDetails,deleteitemdetailsinpurchaseestimationenquiryDetails,updateitemdetailsinpurchaseestimationenquiryDetails,getSingleitemdetailsinpurchaseestimationenquiryDetails,getitemdetailsinpurchaseestimationenquiryDetailsbysalesEnquiryitemdetailsIdandSalesEnquiryId} = require("../controller/itemdetailsinpurchaseestimationenquiry_controller")
+const {CreateitemdetailsinpurchaseestimationenquiryDetails,viewitemdetailsinpurchaseestimationenquiryDetails,deleteitemdetailsinpurchaseestimationenquiryDetails,updateitemdetailsinpurchaseestimationenquiryDetails,getSingleitemdetailsinpurchaseestimationenquiryDetails,getitemdetailsinpurchaseestimationenquiryDetailsbysalesEnquiryitemdetailsIdandSalesEnquiryId,getitemdetailsinpurchaseestimationenquiryDetailsbysalesEnqiryItemdetailsId} = require("../controller/itemdetailsinpurchaseestimationenquiry_controller")
 const router = express.Router()
 /**
  * @swagger
@@ -262,6 +262,50 @@ router.route("/getSingleitemdetailsinpurchaseestimationenquiryDetails/:itemdetai
 
 router.route('/getitemdetailsinpurchaseestimationenquiryDetailsbysalesEnquiryitemdetailsIdandSalesEnquiryId/:salesEnquiryitemdetailsId/:SalesEnquiryId')
   .get(getitemdetailsinpurchaseestimationenquiryDetailsbysalesEnquiryitemdetailsIdandSalesEnquiryId);
+
+
+  /**
+ * @swagger
+ * /api/v1/getItemDetailsInPurchaseEstimationEnquiry/{salesEnquiryitemdetailsId}:
+ *   get:
+ *     summary: Get purchase estimation details by salesEnquiryItemdetailsId
+ *     tags:
+ *       - Purchase Estimation Enquiry
+ *     parameters:
+ *       - in: path
+ *         name: salesEnquiryitemdetailsId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The ID of the salesEnquiryItemdetails
+ *     responses:
+ *       200:
+ *         description: Successful response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 count:
+ *                   type: integer
+ *                   description: Number of items returned
+ *                 success:
+ *                   type: boolean
+ *                   description: Indicates if the request was successful
+ *                 message:
+ *                   type: string
+ *                   description: A message describing the result
+ *                 data:
+ *                   type: array
+ *                   description: Array of items with purchase estimation details
+ *                   items:
+ *                     $ref: '#/components/schemas/PurchaseEstimationDetails'
+ *       500:
+ *         description: Internal server error
+ */
+
+router.get("/getItemDetailsInPurchaseEstimationEnquiry/:salesEnquiryitemdetailsId", getitemdetailsinpurchaseestimationenquiryDetailsbysalesEnqiryItemdetailsId);
+
 
 module.exports = router;
 

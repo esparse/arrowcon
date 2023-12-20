@@ -112,8 +112,8 @@ exports.getsalesEnquiryitemdetailsDetailsbySalesEnquiryId = async (req, res) => 
             {
                 $lookup: {
                     from: 'itemdetailsinpurchaseestimationenquiries', // Change 'OtherCollection' to your actual collection name
-                    localField: 'SalesEnquiryId',
-                    foreignField: 'SalesEnquiryId', // Change 'CommonField' to the field in 'OtherCollection'
+                    localField: 'itemdetailsinpurchaseestimationenquiryId',
+                    foreignField: 'itemdetailsinpurchaseestimationenquiryId', // Change 'CommonField' to the field in 'OtherCollection'
                     as: 'ItemDetilasforQuotation'
                 }
             },
