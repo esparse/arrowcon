@@ -93,10 +93,13 @@ const CustomerSchema = mongoose.Schema({
     CapacityId:{
         type:String
     },
+    Capacity:{
+        type:String
+    },
     MainSteamPressureId:{
         type:String
     },
-    TypeOfFuelFired:{
+    TypeOffuelfiredId:{
         type:String
     },
     MainSteamTemperatureId:{

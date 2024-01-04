@@ -1,0 +1,48 @@
+
+[
+    {
+        "TypeOffuelfiredId":"1",
+        "TypeOffuelfired":"Coal"
+    },
+    {
+        "TypeOffuelfiredId":"2",
+        "TypeOffuelfired":"Biomass"
+    },
+    {
+        "TypeOffuelfiredId":"3",
+        "TypeOffuelfired":"Biogas"
+    },
+    {
+        "TypeOffuelfiredId":"4",
+        "TypeOffuelfired":"Bagasse"
+    },
+    {
+        "TypeOffuelfiredId":"5",
+        "TypeOffuelfired":"Natural Gas"
+    },
+    {
+        "TypeOffuelfiredId":"6",
+        "TypeOffuelfired":"BFG"
+    },
+    {
+        "TypeOffuelfiredId":"7",
+        "TypeOffuelfired":"furnace Oil"
+    },
+    {
+        "TypeOffuelfiredId":"8",
+        "TypeOffuelfired":"LDO"
+    },
+    {
+        "TypeOffuelfiredId":"9",
+        "TypeOffuelfired":"LSHS"
+    },
+    {
+        "TypeOffuelfiredId":"10",
+        "TypeOffuelfired":"Kiln Gas"
+    },
+    {
+        "TypeOffuelfiredId":"11",
+        "TypeOffuelfired":"GT gas"
+    }
+]
+ 

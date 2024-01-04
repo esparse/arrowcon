@@ -36,8 +36,6 @@ const router = express.Router()
  *         - BankName
  *         - BankBranchCode
  *         - IFSCCode
- *         - BankManagerName
- *         - BankBranchAccountManagerName
  *         - BankAddress
  *         - BankEmailId
  *         - ProductBrocher
@@ -48,9 +46,7 @@ const router = express.Router()
  *         - CountryCode
  *         - MobileNo
  *         - BankBranch
- *         - ContactNo
  *         - Bankswiftcode
- *         - ContactNoBranchManager
  *         - isRegisterAddressSameAsBillingAddress
  *       properties:
  *         SuplierId :
@@ -164,9 +160,6 @@ const router = express.Router()
  *         BankBranch:
  *           type: string
  *           description: BillingAddressPin
- *         ContactNo:
- *           type: string
- *           description: BillingAddressPin
  *         Bankswiftcode:
  *           type: string
  *           description: BillingAddressPin
@@ -204,8 +197,6 @@ const router = express.Router()
  *         BankName : AxisNo1
  *         BankBranchCode : AU10245
  *         IFSCCode : AXIS01245
- *         BankManagerName : Anish
- *         BankBranchAccountManagerName : Anksha
  *         BankAddress : bank
  *         BankEmailId :   bankabc@gmail.com
  *         ProductBrocher :   bank@gmail.com
@@ -215,7 +206,6 @@ const router = express.Router()
  *         CountryCode: IN,
  *         MobileNo: 9874561230,
  *         BankBranch: MH,
- *         ContactNo: 9874125630,
  *         Bankswiftcode: AK548A,
  *         ContactNoBranchManager: 9874561230,
  *         isRegisterAddressSameAsBillingAddress: true,

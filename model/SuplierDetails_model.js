@@ -98,9 +98,6 @@ const SuplierSchema = mongoose.Schema({
     ContactNo:{
         type:String
     },
-    BankBranchAccountManagerName:{
-        type:String
-    },
     BankAddress:{
         type:String
     },
@@ -134,16 +131,10 @@ const SuplierSchema = mongoose.Schema({
     BankBranch:{
         type:String
     } ,
-    ContactNo :{
-        type:String
-    },
     Bankswiftcode:{
         type:String
     },
-    ContactNoBranchManager:{
-        type:String
 
-    },
     isRegisterAddressSameAsBillingAddress:{
         type:Boolean
     }

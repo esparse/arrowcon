@@ -31,8 +31,9 @@ exports.CreateCustomerDetails = async(req,res)=>{
         TypeOfEquipmentId:req.body.TypeOfEquipmentId,
         MakeOfBoiler:req.body.MakeOfBoiler,
         CapacityId:req.body.CapacityId,
+        Capacity:req.body.Capacity,
         MainSteamPressureId:req.body.MainSteamPressureId,
-        TypeOfFuelFired:req.body.TypeOfFuelFired,
+        TypeOffuelfiredId:req.body.TypeOffuelfiredId,
         MainSteamTemperatureId:req.body.MainSteamTemperatureId,
         YearOfInstallation:req.body.YearOfInstallation,
         NoOfInstallation:req.body.NoOfInstallation,
@@ -230,7 +231,14 @@ exports.viewCustomerDetails = async(req,res)=>{
                     as:"SalesEnquiries"
                 },
             },
-            
+            {
+                $lookup:{
+                    from:'typeoffuelfireds',
+                    localField:'TypeOffuelfiredId',
+                    foreignField:'TypeOffuelfiredId',
+                    as:"TypeOffuelfired"
+                },
+            },
         ])
         res.json({
             count:result.length,

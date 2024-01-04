@@ -40,6 +40,7 @@ const router = express.Router()
  *         - TypeOfEquipmentId
  *         - MakeOfBoiler
  *         - CapacityId
+ *         - Capacity
  *         - MainSteamPressureId
  *         - TypeOfFuelFired
  *         - MainSteamTemperatureId
@@ -136,12 +137,18 @@ const router = express.Router()
  *         MakeOfBoiler :
  *           type: string
  *           description: MakeOfBoiler
+ *         Capacity:
+ *           type: string
+ *           description: CapacityId
  *         CapacityId:
  *           type: string
  *           description: CapacityId
  *         MainSteamPressureId:
  *           type: string
  *           description: MainSteamPressureId
+ *         MainSteamPressure:
+ *           type: string
+ *           description: MainSteamPressure
  *         TypeOfFuelFired:
  *           type: string
  *           description: TypeOfFuelFired
@@ -202,10 +209,13 @@ const router = express.Router()
  *         EquipmentId: 1
  *         TypeOfEquipmentId: 1
  *         MakeOfBoiler : jbkdb
+ *         Capacity : "100"
  *         CapacityId : 1
  *         MainSteamPressureId : 1
- *         TypeOfFuelFired : hbhe
+ *         MainSteamPressure : "100"
+ *         TypeOffuelfiredId : 1
  *         MainSteamTemperatureId : 1
+ *         MainSteamTemperature : "100"
  *         YearOfInstallation : 2015
  *         NoOfInstallation : 10
  *         BoilerMakeNo : 1245

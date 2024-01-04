@@ -74,6 +74,7 @@ const itemdetailsinpurchaseestimationenquiry = require('./routes/itemdetailsinpu
 const Allocatecostestimationtopurchaseteam = require('./routes/Allocatecostestimationtopurchaseteam_routes');
 const purchasetramlogin = require('./routes/purchaseloginteam_routes');
 const purchaseteamforgotpassword= require('./routes/purchaseteam_forgotpassword_routes');
+const TypeOffuelfired= require('./routes/TypeOffuelfired_routes');
 // const Personcontact = require('./middleware/contactperson');
 
 const options = {
@@ -162,6 +163,7 @@ const options = {
   app.use("/api/v1",Allocatecostestimationtopurchaseteam)
   app.use("/api/v1",purchasetramlogin)
   app.use("/api/v1",purchaseteamforgotpassword)
+  app.use("/api/v1",TypeOffuelfired)
   // app.use("/api/v1",Personcontact)
  
 
