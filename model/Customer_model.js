@@ -131,4 +131,5 @@ const CustomerSchema = mongoose.Schema({
 },{
 timestamps:true
 })
+CustomerSchema.index({ CustomerName: 'text' });
 module.exports = mongoose.model("Customer",CustomerSchema)
