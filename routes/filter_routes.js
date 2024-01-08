@@ -243,7 +243,7 @@ router.get('/customerstype/:customertype', async (req, res) => {
 router.get('/customerscity/:city', async (req, res) => {
     try {
       const city = req.params.city;
-  console.log(city)
+
       const aggregationPipeline = [];
   
       if (city) {
@@ -436,15 +436,17 @@ router.get('/customerscity/:city', async (req, res) => {
             },
         },
 
-       
+        { $match: {
+            'HeadOfficeCity.name': city,
+          },}
       // Your other $lookup stages here
     );
   
       const result = await customer.aggregate(aggregationPipeline);
-  
+  console.log(result[0].HeadOfficeCity[0].name);
       res.json({
         count: result.length,
-        message: 'Get data by Customer Type and City',
+        message: 'Get data by Customer City',
         data: result,
       });
     } catch (error) {
