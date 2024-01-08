@@ -240,222 +240,231 @@ router.get('/customerstype/:customertype', async (req, res) => {
   }
 });
 // city
-router.get('/customerscity/:city', async (req, res) => {
+router.get('/customersbyheadofficecity/:headOfficeCity', async (req, res) => {
     try {
-      const city = req.params.city;
+        const headOfficeCity = req.params.headOfficeCity;
 
-      const aggregationPipeline = [];
-  
-      if (city) {
-        aggregationPipeline.push({
-          $match: {
-            'HeadOfficeCity.name': city,
-          },
+        const aggregationPipeline = [];
+
+        // Add $match stage to filter by HeadOfficeCity
+        if (headOfficeCity) {
+            aggregationPipeline.push({
+                $lookup: {
+                    from: "cities",
+                    localField: "HeadOfficeCityId",
+                    foreignField: "id",
+                    as: "HeadOfficeCity"
+                },
+            });
+            // Use $unwind if 'HeadOfficeCity' is an array
+            // aggregationPipeline.push({ $unwind: '$HeadOfficeCity' });
+            aggregationPipeline.push({
+                $match: {
+                    'HeadOfficeCity.name': headOfficeCity,
+                },
+                
+            });
+        }
+
+        // Add other stages as needed
+        aggregationPipeline.push(
+            // Your existing $lookup stages here
+            {
+                $lookup:{
+                    from:"states",
+                    localField:"HeadOfficeStateId",
+                    foreignField:"id",
+                    as:"HeadOfficeState"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"customertypes",
+                    localField:"CustomerTypeId",
+                    foreignField:"CustomerTypeId",
+                    as:"CustomerType"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"cities",
+                    localField:"HeadOfficeCityId",
+                    foreignField:"id",
+                    as:"HeadOfficeCity"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"states",
+                    localField:"SiteAddressStateId",
+                    foreignField:"id",
+                    as:"SiteAddressState"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"cities",
+                    localField:"SiteAddressCityId",
+                    foreignField:"id",
+                    as:"SiteAddressCity"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"customercategories",
+                    localField:"CustomerCategoryId",
+                    foreignField:"CustomerCategoryId",
+                    as:"CustomerCategory"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"customerregions",
+                    localField:"CustomerRegionId",
+                    foreignField:"CustomerRegionId",
+                    as:"CustomerRegion"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"locations",
+                    localField:"locationId",
+                    foreignField:"locationId",
+                    as:"location"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"customerindustries",
+                    localField:"CustomerIndustryId",
+                    foreignField:"CustomerIndustryId",
+                    as:"CustomerIndustry"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"equipment",
+                    localField:"EquipmentId",
+                    foreignField:"EquipmentId",
+                    as:"Equipment"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"typeofequipments",
+                    localField:"TypeOfEquipmentId",
+                    foreignField:"TypeOfEquipmentId",
+                    as:"typeOfEquipment"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"capacities",
+                    localField:"CapacityId",
+                    foreignField:"CapacityId",
+                    as:"Capacity"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"mainsteampressures",
+                    localField:"MainSteamPressureId",
+                    foreignField:"MainSteamPressureId",
+                    as:"MainSteamPressure"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"mainsteamtemperatures",
+                    localField:"MainSteamTemperatureId",
+                    foreignField:"MainSteamTemperatureId",
+                    as:"MainSteamTemperature"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"pollutioncontrolequipments",
+                    localField:"PollutionControlEquipmentId",
+                    foreignField:"PollutionControlEquipmentId",
+                    as:"PollutionControlEquipment"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"countries",
+                    localField:"HeadOfficeCountryId",
+                    foreignField:"id",
+                    as:"HeadOfficeCountry"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"countries",
+                    localField:"SiteAddressCountryId",
+                    foreignField:"id",
+                    as:"SiteAddressCountry"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"contactpeople",
+                    localField:"CustomerId",
+                    foreignField:"sourceId",
+                    as:"ConatctPerson"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:'salesenquiries',
+                    localField:'CustomerId',
+                    foreignField:'CustomerId',
+                    as:"SalesEnquiries"
+                },
+            },
+            {
+                $lookup:{
+                    from:'typeoffuelfireds',
+                    localField:'TypeOffuelfiredId',
+                    foreignField:'TypeOffuelfiredId',
+                    as:"TypeOffuelfired"
+                },
+            },
+            // ... (other $lookup stages)
+        );
+
+        const result = await customer.aggregate(aggregationPipeline);
+
+        res.json({
+            count: result.length,
+            message: 'Get data by HeadOfficeCity',
+            data: result,
         });
-      }
-  
-      // Add other stages as needed
-      aggregationPipeline.push(
-        {
-            $lookup:{
-                from:"cities",
-                localField:"HeadOfficeCityId",
-                foreignField:"id",
-                as:"HeadOfficeCity"
-            },
-         
-        },
-        {
-            $lookup:{
-                from:"states",
-                localField:"HeadOfficeStateId",
-                foreignField:"id",
-                as:"HeadOfficeState"
-            },
-         
-        },
-        {
-            $lookup:{
-                from:"customertypes",
-                localField:"CustomerTypeId",
-                foreignField:"CustomerTypeId",
-                as:"CustomerType"
-            },
-         
-        },
-        
-        {
-            $lookup:{
-                from:"states",
-                localField:"SiteAddressStateId",
-                foreignField:"id",
-                as:"SiteAddressState"
-            },
-         
-        },
-        {
-            $lookup:{
-                from:"cities",
-                localField:"SiteAddressCityId",
-                foreignField:"id",
-                as:"SiteAddressCity"
-            },
-         
-        },
-        {
-            $lookup:{
-                from:"customercategories",
-                localField:"CustomerCategoryId",
-                foreignField:"CustomerCategoryId",
-                as:"CustomerCategory"
-            },
-         
-        },
-        {
-            $lookup:{
-                from:"customerregions",
-                localField:"CustomerRegionId",
-                foreignField:"CustomerRegionId",
-                as:"CustomerRegion"
-            },
-         
-        },
-        {
-            $lookup:{
-                from:"locations",
-                localField:"locationId",
-                foreignField:"locationId",
-                as:"location"
-            },
-         
-        },
-        {
-            $lookup:{
-                from:"customerindustries",
-                localField:"CustomerIndustryId",
-                foreignField:"CustomerIndustryId",
-                as:"CustomerIndustry"
-            },
-         
-        },
-        {
-            $lookup:{
-                from:"equipment",
-                localField:"EquipmentId",
-                foreignField:"EquipmentId",
-                as:"Equipment"
-            },
-         
-        },
-        {
-            $lookup:{
-                from:"typeofequipments",
-                localField:"TypeOfEquipmentId",
-                foreignField:"TypeOfEquipmentId",
-                as:"typeOfEquipment"
-            },
-         
-        },
-        {
-            $lookup:{
-                from:"capacities",
-                localField:"CapacityId",
-                foreignField:"CapacityId",
-                as:"Capacity"
-            },
-         
-        },
-        {
-            $lookup:{
-                from:"mainsteampressures",
-                localField:"MainSteamPressureId",
-                foreignField:"MainSteamPressureId",
-                as:"MainSteamPressure"
-            },
-         
-        },
-        {
-            $lookup:{
-                from:"mainsteamtemperatures",
-                localField:"MainSteamTemperatureId",
-                foreignField:"MainSteamTemperatureId",
-                as:"MainSteamTemperature"
-            },
-         
-        },
-        {
-            $lookup:{
-                from:"pollutioncontrolequipments",
-                localField:"PollutionControlEquipmentId",
-                foreignField:"PollutionControlEquipmentId",
-                as:"PollutionControlEquipment"
-            },
-         
-        },
-        {
-            $lookup:{
-                from:"countries",
-                localField:"HeadOfficeCountryId",
-                foreignField:"id",
-                as:"HeadOfficeCountry"
-            },
-         
-        },
-        {
-            $lookup:{
-                from:"countries",
-                localField:"SiteAddressCountryId",
-                foreignField:"id",
-                as:"SiteAddressCountry"
-            },
-         
-        },
-        {
-            $lookup:{
-                from:"contactpeople",
-                localField:"CustomerId",
-                foreignField:"sourceId",
-                as:"ConatctPerson"
-            },
-         
-        },
-        {
-            $lookup:{
-                from:'salesenquiries',
-                localField:'CustomerId',
-                foreignField:'CustomerId',
-                as:"SalesEnquiries"
-            },
-        },
-        {
-            $lookup:{
-                from:'typeoffuelfireds',
-                localField:'TypeOffuelfiredId',
-                foreignField:'TypeOffuelfiredId',
-                as:"TypeOffuelfired"
-            },
-        },
-
-        { $match: {
-            'HeadOfficeCity.name': city,
-          },}
-      // Your other $lookup stages here
-    );
-  
-      const result = await customer.aggregate(aggregationPipeline);
-  console.log(result[0].HeadOfficeCity);
-      res.json({
-        count: result.length,
-        message: 'Get data by Customer City',
-        data: result,
-      });
     } catch (error) {
-      console.error(error);
-      res.status(500).send({
-        message: 'Some error occurred while fetching customer data.' + error.message,
-      });
+        console.error(error);
+        res.status(500).send({
+            message: 'Some error occurred while fetching customer data.' + error.message,
+        });
     }
-  });
+});
+
 //   equipment type
 
 router.get('/customersequipment/:Equipment', async (req, res) => {
@@ -1884,6 +1893,457 @@ router.get('/customersbycustomerstatus/:customerStatus', async (req, res) => {
         res.json({
             count: result.length,
             message: 'Get data by CustomerStatus',
+            data: result,
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({
+            message: 'Some error occurred while fetching customer data.' + error.message,
+        });
+    }
+});
+
+// head office state
+router.get('/customersbyheadofficestate/:headOfficeState', async (req, res) => {
+    try {
+        const headOfficeState = req.params.headOfficeState;
+
+        const aggregationPipeline = [];
+
+        // Add $match stage to filter by HeadOfficeState
+        if (headOfficeState) {
+            aggregationPipeline.push({
+                $lookup: {
+                    from: "states",
+                    localField: "HeadOfficeStateId",
+                    foreignField: "id",
+                    as: "HeadOfficeState"
+                },
+            });
+            // Use $unwind if 'HeadOfficeState' is an array
+            // aggregationPipeline.push({ $unwind: '$HeadOfficeState' });
+            aggregationPipeline.push({
+                $match: {
+                    'HeadOfficeState.name': headOfficeState,
+                },
+            });
+        }
+
+        // Add other stages as needed
+        aggregationPipeline.push(
+            // Your existing $lookup stages here
+            {
+                $lookup:{
+                    from:"states",
+                    localField:"HeadOfficeStateId",
+                    foreignField:"id",
+                    as:"HeadOfficeState"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"customertypes",
+                    localField:"CustomerTypeId",
+                    foreignField:"CustomerTypeId",
+                    as:"CustomerType"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"cities",
+                    localField:"HeadOfficeCityId",
+                    foreignField:"id",
+                    as:"HeadOfficeCity"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"states",
+                    localField:"SiteAddressStateId",
+                    foreignField:"id",
+                    as:"SiteAddressState"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"cities",
+                    localField:"SiteAddressCityId",
+                    foreignField:"id",
+                    as:"SiteAddressCity"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"customercategories",
+                    localField:"CustomerCategoryId",
+                    foreignField:"CustomerCategoryId",
+                    as:"CustomerCategory"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"customerregions",
+                    localField:"CustomerRegionId",
+                    foreignField:"CustomerRegionId",
+                    as:"CustomerRegion"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"locations",
+                    localField:"locationId",
+                    foreignField:"locationId",
+                    as:"location"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"customerindustries",
+                    localField:"CustomerIndustryId",
+                    foreignField:"CustomerIndustryId",
+                    as:"CustomerIndustry"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"equipment",
+                    localField:"EquipmentId",
+                    foreignField:"EquipmentId",
+                    as:"Equipment"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"typeofequipments",
+                    localField:"TypeOfEquipmentId",
+                    foreignField:"TypeOfEquipmentId",
+                    as:"typeOfEquipment"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"capacities",
+                    localField:"CapacityId",
+                    foreignField:"CapacityId",
+                    as:"Capacity"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"mainsteampressures",
+                    localField:"MainSteamPressureId",
+                    foreignField:"MainSteamPressureId",
+                    as:"MainSteamPressure"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"mainsteamtemperatures",
+                    localField:"MainSteamTemperatureId",
+                    foreignField:"MainSteamTemperatureId",
+                    as:"MainSteamTemperature"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"pollutioncontrolequipments",
+                    localField:"PollutionControlEquipmentId",
+                    foreignField:"PollutionControlEquipmentId",
+                    as:"PollutionControlEquipment"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"countries",
+                    localField:"HeadOfficeCountryId",
+                    foreignField:"id",
+                    as:"HeadOfficeCountry"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"countries",
+                    localField:"SiteAddressCountryId",
+                    foreignField:"id",
+                    as:"SiteAddressCountry"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"contactpeople",
+                    localField:"CustomerId",
+                    foreignField:"sourceId",
+                    as:"ConatctPerson"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:'salesenquiries',
+                    localField:'CustomerId',
+                    foreignField:'CustomerId',
+                    as:"SalesEnquiries"
+                },
+            },
+            {
+                $lookup:{
+                    from:'typeoffuelfireds',
+                    localField:'TypeOffuelfiredId',
+                    foreignField:'TypeOffuelfiredId',
+                    as:"TypeOffuelfired"
+                },
+            },
+            // ... (other $lookup stages)
+        );
+
+        const result = await customer.aggregate(aggregationPipeline);
+
+        res.json({
+            count: result.length,
+            message: 'Get data by HeadOfficeState',
+            data: result,
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({
+            message: 'Some error occurred while fetching customer data.' + error.message,
+        });
+    }
+});
+
+// countrty
+
+router.get('/customersbyheadofficecountry/:headOfficeCountry', async (req, res) => {
+    try {
+        const headOfficeCountry = req.params.headOfficeCountry;
+
+        const aggregationPipeline = [];
+
+        // Add $match stage to filter by HeadOfficeCountry
+        if (headOfficeCountry) {
+            aggregationPipeline.push({
+                $lookup: {
+                    from: "countries",
+                    localField: "HeadOfficeCountryId",
+                    foreignField: "id",
+                    as: "HeadOfficeCountry"
+                },
+            });
+            // Use $unwind if 'HeadOfficeCountry' is an array
+            // aggregationPipeline.push({ $unwind: '$HeadOfficeCountry' });
+            aggregationPipeline.push({
+                $match: {
+                    'HeadOfficeCountry.name': headOfficeCountry,
+                },
+            });
+        }
+
+        // Add other stages as needed
+        aggregationPipeline.push(
+            // Your existing $lookup stages here
+            {
+                $lookup:{
+                    from:"states",
+                    localField:"HeadOfficeStateId",
+                    foreignField:"id",
+                    as:"HeadOfficeState"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"customertypes",
+                    localField:"CustomerTypeId",
+                    foreignField:"CustomerTypeId",
+                    as:"CustomerType"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"cities",
+                    localField:"HeadOfficeCityId",
+                    foreignField:"id",
+                    as:"HeadOfficeCity"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"states",
+                    localField:"SiteAddressStateId",
+                    foreignField:"id",
+                    as:"SiteAddressState"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"cities",
+                    localField:"SiteAddressCityId",
+                    foreignField:"id",
+                    as:"SiteAddressCity"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"customercategories",
+                    localField:"CustomerCategoryId",
+                    foreignField:"CustomerCategoryId",
+                    as:"CustomerCategory"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"customerregions",
+                    localField:"CustomerRegionId",
+                    foreignField:"CustomerRegionId",
+                    as:"CustomerRegion"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"locations",
+                    localField:"locationId",
+                    foreignField:"locationId",
+                    as:"location"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"customerindustries",
+                    localField:"CustomerIndustryId",
+                    foreignField:"CustomerIndustryId",
+                    as:"CustomerIndustry"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"equipment",
+                    localField:"EquipmentId",
+                    foreignField:"EquipmentId",
+                    as:"Equipment"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"typeofequipments",
+                    localField:"TypeOfEquipmentId",
+                    foreignField:"TypeOfEquipmentId",
+                    as:"typeOfEquipment"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"capacities",
+                    localField:"CapacityId",
+                    foreignField:"CapacityId",
+                    as:"Capacity"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"mainsteampressures",
+                    localField:"MainSteamPressureId",
+                    foreignField:"MainSteamPressureId",
+                    as:"MainSteamPressure"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"mainsteamtemperatures",
+                    localField:"MainSteamTemperatureId",
+                    foreignField:"MainSteamTemperatureId",
+                    as:"MainSteamTemperature"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"pollutioncontrolequipments",
+                    localField:"PollutionControlEquipmentId",
+                    foreignField:"PollutionControlEquipmentId",
+                    as:"PollutionControlEquipment"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"countries",
+                    localField:"HeadOfficeCountryId",
+                    foreignField:"id",
+                    as:"HeadOfficeCountry"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"countries",
+                    localField:"SiteAddressCountryId",
+                    foreignField:"id",
+                    as:"SiteAddressCountry"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:"contactpeople",
+                    localField:"CustomerId",
+                    foreignField:"sourceId",
+                    as:"ConatctPerson"
+                },
+             
+            },
+            {
+                $lookup:{
+                    from:'salesenquiries',
+                    localField:'CustomerId',
+                    foreignField:'CustomerId',
+                    as:"SalesEnquiries"
+                },
+            },
+            {
+                $lookup:{
+                    from:'typeoffuelfireds',
+                    localField:'TypeOffuelfiredId',
+                    foreignField:'TypeOffuelfiredId',
+                    as:"TypeOffuelfired"
+                },
+            },
+            // ... (other $lookup stages)
+        );
+
+        const result = await customer.aggregate(aggregationPipeline);
+
+        res.json({
+            count: result.length,
+            message: 'Get data by HeadOfficeCountry',
             data: result,
         });
     } catch (error) {
